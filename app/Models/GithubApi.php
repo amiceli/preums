@@ -161,4 +161,11 @@ class GithubApi
             "topics" => $topics,
         );
     }
+
+    public function canContinue () : bool {
+        $response = Http::get('https://api.github.com/rate_limit');
+        $states = $response->json();
+
+        return $states['rate']['remaining'] > 0;
+    }
 }
