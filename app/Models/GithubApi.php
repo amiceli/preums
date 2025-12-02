@@ -2,72 +2,39 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Support\Facades\Http;
-
-class GithubItemOwner
-{
-    public function __construct(
-        public string $login,
-        public string $id,
-        public string $avatarUrl,
-    ) {}
-}
-
-class GithubItem
-{
-    public readonly string $createdAtStr;
-
-    public readonly string $updatedAtStr;
-
-    /**
-     * @param string[] $topics
-     */
-    public function __construct(
-        public string $id,
-        public int $stars,
-        public string $name,
-        public string $fullName,
-        public string|null $description,
-        public string $url,
-        public \DateTime $createdAt,
-        public \DateTime $updatedAt,
-        public string|null $language,
-        public array $topics,
-        public int $watchers,
-        public int $forks,
-        public GithubItemOwner $owner,
-    ) {
-        $this->createdAtStr = $this->createdAt->format('c');
-        $this->updatedAtStr = $this->updatedAt->format('c');
-    }
-}
 
 class GithubApi
 {
+    private function parseRepository($repo) : GithubRepository {
+        $owner = new GithubRepositoryOwner(
+            $repo["owner"]["login"],
+            $repo["owner"]["id"],
+            $repo["owner"]["avatar_url"],
+        );
+
+        return new GithubRepository(
+            $repo["id"],
+            $repo["stargazers_count"],
+            $repo["name"],
+            $repo["full_name"],
+            $repo["description"],
+            $repo["html_url"],
+            new \DateTime($repo["created_at"]),
+            new \DateTime($repo["updated_at"]),
+            $repo["language"],
+            $repo["topics"],
+            $repo["watchers"],
+            $repo["forks"],
+            $owner,
+        );
+    }
+
     private function mapRepos(array $response): array
     {
-        $list = array_map(function ($repo): GithubItem {
-            $owner = new GithubItemOwner(
-                $repo["owner"]["login"],
-                $repo["owner"]["id"],
-                $repo["owner"]["avatar_url"],
-            );
-
-            return new GithubItem(
-                $repo["id"],
-                $repo["stargazers_count"],
-                $repo["name"],
-                $repo["full_name"],
-                $repo["description"],
-                $repo["html_url"],
-                new \DateTime($repo["created_at"]),
-                new \DateTime($repo["updated_at"]),
-                $repo["language"],
-                $repo["topics"],
-                $repo["watchers"],
-                $repo["forks"],
-                $owner,
-            );
+        $list = array_map(function ($repo): GithubRepository {
+            return $this->parseRepository($repo);
         }, $response["items"]);
 
         usort($list, function ($a, $b) {
@@ -104,7 +71,7 @@ class GithubApi
     }
 
     /**
-     * @return GithubItem[]
+     * @return GithubRepository[]
      */
     public function getOldestRepositories() : array
     {
@@ -118,5 +85,80 @@ class GithubApi
         $list = $this->mapRepos($response->json());
 
         return $list;
+    }
+
+    private function getRepoFirstCommit(string $url, string $date) {
+        $time = new DateTime($date);
+        $time->modify("+1 days");
+
+        $response = Http::get("$url/commits", [
+            "until" => $time->format(DateTime::ATOM),
+        ]);
+
+        $list = $response->json();
+
+        usort($list, function ($a, $b) {
+            $ad = new \DateTime($a["commit"]["committer"]['date']);
+            $bd = new \DateTime($b["commit"]["committer"]['date']);
+
+            if ($ad == $bd) {
+                return 0;
+            }
+
+            return $ad < $bd ? -1 : 1;
+        });
+
+        $split = array_slice(
+            array_values($list), 0, 7
+        );
+
+        return array_map(function ($item): GithubCommit {
+            return new GithubCommit(
+                author: $item["commit"]["author"]["name"],
+                sha: $item["sha"],
+                message: $item["commit"]["message"],
+                url: $item["html_url"],
+                date: new \DateTime($item["commit"]["author"]["date"]),
+            );
+        }, $split);
+    }
+
+    private function getRepoTopics (string $url): array {
+        $response = Http::get("$url/topics");
+
+        return $response->json()["names"];
+    }
+
+    private function getRepoLanguages (string $url): array {
+        $response = Http::get("$url/languages");
+
+        return $response->json();
+    }
+
+    private function getRepoDetails(string $url) {
+        $response = Http::get($url);
+
+        // print_r($response->status());
+        // php artisan make:cache-table
+
+        return $response->json();
+    }
+
+    public function getRepository (string $org, string $repo) {
+        $mainUrl = "https://api.github.com/repos/$org/$repo";
+        $details = $this->getRepoDetails($mainUrl);
+
+        //print_r($details);
+
+        $languages = $this->getRepoLanguages($mainUrl);
+        $commit = $this->getRepoFirstCommit($mainUrl, $details['created_at']);
+        $topics = $this->getRepoTopics($mainUrl);
+
+        return array(
+            'repository' => $this->parseRepository($details),
+            "languages" => $languages,
+            "commit" => $commit,
+            "topics" => $topics,
+        );
     }
 }
