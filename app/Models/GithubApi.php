@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Http;
 
 class GithubApi
 {
-    private function parseRepository($repo) : GithubRepository {
+    private function parseRepository($repo): GithubRepository
+    {
         $owner = new GithubRepositoryOwner(
             $repo["owner"]["login"],
             $repo["owner"]["id"],
@@ -73,7 +74,7 @@ class GithubApi
     /**
      * @return GithubRepository[]
      */
-    public function getOldestRepositories() : array
+    public function getOldestRepositories(): array
     {
         $response = Http::get("https://api.github.com/search/repositories", [
             "q" => "stars:>0",
@@ -87,7 +88,8 @@ class GithubApi
         return $list;
     }
 
-    private function getRepoFirstCommit(string $url, string $date) {
+    private function getRepoFirstCommit(string $url, string $date)
+    {
         $time = new DateTime($date);
         $time->modify("+1 days");
 
@@ -98,8 +100,8 @@ class GithubApi
         $list = $response->json();
 
         usort($list, function ($a, $b) {
-            $ad = new \DateTime($a["commit"]["committer"]['date']);
-            $bd = new \DateTime($b["commit"]["committer"]['date']);
+            $ad = new \DateTime($a["commit"]["committer"]["date"]);
+            $bd = new \DateTime($b["commit"]["committer"]["date"]);
 
             if ($ad == $bd) {
                 return 0;
@@ -108,9 +110,7 @@ class GithubApi
             return $ad < $bd ? -1 : 1;
         });
 
-        $split = array_slice(
-            array_values($list), 0, 7
-        );
+        $split = array_slice(array_values($list), 0, 7);
 
         return array_map(function ($item): GithubCommit {
             return new GithubCommit(
@@ -123,19 +123,22 @@ class GithubApi
         }, $split);
     }
 
-    private function getRepoTopics (string $url): array {
+    private function getRepoTopics(string $url): array
+    {
         $response = Http::get("$url/topics");
 
         return $response->json()["names"];
     }
 
-    private function getRepoLanguages (string $url): array {
+    private function getRepoLanguages(string $url): array
+    {
         $response = Http::get("$url/languages");
 
         return $response->json();
     }
 
-    private function getRepoDetails(string $url) {
+    private function getRepoDetails(string $url)
+    {
         $response = Http::get($url);
 
         // print_r($response->status());
@@ -144,28 +147,35 @@ class GithubApi
         return $response->json();
     }
 
-    public function getRepository (string $org, string $repo) {
+    public function getRepository(string $org, string $repo)
+    {
         $mainUrl = "https://api.github.com/repos/$org/$repo";
         $details = $this->getRepoDetails($mainUrl);
 
         //print_r($details);
 
         $languages = $this->getRepoLanguages($mainUrl);
-        $commit = $this->getRepoFirstCommit($mainUrl, $details['created_at']);
+        $commit = $this->getRepoFirstCommit($mainUrl, $details["created_at"]);
         $topics = $this->getRepoTopics($mainUrl);
 
-        return array(
-            'repository' => $this->parseRepository($details),
+        return [
+            "repository" => $this->parseRepository($details),
             "languages" => $languages,
             "commit" => $commit,
             "topics" => $topics,
-        );
+        ];
     }
 
-    public function canContinue () : bool {
-        $response = Http::get('https://api.github.com/rate_limit');
+    public function getRateLimit(): GithubRateLimit
+    {
+        $response = Http::get("https://api.github.com/rate_limit");
         $states = $response->json();
 
-        return $states['rate']['remaining'] > 0;
+        $nextReset = new DateTime()->setTimestamp($states["rate"]["reset"]);
+
+        return new GithubRateLimit(
+            remaining: $states["rate"]["remaining"] === 0,
+            nextReset: $nextReset,
+        );
     }
 }

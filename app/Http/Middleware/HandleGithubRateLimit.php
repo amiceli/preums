@@ -17,13 +17,20 @@ class HandleGithubRateLimit
     public function handle(Request $request, Closure $next): Response
     {
         $client = new GithubApi();
-        $canContinue = $client->canContinue();
-        $isRatePage = $request->is('*rate*');
+        $rateLimit = $client->getRateLimit();
+
+        $isRatePage = $request->is("*rate*");
 
         if ($isRatePage) {
-            return $canContinue ? redirect('/') : $next($request);
+            return $rateLimit->remaining ? redirect("/") : $next($request);
         } else {
-            return $canContinue ? $next($request) : redirect('/rate-limit');
+            return $rateLimit->remaining
+                ? $next($request)
+                : redirect("/rate-limit")->with(
+                    array(
+                        "nextReset" => $rateLimit->nextResetStr,
+                    )
+                );
         }
     }
 }
