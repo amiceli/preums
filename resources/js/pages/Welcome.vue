@@ -1,127 +1,55 @@
 <template>
-    <Head title="Welcome">
-        <!-- <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" /> -->
-    </Head>
-
-    <nav class="nb-navbar" role="navigation" aria-label="Main navigation">
-        <a href="/" class="nb-navbar-brand" aria-label="Go to homepage">
-            <img src="logo.png" alt="logo" />
-            Preums
-        </a>
-        <ul class="nb-navbar-nav" role="menubar">
-            <li class="nb-navbar-item" role="none">
-                <a
-                    href="/"
-                    class="nb-navbar-link active"
-                    role="menuitem"
-                    aria-current="page"
-                    >Home</a
-                >
-            </li>
-            <li class="nb-navbar-item" role="none">
-                <a href="/about" class="nb-navbar-link" role="menuitem"
-                    >About</a
-                >
-            </li>
-            <li class="nb-navbar-item" role="none">
-                <a href="/contact" class="nb-navbar-link" role="menuitem"
-                    >Contact</a
-                >
-            </li>
-        </ul>
-    </nav>
-
-    <main>
-        <div class="p-title">
-            <h1>Remind me that coding in</h1>
-            <div class="nb-marquee green">
-                <div class="nb-marquee-content">
-                    <span>JavaScript</span>
-                    <span>PHP</span>
-                    <span>Rust</span>
-                    <span>Go</span>
-                    <span>Ruby</span>
-                    <span>Python</span>
-                    <span>Kotlin</span>
-                    <span>Perl</span>
-                    <span>Java</span>
-                    <span>C#</span>
-                </div>
-            </div>
-            <h1>is magical</h1>
-        </div>
-
+    <Layout>
         <form @submit.prevent="submit">
             <input
                 class="nb-input default"
                 placeholder="Which repository"
-                v-model="form.framework"
-                :disabled="form.processing"
+                v-model="name"
             />
-            <button
-                type="submit"
-                class="nb-button blue"
-                :disabled="form.processing"
-            >
-                Orange
-            </button>
+            <button type="submit" class="nb-button blue">Orange</button>
         </form>
 
-        <div v-if="form.processing" class="nb-spinner dots"><span></span></div>
-
-        <progress
-            v-if="form.progress"
-            :value="form.progress.percentage"
-            max="100"
-        >
-            {{ form.progress.percentage }}%
-        </progress>
-
         <div class="p-most">
-            <h1>12 most starred repositories</h1>
+            <h1>Some most starred repositories</h1>
 
-            <div class="nb-grid-3">
-                <div class="nb-card" v-for="p in props.oldestRepos" :key="p.id">
-                    <img :src="p.owner.avatarUrl" class="nb-card-img" />
-                    <div class="nb-card-content">
-                        <h4 class="nb-card-title">
-                            {{ p.name }}
-                        </h4>
-                        <p class="nb-card-text">
-                            {{ p.description }}
-                            <br />
-                            {{ p.createdAt }}
-                        </p>
-                        <div class="nb-card-actions">
-                            <a :href="p.url" target="_blank" class="p-link">
-                                See repository
-                            </a>
-                        </div>
-                    </div>
+            <template
+                v-for="p in Object.keys(props.oldestRepos)"
+                :key="`year-${p}`"
+            >
+                <h2>
+                    {{ p }}
+                </h2>
+                <div class="nb-grid-3">
+                     <RepositoryCard
+                        v-for="item in props.oldestRepos[p]"
+                        :key="item.id"
+                        :repostiory="item"
+                    />
                 </div>
-            </div>
+            </template>
         </div>
-    </main>
+    </Layout>
 </template>
 
 <script setup lang="ts">
-// import { reactive } from 'vue';
-import { Head, Link, router, useForm } from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
+import { ref } from "vue";
+import Layout from "@/components/Layout.vue";
+import RepositoryCard from "@/components/RepositoryCard.vue";
 import type { GithubSearchResult } from "@/types/github";
 
-const form = useForm({
-    framework: null,
-});
+const name = ref<string>("");
 
 const props = defineProps<{
-    oldestRepos: GithubSearchResult["items"];
+    oldestRepos: {
+        [key: string]: GithubSearchResult["items"];
+    };
 }>();
 
 function submit() {
-    form.post("/github/search", {
-        onSuccess: () => {
-            console.debug("vier");
+    router.visit("/github/search", {
+        data: {
+            name: name.value,
         },
     });
 }
@@ -135,25 +63,17 @@ function submit() {
     align-items: center;
     padding-bottom: 100px;
 }
-nav img {
-    width: 50px;
-    vertical-align: middle;
-}
 
+h2 {
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 form {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-top: 100px;
     margin-bottom: 100px;
-}
-
-.p-title {
-    display: grid;
-    grid-template-columns: auto 400px auto;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
 }
 </style>
