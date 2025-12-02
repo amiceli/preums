@@ -6,4 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route
     ::get('/', [GithubController::class, 'index'])
     ->name('home');
-Route::post('/github/search', [GithubController::class, 'search']);
+Route
+    ::get('/github/search', [GithubController::class, 'search'])
+    ->name('search');
