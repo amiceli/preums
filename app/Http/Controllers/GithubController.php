@@ -2,88 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
+use App\Models\GithubApi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
-use function GuzzleHttp\json_encode;
 
 class GithubController extends Controller
 {
-    private $client;
+    private GithubApi $client;
 
     public function __construct()
     {
-        $this->client = new \Github\Client();
+        $this->client = new GithubApi();
     }
 
-    private function mapRepos($response)
+    public function index(): \Inertia\Response
     {
-        return array_map(function ($repo) {
-            return [
-                "id" => $repo["id"],
-                "stars" => $repo["stargazers_count"],
-                "name" => $repo["name"],
-                "fullName" => $repo["full_name"],
-                "description" => $repo["description"],
-                "url" => $repo["html_url"],
-                "createdAt" => $repo["created_at"],
-                "updatedAt" => $repo["updated_at"],
-                "language" => $repo["language"],
-                "topics" => $repo["topics"],
-                "watchers" => $repo["watchers"],
-                "forks" => $repo["forks"],
-                "owner" => [
-                    "login" => $repo["owner"]["login"],
-                    "id" => $repo["owner"]["id"],
-                    "avatarUrl" => $repo["owner"]["avatar_url"],
-                ],
-            ];
-        }, $response["items"]);
-    }
+        $oldestRepos = $this->client->getOldestRepositories();
+        $years = [];
 
-    public function index()
-    {
-        $response = Http::get("https://api.github.com/search/repositories", [
-            "q" => "stars:>0",
-            "sort" => "stars",
-            "order" => "desc",
-            "per_page" => 12,
-        ]);
-        $oldestRepos = $this->mapRepos($response->json());
+        foreach ($oldestRepos as $key => $item) {
+            $year = $item->createdAt->format("Y");
+            $needKey = array_key_exists($year, $years) === false;
 
-        usort($oldestRepos, function ($a, $b) {
-            $ad = new DateTime($a["createdAt"]);
-            $bd = new DateTime($b["createdAt"]);
-
-            if ($ad == $bd) {
-                return 0;
+            if ($needKey) {
+                $years[$year] = [];
             }
 
-            return $ad < $bd ? -1 : 1;
-        });
+            array_push($years[$year], $item);
+        }
 
         return Inertia::render("Welcome", [
-            "oldestRepos" => $oldestRepos,
+            "oldestRepos" => $years,
         ]);
     }
 
-    public function search(Request $req)
+    public function search(Request $req): \Inertia\Response
     {
-        $value = $req->input("framework");
+        $value = $req->get("name");
+        $res = $this->client->searchRepository($value);
 
-        $response = Http::get("https://api.github.com/search/repositories", [
-            "q" => "in:name $value",
-            "sort" => "created",
-            "order" => "asc",
-        ]);
-
-        $res = $response->json();
-        $items = $this->mapRepos($res);
-
-        return Inertia::render("Search", [
-            "totalCount" => $res["total_count"],
-            "items" => $items,
-        ]);
+        return Inertia::render("Search", $res);
     }
 }
