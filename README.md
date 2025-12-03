@@ -10,8 +10,7 @@ A brief look back in time with first repositories, first contributor, first issu
 
 ## Technologies
 
-**Laravel** (without Laravel Boost) and **Vue**, the frameworks that always make me want to code and continue in this profession. And
-[NeoBrutalismCSS](https://github.com/matifandy8/NeoBrutalismCSS]) for a little retro flair.
+**Laravel** (without Laravel Boost) and **Vue**, the frameworks that always make me want to code and continue in this profession.
 
 And tools that are magical : biome, lefthook, just
 
@@ -25,7 +24,6 @@ With just :
 ## Dependencies
 
 - [@hackernoon/pixel-icon-library](https://pixeliconlibrary.com/book-heart)
-- [neobrutalismcss](https://matifandy8.github.io/NeoBrutalismCSS/docs.html)
 - [lefthook](https://github.com/evilmartians/lefthook)
 - [@biomejs/biome](https://biomejs.dev/)
 
