@@ -1,45 +1,74 @@
 <template>
-    <div class="nb-card">
-        <img :src="props.repostiory.owner.avatarUrl" class="nb-card-img" />
-        <div class="nb-card-content">
-            <h4 class="nb-card-title">
-                {{ props.repostiory.name }}
-            </h4>
-            <p class="nb-card-text">
-                {{ props.repostiory.description }}
-            </p>
-            <p class="nb-card-text">
-                <i class="hn hn-calender-solid"></i>
-                {{ (new Date(props.repostiory.createdAtStr)).toLocaleDateString() }}
-                &nbsp;/&nbsp;
-                <i class="hn hn-star-solid"></i>
-                {{ props.repostiory.stars }}
-                &nbsp;/&nbsp;
-                {{ props.repostiory.forks }} fork(s)
-            </p>
-            <div class="nb-card-actions">
-                <a :href="props.repostiory.url" target="_blank" class="p-link">
-                    See repository
-                </a>
-                <a :href="props.repostiory.url" target="_blank" class="p-link">
-                    See history
-                </a>
-            </div>
-        </div>
-    </div>
+    <wa-card class="card-overview">
+        <img
+            slot="media"
+            :src="props.repository.owner.avatarUrl"
+            alt="repo image"
+        />
+        <strong>
+            {{ props.repository.owner.login}} /
+            {{ props.repository.name }}
+        </strong>
+        <br />
+        <p>
+            {{ props.repository.description }}
+        </p>
+
+        <p class="wa-caption-s">
+            <i class="hn hn-calender-solid"></i>
+            {{ new Date(props.repository.createdAtStr).toLocaleDateString() }}
+            &nbsp;-&nbsp;
+            <i class="hn hn-star-solid"></i>
+            {{ props.repository.stars }}
+            &nbsp;-&nbsp;
+            {{ props.repository.forks }} fork(s)
+        </p>
+
+        <wa-button
+            :href="historyUrl"
+            slot="footer"
+            label="Rating"
+            size="small"
+            appearance="filled"
+        >
+            See history
+        </wa-button>
+        <wa-button
+            :href="props.repository.url"
+            target="_blank"
+            slot="footer-actions"
+            variant="brand"
+            size="small"
+            appearance="plain"
+        >
+            See repository
+        </wa-button>
+    </wa-card>
 </template>
 
 <script setup lang="ts">
-import type { GithubSearchResultItem } from "@/types/github";
+import { computed } from "vue"
+import { showRepoHistory } from "@/actions/App/Http/Controllers/GithubController"
+import type { GithubSearchResultItem } from "@/types/github"
 
 const props = defineProps<{
-    repostiory: GithubSearchResultItem;
-}>();
+    repository: GithubSearchResultItem
+}>()
+
+const historyUrl = computed(() => {
+    return showRepoHistory.url({
+        org: props.repository.owner.login,
+        repo: props.repository.name,
+    })
+})
 </script>
 
 <style scoped>
 .nb-card-actions {
     display: flex;
     justify-content: space-between;
+}
+wa-card {
+    width: 350px;
 }
 </style>

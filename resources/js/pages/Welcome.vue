@@ -1,12 +1,15 @@
 <template>
     <Layout>
+        <Marquee />
+
         <form @submit.prevent="submit">
-            <input
-                class="nb-input default"
-                placeholder="Which repository"
+            <wa-input
+                label="Search story of"
+                placeholder="A repository or an author"
                 v-model="name"
-            />
-            <button type="submit" class="nb-button blue">Orange</button>
+                appearance="filled-outlined"
+            ></wa-input>
+            <wa-button type="submit">Search</wa-button>
         </form>
 
         <div class="page__title">
@@ -15,7 +18,8 @@
                 Some parent and starred repositories
             </h1>
             <p>
-                This list ranks among the oldest repositories with the most stars. It reminds us that it is possible to <br>
+                This list ranks among the oldest repositories with the most
+                stars. It reminds us that it is possible to <br />
                 code and improve the tech field without AI.
             </p>
         </div>
@@ -28,12 +32,10 @@
                 <h2>
                     {{ p }}
                 </h2>
-                <div class="nb-grid-3">
-                    <RepositoryCard
-                        v-for="item in props.oldestRepos[p]"
-                        :key="item.id"
-                        :repostiory="item"
-                    />
+                <div class="p-most__grid">
+                    <div v-for="item in props.oldestRepos[p]" :key="item.id">
+                        <RepositoryCard :repository="item" />
+                    </div>
                 </div>
             </template>
         </div>
@@ -41,41 +43,31 @@
 </template>
 
 <script setup lang="ts">
-import { router } from "@inertiajs/vue3";
-import { ref } from "vue";
-import Layout from "@/components/Layout.vue";
-import RepositoryCard from "@/components/RepositoryCard.vue";
-import type { GithubSearchResult } from "@/types/github";
+import { router } from "@inertiajs/vue3"
+import { ref } from "vue"
+import Layout from "@/components/Layout.vue"
+import Marquee from "@/components/Marquee.vue"
+import RepositoryCard from "@/components/RepositoryCard.vue"
+import type { GithubSearchResult } from "@/types/github"
 
-const name = ref<string>("");
+const name = ref<string>("")
 
 const props = defineProps<{
     oldestRepos: {
-        [key: string]: GithubSearchResult["items"];
-    };
-}>();
+        [key: string]: GithubSearchResult["items"]
+    }
+}>()
 
 function submit() {
     router.visit("/github/search", {
         data: {
             name: name.value,
         },
-    });
+    })
 }
 </script>
 
 <style scoped>
-
-.page__title {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-
-    p {
-        font-size: 20px;
-    }
-}
-
 .p-most {
     display: flex;
     flex-direction: column;
@@ -83,16 +75,24 @@ function submit() {
     align-items: center;
     padding-bottom: 100px;
 }
+.p-most__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
 
 h2 {
     display: block;
     margin-top: 40px;
     margin-bottom: 40px;
 }
+
 form {
-    display: flex;
+    display: grid;
+    grid-template-columns: 400px auto;
+    align-items: end;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     margin-top: 100px;
     margin-bottom: 100px;
 }

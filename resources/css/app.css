@@ -1,8 +1,16 @@
-/*html {
+html {
     background: #091128;
-}*/
+}
 
 /* custom */
+
+.page__title {
+    p {
+        font-size: 20px;
+    }
+}
+
+/* neo */
 
 a.p-link {
     display: block;
