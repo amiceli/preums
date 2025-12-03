@@ -1,7 +1,7 @@
-import { wayfinder } from "@laravel/vite-plugin-wayfinder";
-import vue from "@vitejs/plugin-vue";
-import laravel from "laravel-vite-plugin";
-import { defineConfig } from "vite";
+import { wayfinder } from "@laravel/vite-plugin-wayfinder"
+import vue from "@vitejs/plugin-vue"
+import laravel from "laravel-vite-plugin"
+import { defineConfig } from "vite"
 
 export default defineConfig({
     plugins: [
@@ -25,4 +25,4 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
-});
+})
