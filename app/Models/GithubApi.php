@@ -174,7 +174,7 @@ class GithubApi
         $nextReset = new DateTime()->setTimestamp($states["rate"]["reset"]);
 
         return new GithubRateLimit(
-            remaining: $states["rate"]["remaining"] === 0,
+            remaining: $states["rate"]["remaining"] > 0,
             nextReset: $nextReset,
         );
     }
