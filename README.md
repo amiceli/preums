@@ -21,3 +21,15 @@ With just :
 - `just install`
 - `just up` (with tmux)
 - `just run`
+
+## Dependencies
+
+- [@hackernoon/pixel-icon-library](https://pixeliconlibrary.com/book-heart)
+- [neobrutalismcss](https://matifandy8.github.io/NeoBrutalismCSS/docs.html)
+- [lefthook](https://github.com/evilmartians/lefthook)
+- [@biomejs/biome](https://biomejs.dev/)
+
+### Docs
+
+- [Github api for commits](https://docs.github.com/en/rest/commits/commits?apiVersion=2022-11-28)
+- [Github api for repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository)
