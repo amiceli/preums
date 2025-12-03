@@ -20,6 +20,7 @@
         "vue-tsc": "^2.2.4"
     },
     "dependencies": {
+        "@awesome.me/webawesome": "^3.0.0",
         "@hackernoon/pixel-icon-library": "^1.0.6",
         "@inertiajs/vue3": "^2.0.0",
         "@tailwindcss/vite": "^4.1.11",
@@ -28,7 +29,6 @@
         "clsx": "^2.1.1",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0.0",
-        "neobrutalismcss": "^1.0.0",
         "typescript": "^5.2.2",
         "vite": "^7.0.4",
         "vue": "^3.5.13"
