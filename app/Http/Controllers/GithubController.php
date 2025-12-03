@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GithubApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class GithubController extends Controller
@@ -13,6 +14,13 @@ class GithubController extends Controller
     public function __construct()
     {
         $this->client = new GithubApi();
+    }
+
+    public function rateLimit()
+    {
+        return Inertia::render("RateLimit", [
+            "nextReset" => Session::get("nextReset"),
+        ]);
     }
 
     public function index(): \Inertia\Response
@@ -44,7 +52,8 @@ class GithubController extends Controller
         return Inertia::render("Search", $res);
     }
 
-    public function showRepo(string $org, string $repo) {
+    public function showRepo(string $org, string $repo)
+    {
         $repository = $this->client->getRepository($org, $repo);
 
         return Inertia::render("Repository", $repository);
