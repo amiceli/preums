@@ -52,7 +52,7 @@ class GithubController extends Controller
         return Inertia::render("Search", $res);
     }
 
-    public function showRepo(string $org, string $repo)
+    public function showRepoHistory(string $org, string $repo)
     {
         $repository = $this->client->getRepository($org, $repo);
 
