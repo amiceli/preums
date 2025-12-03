@@ -9,9 +9,18 @@
             <button type="submit" class="nb-button blue">Orange</button>
         </form>
 
-        <div class="p-most">
-            <h1>Some most starred repositories</h1>
+        <div class="page__title">
+            <h1>
+                <i class="hn hn-book-heart"></i>
+                Some parent and starred repositories
+            </h1>
+            <p>
+                This list ranks among the oldest repositories with the most stars. It reminds us that it is possible to <br>
+                code and improve the tech field without AI.
+            </p>
+        </div>
 
+        <div class="p-most">
             <template
                 v-for="p in Object.keys(props.oldestRepos)"
                 :key="`year-${p}`"
@@ -20,7 +29,7 @@
                     {{ p }}
                 </h2>
                 <div class="nb-grid-3">
-                     <RepositoryCard
+                    <RepositoryCard
                         v-for="item in props.oldestRepos[p]"
                         :key="item.id"
                         :repostiory="item"
@@ -56,6 +65,17 @@ function submit() {
 </script>
 
 <style scoped>
+
+.page__title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+        font-size: 20px;
+    }
+}
+
 .p-most {
     display: flex;
     flex-direction: column;

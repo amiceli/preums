@@ -21,6 +21,9 @@
                 <a :href="props.repostiory.url" target="_blank" class="p-link">
                     See repository
                 </a>
+                <a :href="props.repostiory.url" target="_blank" class="p-link">
+                    See history
+                </a>
             </div>
         </div>
     </div>
@@ -33,3 +36,10 @@ const props = defineProps<{
     repostiory: GithubSearchResultItem;
 }>();
 </script>
+
+<style scoped>
+.nb-card-actions {
+    display: flex;
+    justify-content: space-between;
+}
+</style>
