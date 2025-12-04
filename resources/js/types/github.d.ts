@@ -24,3 +24,11 @@ export type GithubSearchResult = {
     totalCount: number
     items: Array<GithubSearchResultItem>
 }
+
+export type GithubCommit = {
+    dateStr: string
+    author: string
+    message: string
+    sha: string
+    url: string
+}
