@@ -141,9 +141,6 @@ class GithubApi
     {
         $response = Http::get($url);
 
-        // print_r($response->status());
-        // php artisan make:cache-table
-
         return $response->json();
     }
 
@@ -151,8 +148,6 @@ class GithubApi
     {
         $mainUrl = "https://api.github.com/repos/$org/$repo";
         $details = $this->getRepoDetails($mainUrl);
-
-        //print_r($details);
 
         $languages = $this->getRepoLanguages($mainUrl);
         $commit = $this->getRepoFirstCommit($mainUrl, $details["created_at"]);
