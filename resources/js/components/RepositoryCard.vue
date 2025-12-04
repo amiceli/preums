@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue"
-import { showRepoHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubSearchResultItem } from "@/types/github"
 
 const props = defineProps<{
@@ -56,7 +56,7 @@ const props = defineProps<{
 }>()
 
 const historyUrl = computed(() => {
-    return showRepoHistory.url({
+    return showRepositoryHistory.url({
         org: props.repository.owner.login,
         repo: props.repository.name,
     })

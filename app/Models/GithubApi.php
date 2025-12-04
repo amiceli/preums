@@ -3,10 +3,21 @@
 namespace App\Models;
 
 use DateTime;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 class GithubApi
 {
+    private PendingRequest $http;
+
+    public function __construct()
+    {
+        $token = env("GITHUB_TOKEN");
+        $this->http = Http::withHeaders([
+            "Authorization" => "Bearer $token",
+        ]);
+    }
+
     private function parseRepository($repo): GithubRepository
     {
         $owner = new GithubRepositoryOwner(
@@ -54,13 +65,16 @@ class GithubApi
 
     public function searchRepository(string $search)
     {
-        $response = Http::get("https://api.github.com/search/repositories", [
-            "q" => "in:name $search",
-            "sort" => "created",
-            "order" => "asc",
-            "per_page" => 12,
-            "page" => 1,
-        ]);
+        $response = $this->http->get(
+            "https://api.github.com/search/repositories",
+            [
+                "q" => "in:name $search",
+                "sort" => "created",
+                "order" => "asc",
+                "per_page" => 12,
+                "page" => 1,
+            ],
+        );
 
         $link = $response->header("Link");
         $items = $this->mapRepos($response->json());
@@ -76,12 +90,15 @@ class GithubApi
      */
     public function getOldestRepositories(): array
     {
-        $response = Http::get("https://api.github.com/search/repositories", [
-            "q" => "stars:>0",
-            "sort" => "stars",
-            "order" => "desc",
-            "per_page" => 30,
-        ]);
+        $response = $this->http->get(
+            "https://api.github.com/search/repositories",
+            [
+                "q" => "stars:>0",
+                "sort" => "stars",
+                "order" => "desc",
+                "per_page" => 30,
+            ],
+        );
 
         $list = $this->mapRepos($response->json());
 
@@ -93,7 +110,7 @@ class GithubApi
         $time = new DateTime($date);
         $time->modify("+1 days");
 
-        $response = Http::get("$url/commits", [
+        $response = $this->http->get("$url/commits", [
             "until" => $time->format(DateTime::ATOM),
         ]);
 
@@ -125,21 +142,21 @@ class GithubApi
 
     private function getRepoTopics(string $url): array
     {
-        $response = Http::get("$url/topics");
+        $response = $this->http->get("$url/topics");
 
         return $response->json()["names"];
     }
 
     private function getRepoLanguages(string $url): array
     {
-        $response = Http::get("$url/languages");
+        $response = $this->http->get("$url/languages");
 
         return $response->json();
     }
 
     private function getRepoDetails(string $url)
     {
-        $response = Http::get($url);
+        $response = $this->http->get($url);
 
         return $response->json();
     }
@@ -163,7 +180,7 @@ class GithubApi
 
     public function getRateLimit(): GithubRateLimit
     {
-        $response = Http::get("https://api.github.com/rate_limit");
+        $response = $this->http->get("https://api.github.com/rate_limit");
         $states = $response->json();
 
         $nextReset = new DateTime()->setTimestamp($states["rate"]["reset"]);

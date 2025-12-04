@@ -13,7 +13,7 @@ Route
     ->name('search')
     ->middleware(HandleGithubRateLimit::class);
 Route
-    ::get('/github/{org}/{repo}', [GithubController::class, 'repositoryHistory '])
+    ::get('/github/{org}/{repo}', [GithubController::class, 'showRepositoryHistory'])
     ->name('repository-history')
     ->middleware(HandleGithubRateLimit::class);
 Route
