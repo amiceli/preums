@@ -161,7 +161,7 @@ class GithubApi
         return [
             "repository" => $this->parseRepository($details),
             "languages" => $languages,
-            "commit" => $commit,
+            "commits" => $commit,
             "topics" => $topics,
         ];
     }
