@@ -54,7 +54,13 @@
         </masonry-wall>
         <br>
         <RepositoryCommits
+            v-if="props.commits.length > 0"
             :commirs="props.commits"
+        />
+        <br>
+        <RepositoryRelease
+            v-if="props.releases.length > 0"
+            :releases="props.releases"
         />
     </Layout>
 </template>
@@ -66,8 +72,9 @@ import Layout from "@/components/Layout.vue"
 import RepositoryCommits from "@/components/repository/RepositoryCommits.vue"
 import RepositoryDetails from "@/components/repository/RepositoryDetails.vue"
 import RepositoryLanguages from "@/components/repository/RepositoryLanguages.vue"
+import RepositoryRelease from "@/components/repository/RepositoryRelease.vue"
 import RepositoryTopics from "@/components/repository/RepositoryTopics.vue"
-import type { GithubCommit, GithubSearchResultItem } from "@/types/github"
+import type { GithubCommit, GithubRelease, GithubSearchResultItem } from "@/types/github"
 
 const components = ref<string[]>(["topics", "languages", "commits"])
 
@@ -76,6 +83,7 @@ const props = defineProps<{
     commits: GithubCommit[]
     topics: string[]
     languages: Record<string, number>
+    releases: GithubRelease[]
 }>()
 </script>
 

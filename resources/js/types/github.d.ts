@@ -32,3 +32,12 @@ export type GithubCommit = {
     sha: string
     url: string
 }
+
+export type GithubRelease = {
+    dateStr: string
+    author: string
+    body: string
+    name: string
+    url: string
+    reactions: Record<string, number>
+}
