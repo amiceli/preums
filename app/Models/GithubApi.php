@@ -105,6 +105,59 @@ class GithubApi
         return $list;
     }
 
+    private function getRepoFirstReleases(string $url)
+    {
+        $response = $this->http->get("$url/releases", [
+            "page" => 1,
+            "per_page" => 10,
+        ]);
+
+        if ($response->header("link")) {
+            $pages = new ParseLinkHeader($response->header("link"))->toArray();
+
+            if (array_key_exists("last", $pages)) {
+                $response = $this->http->get($pages["last"]["link"]);
+            }
+        }
+
+        $releases = $response->json();
+
+        $list = array_map(function ($item): GithubRelease {
+            $reactions = array_key_exists("reactions", $item)
+                ? $item["reactions"]
+                : [];
+
+            $reactions["total"] = array_key_exists("total_count", $reactions)
+                ? $reactions["total_count"]
+                : 0;
+
+            unset($reactions["url"]);
+            unset($reactions["total_count"]);
+
+            return new GithubRelease(
+                author: $item["author"]["login"],
+                body: $item["body"],
+                date: new \DateTime($item["created_at"]),
+                reactions: $reactions,
+                url: $item["html_url"],
+                name: $item["name"],
+            );
+        }, $releases);
+
+        usort($list, function ($a, $b) {
+            $ad = $a->date;
+            $bd = $b->date;
+
+            if ($ad == $bd) {
+                return 0;
+            }
+
+            return $ad < $bd ? -1 : 1;
+        });
+
+        return $list;
+    }
+
     private function getRepoFirstCommit(string $url, string $date)
     {
         $time = new DateTime($date);
@@ -169,12 +222,14 @@ class GithubApi
         $languages = $this->getRepoLanguages($mainUrl);
         $commit = $this->getRepoFirstCommit($mainUrl, $details["created_at"]);
         $topics = $this->getRepoTopics($mainUrl);
+        $releases = $this->getRepoFirstReleases($mainUrl);
 
         return [
             "repository" => $this->parseRepository($details),
             "languages" => $languages,
             "commits" => $commit,
             "topics" => $topics,
+            "releases" => $releases,
         ];
     }
 
