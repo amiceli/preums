@@ -1,6 +1,9 @@
 <template>
     <wa-card>
-        <h1>Topics</h1>
+        <h2>
+            Topics
+            <small> - How it's written</small>
+        </h2>
         <wa-badge
             v-for="lang in Object.keys(props.languages)"
             :key="lang"

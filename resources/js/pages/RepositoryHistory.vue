@@ -45,13 +45,17 @@
                         :languages="props.languages"
                         v-else-if="item === 'languages'"
                     />
-                    <RepositoryCommits
+                    <!-- <RepositoryCommits
                         :commirs="props.commits"
                         v-else-if="item === 'commits'"
-                    />
+                    /> -->
                 </div>
             </template>
         </masonry-wall>
+        <br>
+        <RepositoryCommits
+            :commirs="props.commits"
+        />
     </Layout>
 </template>
 
