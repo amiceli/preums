@@ -1,6 +1,8 @@
 <template>
     <wa-card>
-        <h1>Topics</h1>
+        <h1>
+            Topics
+        </h1>
         <wa-badge
             v-for="topic in props.topics"
             :key="topic"
@@ -22,5 +24,8 @@ const props = defineProps<{
 wa-badge {
     margin-right: 10px;
     margin-bottom: 10px;
+}
+small {
+    opacity: 0.7;
 }
 </style>

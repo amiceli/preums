@@ -29,65 +29,62 @@
             </wa-button>
         </wa-card>
 
-        <masonry-wall
-            :items="components"
-            :ssr-columns="1"
-            :column-width="300"
-            :gap="16"
-        >
-            <template #default="{ item, index }">
-                <div>
-                    <RepositoryTopics
-                        v-if="item === 'topics'"
-                        :topics="props.topics"
-                    />
-                    <RepositoryLanguages
-                        :languages="props.languages"
-                        v-else-if="item === 'languages'"
-                    />
-                    <!-- <RepositoryCommits
-                        :commirs="props.commits"
-                        v-else-if="item === 'commits'"
-                    /> -->
-                </div>
-            </template>
-        </masonry-wall>
-        <br>
+        <div class="history__topics">
+            <RepositoryTopics :topics="props.topics" />
+            <RepositoryLanguages :languages="props.languages" />
+        </div>
+        <br />
         <RepositoryCommits
-            v-if="props.commits.length > 0"
-            :commirs="props.commits"
+            :diff="props.commits.diff"
+            :last-commit="props.commits.lastCommit"
+            :first-commit="props.commits.firstCommit"
+            :total="props.commits.totalCommits"
         />
-        <br>
+        <br />
         <RepositoryRelease
-            v-if="props.releases.length > 0"
-            :releases="props.releases"
+            :diff="props.releases.diff"
+            :last-release="props.releases.lastRelease"
+            :first-release="props.releases.firstRelease"
+            :total="props.releases.totalReleases"
         />
     </Layout>
 </template>
 
 <script setup lang="ts">
-import MasonryWall from "@yeger/vue-masonry-wall"
-import { ref } from "vue"
 import Layout from "@/components/Layout.vue"
 import RepositoryCommits from "@/components/repository/RepositoryCommits.vue"
 import RepositoryDetails from "@/components/repository/RepositoryDetails.vue"
 import RepositoryLanguages from "@/components/repository/RepositoryLanguages.vue"
 import RepositoryRelease from "@/components/repository/RepositoryRelease.vue"
 import RepositoryTopics from "@/components/repository/RepositoryTopics.vue"
-import type { GithubCommit, GithubRelease, GithubSearchResultItem } from "@/types/github"
-
-const components = ref<string[]>(["topics", "languages", "commits"])
+import type { GithubCommit, GithubCommitDiff, GithubRelease, GithubSearchResultItem } from "@/types/github"
 
 const props = defineProps<{
     repository: GithubSearchResultItem
-    commits: GithubCommit[]
+    commits: {
+        firstCommit: GithubCommit | null
+        lastCommit: GithubCommit
+        diff: GithubCommitDiff
+        totalCommits: number
+    }
+    releases: {
+        firstRelease: GithubRelease | null
+        lastRelease: GithubRelease
+        diff: GithubCommitDiff
+        totalReleases: number
+    }
     topics: string[]
     languages: Record<string, number>
-    releases: GithubRelease[]
 }>()
 </script>
 
 <style scoped>
+.history__topics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 .main__card {
     display: grid;
     grid-template-columns: 250px 1fr auto;
@@ -98,23 +95,5 @@ const props = defineProps<{
 
 section {
     margin-top: 20px;
-}
-
-.repo__title {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-.repo__history {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
 }
 </style>

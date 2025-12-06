@@ -1,8 +1,7 @@
 <template>
     <wa-card>
         <h2>
-            Topics
-            <small> - How it's written</small>
+            Languages
         </h2>
         <wa-badge
             v-for="lang in Object.keys(props.languages)"
@@ -38,5 +37,8 @@ function getStyle(lang: string) {
 wa-badge {
     margin-right: 10px;
     margin-bottom: 10px;
+}
+small {
+    opacity: 0.7;
 }
 </style>
