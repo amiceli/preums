@@ -25,11 +25,13 @@
         </p>
 
         <wa-button
+            @click="showLoading()"
             :href="historyUrl"
             slot="footer"
             label="Rating"
             size="small"
             appearance="filled"
+            :loading="loading"
         >
             See history
         </wa-button>
@@ -50,7 +52,10 @@
 import { computed } from "vue"
 import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubSearchResultItem } from "@/types/github"
+import { progress } from '@inertiajs/vue3'
+import { ref } from "vue";
 
+const loading = ref<boolean>(false)
 const props = defineProps<{
     repository: GithubSearchResultItem
 }>()
@@ -61,6 +66,11 @@ const historyUrl = computed(() => {
         repo: props.repository.name,
     })
 })
+
+function showLoading () {
+    loading.value = true
+    progress.start()
+}
 </script>
 
 <style scoped>
