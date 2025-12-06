@@ -49,11 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
+import { progress } from "@inertiajs/vue3"
+import { computed, ref } from "vue"
 import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubSearchResultItem } from "@/types/github"
-import { progress } from '@inertiajs/vue3'
-import { ref } from "vue";
 
 const loading = ref<boolean>(false)
 const props = defineProps<{
@@ -67,7 +66,7 @@ const historyUrl = computed(() => {
     })
 })
 
-function showLoading () {
+function showLoading() {
     loading.value = true
     progress.start()
 }

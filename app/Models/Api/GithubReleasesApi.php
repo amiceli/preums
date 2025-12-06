@@ -38,7 +38,15 @@ class GithubReleasesApi extends ApiClient
             "page" => 1,
             "per_page" => 1,
         ]);
-        $lastRelease = $this->parseRelease($response->json()[0]);
+        $list = $response->json();
+
+        if (count($list) === 0) {
+            return array(
+                'totalReleases' => 0,
+            );
+        }
+
+        $lastRelease = $this->parseRelease($list[0]);
         $firstRelease = null;
 
         $lastPage = $this->getLastPageUrl($response);
