@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Github;
 
+use App\Models\Github\GithubRepositoryOwner;
 use DateTime;
 
 class GithubRepository
