@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Models\Api;
+
+use App\Models\Github\GithubRelease;
+
+class GithubReleasesApi extends ApiClient
+{
+    public static function forRepository(string $url)
+    {
+        return new GithubReleasesApi(mainUrl: $url);
+    }
+
+    private function parseRelease(array $item): GithubRelease
+    {
+        $reactions = array_key_exists("reactions", $item)
+            ? $item["reactions"]
+            : [];
+
+        unset($reactions["url"]);
+        unset($reactions["total_count"]);
+
+        return new GithubRelease(
+            name: $item["tag_name"],
+            date: new \DateTime($item["created_at"]),
+            author: $item["author"]["login"],
+            url: $item["html_url"],
+            body: $item["body"],
+            reactions: $reactions,
+            authorImg: $item["author"]["avatar_url"],
+            authorUrl: $item["author"]["html_url"],
+        );
+    }
+
+    public function getReleases()
+    {
+        $response = $this->http->get($this->mainUrl . "/releases", [
+            "page" => 1,
+            "per_page" => 1,
+        ]);
+        $lastRelease = $this->parseRelease($response->json()[0]);
+        $firstRelease = null;
+
+        $lastPage = $this->getLastPageUrl($response);
+
+        if ($lastPage) {
+            $response = $this->http->get($lastPage["link"]);
+            $firstRelease = $this->parseRelease($response->json()[0]);
+        }
+
+        return [
+            "totalReleases" => $lastPage["count"],
+            "lastRelease" => $lastRelease,
+            "firstRelease" => $firstRelease,
+            "diff" => $firstRelease
+                ? $lastRelease->date->diff($firstRelease->date)
+                : -1,
+        ];
+    }
+}
