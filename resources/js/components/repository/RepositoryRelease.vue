@@ -1,76 +1,68 @@
 <template>
-    <div class="commits__grid" :class="{ 'is--empty': props.total === 0 }">
+    <div class="p-releases" :class="{ 'is--empty': props.total === 0 }">
         <template v-if="props.total > 0">
-            <div ref="first">
-                <wa-card v-if="props.firstRelease">
-                    <div slot="media">
-                        <img :src="props.firstRelease.authorImg" />
-                    </div>
-                    <h3>
-                        <a :href="props.firstRelease.url" target="_blank">
-                            First release
-                        </a>
-                    </h3>
-                    <p class="wa-caption">
-                        <i class="hn hn-calender-solid"></i>
-                        {{
-                            new Date(
-                                props.firstRelease.dateStr,
-                            ).toLocaleString()
-                        }}
-                    </p>
-                    <b>{{ props.firstRelease.author }}</b>
-                    <br />
-                    <b>{{ props.firstRelease.name }}</b>
-                    <div>
-                        <wa-badge
-                            appearance="outlined"
-                            v-for="r in releaseReaction(props.firstRelease)"
-                        >
-                            {{ r.icon }} {{ r.count }}
-                        </wa-badge>
-                    </div>
-                    <br />
-                    <!-- {{ props.firstRelease.body }} -->
-                </wa-card>
-            </div>
-            <div class="grid__diff">
+            <wa-card v-if="props.firstRelease" orientation="horizontal">
+                <div slot="media">
+                    <img :src="props.firstRelease.authorImg" />
+                </div>
                 <h3>
-                    {{ props.total }} release(s) in
-                    {{ props.diff.days }}
-                    day(s)
+                    <a :href="props.firstRelease.url" target="_blank">
+                        First release
+                    </a>
                 </h3>
-            </div>
-            <div ref="last">
+                <p class="wa-caption">
+                    <i class="hn hn-calender-solid"></i>
+                    {{ new Date(props.firstRelease.dateStr).toLocaleString() }}
+                </p>
+                <b>{{ props.firstRelease.author }}</b>
+                <br />
+                <b>{{ props.firstRelease.name }}</b>
+                <div>
+                    <wa-badge
+                        appearance="outlined"
+                        v-for="r in releaseReaction(props.firstRelease)"
+                    >
+                        {{ r.icon }} {{ r.count }}
+                    </wa-badge>
+                </div>
+                <br />
+                <!-- {{ props.firstRelease.body }} -->
+            </wa-card>
+            <div class="p-releases__details">
                 <wa-card>
-                    <div slot="media">
-                        <img :src="props.lastRelease.authorImg" />
-                    </div>
                     <h3>
-                        <a :href="props.lastRelease.url" target="_blank">
-                            Last release
-                        </a>
+                        {{ props.total }} release(s) in
+                        {{ props.diff.days }}
+                        day(s)
                     </h3>
-                    <p class="wa-caption">
-                        <i class="hn hn-calender-solid"></i>
-                        {{
-                            new Date(props.lastRelease.dateStr).toLocaleString()
-                        }}
-                    </p>
-                    <b>{{ props.lastRelease.author }}</b>
-                    <br />
-                    <b>{{ props.lastRelease.name }}</b>
-                    <div>
-                        <wa-badge
-                            appearance="outlined"
-                            v-for="r in releaseReaction(props.lastRelease)"
-                        >
-                            {{ r.icon }} {{ r.count }}
-                        </wa-badge>
-                    </div>
-                    <!-- {{ props.lastRelease.body }} -->
                 </wa-card>
             </div>
+            <wa-card orientation="horizontal">
+                <div slot="media">
+                    <img :src="props.lastRelease.authorImg" />
+                </div>
+                <h3>
+                    <a :href="props.lastRelease.url" target="_blank">
+                        Last release
+                    </a>
+                </h3>
+                <p class="wa-caption">
+                    <i class="hn hn-calender-solid"></i>
+                    {{ new Date(props.lastRelease.dateStr).toLocaleString() }}
+                </p>
+                <b>{{ props.lastRelease.author }}</b>
+                <br />
+                <b>{{ props.lastRelease.name }}</b>
+                <div>
+                    <wa-badge
+                        appearance="outlined"
+                        v-for="r in releaseReaction(props.lastRelease)"
+                    >
+                        {{ r.icon }} {{ r.count }}
+                    </wa-badge>
+                </div>
+                <!-- {{ props.lastRelease.body }} -->
+            </wa-card>
         </template>
         <div v-else>
             <h1>No published releases</h1>
@@ -123,52 +115,19 @@ function getReactionIcon(value: string) {
 </script>
 
 <style scoped>
-.commits__grid {
-    display: grid;
-    gap: 20px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-
-    &:not(.is--empty) {
-        grid-template-columns: 300px 1fr 300px;
-        justify-content: space-between;
-    }
-
-    &.is--empty {
-        grid-template-columns: 1fr;
-        align-items: center;
-        justify-content: center;
-
-        div {
-            margin-left: auto;
-            margin-right: auto;
-            width: 80%;
-            display: inline-block;
-
-            wa-skeleton {
-                margin-bottom: 10px;
-
-                &:last-of-type {
-                    width: 70%;
-                }
-            }
-        }
-    }
+wa-card img {
+    max-height: 150px;
 }
-
-wa-badge {
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.grid__diff {
+.p-releases__details {
+    height: 300px;
+    background: rgba(255, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    h3 {
-        text-align: center;
-        margin: 0;
-    }
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.p-releases__details wa-card {
+    display: inline-block;
 }
 </style>

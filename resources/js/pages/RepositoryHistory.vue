@@ -34,6 +34,9 @@
             <RepositoryLanguages :languages="props.languages" />
         </div>
         <br />
+        <h1>
+            Commits
+        </h1>
         <RepositoryCommits
             :diff="props.commits.diff"
             :last-commit="props.commits.lastCommit"
@@ -41,6 +44,9 @@
             :total="props.commits.totalCommits"
         />
         <br />
+        <h1>
+            Releases
+        </h1>
         <RepositoryRelease
             :diff="props.releases.diff"
             :last-release="props.releases.lastRelease"
@@ -51,8 +57,8 @@
 </template>
 
 <script setup lang="ts">
+import RepositoryCommits from "@/components/commit/RepositoryCommits.vue"
 import Layout from "@/components/Layout.vue"
-import RepositoryCommits from "@/components/repository/RepositoryCommits.vue"
 import RepositoryDetails from "@/components/repository/RepositoryDetails.vue"
 import RepositoryLanguages from "@/components/repository/RepositoryLanguages.vue"
 import RepositoryRelease from "@/components/repository/RepositoryRelease.vue"
@@ -64,6 +70,7 @@ const props = defineProps<{
     commits: {
         firstCommit: GithubCommit | null
         lastCommit: GithubCommit
+        middleCommit: GithubCommit | null
         diff: GithubCommitDiff
         totalCommits: number
     }
@@ -76,6 +83,8 @@ const props = defineProps<{
     topics: string[]
     languages: Record<string, number>
 }>()
+
+// console.debug(JSON.stringify(props))
 </script>
 
 <style scoped>

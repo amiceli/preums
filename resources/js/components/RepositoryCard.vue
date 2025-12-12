@@ -25,7 +25,6 @@
         </p>
 
         <wa-button
-            @click="showLoading()"
             :href="historyUrl"
             slot="footer"
             label="Rating"
