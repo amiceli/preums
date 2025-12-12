@@ -3,23 +3,30 @@
 namespace App\Models\Api;
 
 use App\Models\ParseLinkHeader;
-use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 
 abstract class ApiClient
 {
-    protected readonly PendingRequest $http;
+    private readonly string $token;
 
-    protected readonly string $mainUrl;
+    protected readonly string $root;
 
-    public function __construct(string $mainUrl)
+    public function __construct(string $root = "")
     {
-        $token = env("GITHUB_TOKEN");
-        $this->http = Http::withHeaders([
-            "Authorization" => "Bearer $token",
-        ]);
-        $this->mainUrl = $mainUrl;
+        $this->token = env("GITHUB_TOKEN");
+        $this->root = $root;
+    }
+
+    protected function makeGet(
+        string $url,
+        array|null $options = null,
+    ): Response {
+        $response = Http::withHeaders([
+            "Authorization" => "Bearer " . $this->token,
+        ])->get($url, $options);
+
+        return $response;
     }
 
     protected function getLastPageUrl(Response $response): array|false

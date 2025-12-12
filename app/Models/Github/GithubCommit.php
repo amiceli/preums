@@ -5,6 +5,8 @@ namespace App\Models\Github;
 class GithubCommit {
     public readonly string $dateStr;
 
+    public int $treeCount;
+
     public function __construct(
         public string $author,
         public string | null $authorImg,
@@ -13,6 +15,7 @@ class GithubCommit {
         public string $sha,
         public string $url,
         public \DateTime $date,
+        public string $treeUrl,
     ) {
         $this->dateStr = $this->date->format('c');
     }

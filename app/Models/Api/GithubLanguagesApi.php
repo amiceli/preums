@@ -23,7 +23,7 @@ class GithubLanguagesApi extends ApiClient
 
     public function getRepoLanguages(): array
     {
-        $response = $this->http->get($this->mainUrl . "/languages");
+        $response = $this->makeGet($this->root . "/languages");
 
         return $this->calculatePercentage($response->json());
     }

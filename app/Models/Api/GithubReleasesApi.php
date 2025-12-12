@@ -8,7 +8,7 @@ class GithubReleasesApi extends ApiClient
 {
     public static function forRepository(string $url)
     {
-        return new GithubReleasesApi(mainUrl: $url);
+        return new GithubReleasesApi(root: $url);
     }
 
     private function parseRelease(array $item): GithubRelease
@@ -34,7 +34,7 @@ class GithubReleasesApi extends ApiClient
 
     public function getReleases()
     {
-        $response = $this->http->get($this->mainUrl . "/releases", [
+        $response = $this->makeGet($this->root . "/releases", [
             "page" => 1,
             "per_page" => 1,
         ]);
@@ -52,7 +52,7 @@ class GithubReleasesApi extends ApiClient
         $lastPage = $this->getLastPageUrl($response);
 
         if ($lastPage) {
-            $response = $this->http->get($lastPage["link"]);
+            $response = $this->makeGet($lastPage["link"]);
             $firstRelease = $this->parseRelease($response->json()[0]);
         }
 

@@ -10,7 +10,7 @@ class GithubRepositoryApi extends ApiClient
 {
     public static function forRepository(string $url)
     {
-        return new GithubRepositoryApi(mainUrl: $url);
+        return new GithubRepositoryApi(root: $url);
     }
 
     public static function get()
@@ -43,31 +43,29 @@ class GithubRepositoryApi extends ApiClient
 
     public function searchRepository(string $search)
     {
-        $response = $this->http->get(
+        $response = $this->makeGet(
             "https://api.github.com/search/repositories",
             [
                 "q" => "in:name $search",
                 "sort" => "created",
                 "order" => "asc",
-                "per_page" => 12,
+                "per_page" => 20,
                 "page" => 1,
             ],
         );
 
-        $link = $response->header("Link");
         $list = array_map(function (array $item) {
             return $this->parseRepository($item);
-        }, $response->json());
+        }, $response->json()["items"]);
 
         return [
-            "link" => $link,
             "items" => $list,
         ];
     }
 
     public function getRepository()
     {
-        $response = $this->http->get($this->mainUrl);
+        $response = $this->makeGet($this->root);
 
         return $this->parseRepository($response->json());
     }
@@ -77,7 +75,7 @@ class GithubRepositoryApi extends ApiClient
      */
     public function getOldestRepositories()
     {
-        $response = $this->http->get(
+        $response = $this->makeGet(
             "https://api.github.com/search/repositories",
             [
                 "q" => "stars:>0",

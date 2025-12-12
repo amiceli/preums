@@ -2,28 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Api\ApiClient;
 use App\Models\Api\GithubCommitApi;
 use App\Models\Api\GithubContributorsApi;
 use App\Models\Api\GithubLanguagesApi;
 use App\Models\Api\GithubReleasesApi;
 use App\Models\Api\GithubRepositoryApi;
 use DateTime;
-use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class GithubApi
+class GithubApi extends ApiClient
 {
-    private PendingRequest $http;
-
-    public function __construct()
-    {
-        $token = env("GITHUB_TOKEN");
-        $this->http = Http::withHeaders([
-            "Authorization" => "Bearer $token",
-        ]);
-    }
-
     public function getOldestRepositories()
     {
         return GithubRepositoryApi::get()->getOldestRepositories();
@@ -36,40 +25,42 @@ class GithubApi
 
     private function getRepoTopics(string $url): array
     {
-        $response = $this->http->get("$url/topics");
+        $response = $this->makeGet("$url/topics", null);
 
         return $response->json()["names"];
     }
 
     public function getRepository(string $org, string $repo)
     {
-        $mainUrl = "https://api.github.com/repos/$org/$repo";
+        $repoApiUrl = "https://api.github.com/repos/$org/$repo";
         Log::info("action=get_repository, org=$org, repo=$repo");
 
         $details = GithubRepositoryApi::forRepository(
-            $mainUrl,
+            $repoApiUrl,
         )->getRepository();
         Log::info("action=load_details, status=success");
 
         $commits = GithubCommitApi::forRepository(
-            $mainUrl,
+            $repoApiUrl,
         )->getRepositoryCommits();
         Log::info("action=load_commits, status=success");
 
         $languages = GithubLanguagesApi::forRepository(
-            $mainUrl,
+            $repoApiUrl,
         )->getRepoLanguages();
         Log::info("action=load_languages, status=success");
 
         $contributors = GithubContributorsApi::forRepository(
-            $mainUrl,
+            $repoApiUrl,
         )->getContributors();
         Log::info("action=load_contributors, status=success");
 
-        $topics = $this->getRepoTopics($mainUrl);
+        $topics = $this->getRepoTopics($repoApiUrl);
         Log::info("action=load_topics, status=success");
 
-        $releases = GithubReleasesApi::forRepository($mainUrl)->getReleases();
+        $releases = GithubReleasesApi::forRepository(
+            $repoApiUrl,
+        )->getReleases();
         Log::info("action=load_release, status=success");
 
         return [
@@ -84,7 +75,7 @@ class GithubApi
 
     public function getRateLimit(): GithubRateLimit
     {
-        $response = $this->http->get("https://api.github.com/rate_limit");
+        $response = $this->makeGet("https://api.github.com/rate_limit", null);
         $states = $response->json();
 
         $nextReset = new DateTime()->setTimestamp($states["rate"]["reset"]);
