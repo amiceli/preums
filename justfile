@@ -1,6 +1,10 @@
 run:
     composer run dev
 
+install:
+    npm install
+    composer install
+
 biome:
     npx biome check --write
 
