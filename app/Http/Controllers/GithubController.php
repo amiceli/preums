@@ -39,7 +39,7 @@ class GithubController extends Controller
             array_push($years[$year], $item);
         }
 
-        return Inertia::render("Welcome", [
+        return Inertia::render("OldestRepositories", [
             "oldestRepos" => $years,
         ]);
     }
@@ -49,13 +49,13 @@ class GithubController extends Controller
         $value = $req->get("name");
         $res = $this->client->searchRepository($value);
 
-        return Inertia::render("Search", $res);
+        return Inertia::render("SearchResults", $res);
     }
 
-    public function showRepoHistory(string $org, string $repo)
+    public function showRepositoryHistory (string $org, string $repo)
     {
         $repository = $this->client->getRepository($org, $repo);
 
-        return Inertia::render("Repository", $repository);
+        return Inertia::render("RepositoryHistory", $repository);
     }
 }

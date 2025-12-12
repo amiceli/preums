@@ -24,3 +24,31 @@ export type GithubSearchResult = {
     totalCount: number
     items: Array<GithubSearchResultItem>
 }
+
+export type GithubCommitDiff = {
+    y: number
+    m: number
+    d: number
+    days: number
+}
+
+export type GithubCommit = {
+    dateStr: string
+    author: string
+    authorUrl: string
+    authorImg: string
+    message: string
+    sha: string
+    url: string
+}
+
+export type GithubRelease = {
+    dateStr: string
+    author: string
+    body: string
+    name: string
+    url: string
+    reactions: Record<string, number>
+    authorUrl: string
+    authorImg: string
+}

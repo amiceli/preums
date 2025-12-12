@@ -2,173 +2,80 @@
 
 namespace App\Models;
 
+use App\Models\Api\ApiClient;
+use App\Models\Api\GithubCommitApi;
+use App\Models\Api\GithubContributorsApi;
+use App\Models\Api\GithubLanguagesApi;
+use App\Models\Api\GithubReleasesApi;
+use App\Models\Api\GithubRepositoryApi;
 use DateTime;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
-class GithubApi
+class GithubApi extends ApiClient
 {
-    private function parseRepository($repo): GithubRepository
+    public function getOldestRepositories()
     {
-        $owner = new GithubRepositoryOwner(
-            $repo["owner"]["login"],
-            $repo["owner"]["id"],
-            $repo["owner"]["avatar_url"],
-        );
-
-        return new GithubRepository(
-            $repo["id"],
-            $repo["stargazers_count"],
-            $repo["name"],
-            $repo["full_name"],
-            $repo["description"],
-            $repo["html_url"],
-            new \DateTime($repo["created_at"]),
-            new \DateTime($repo["updated_at"]),
-            $repo["language"],
-            $repo["topics"],
-            $repo["watchers"],
-            $repo["forks"],
-            $owner,
-        );
-    }
-
-    private function mapRepos(array $response): array
-    {
-        $list = array_map(function ($repo): GithubRepository {
-            return $this->parseRepository($repo);
-        }, $response["items"]);
-
-        usort($list, function ($a, $b) {
-            $ad = $a->createdAt;
-            $bd = $b->createdAt;
-
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? -1 : 1;
-        });
-
-        return $list;
+        return GithubRepositoryApi::get()->getOldestRepositories();
     }
 
     public function searchRepository(string $search)
     {
-        $response = Http::get("https://api.github.com/search/repositories", [
-            "q" => "in:name $search",
-            "sort" => "created",
-            "order" => "asc",
-            "per_page" => 12,
-            "page" => 1,
-        ]);
-
-        $link = $response->header("Link");
-        $items = $this->mapRepos($response->json());
-
-        return [
-            "link" => $link,
-            "items" => $items,
-        ];
-    }
-
-    /**
-     * @return GithubRepository[]
-     */
-    public function getOldestRepositories(): array
-    {
-        $response = Http::get("https://api.github.com/search/repositories", [
-            "q" => "stars:>0",
-            "sort" => "stars",
-            "order" => "desc",
-            "per_page" => 30,
-        ]);
-
-        $list = $this->mapRepos($response->json());
-
-        return $list;
-    }
-
-    private function getRepoFirstCommit(string $url, string $date)
-    {
-        $time = new DateTime($date);
-        $time->modify("+1 days");
-
-        $response = Http::get("$url/commits", [
-            "until" => $time->format(DateTime::ATOM),
-        ]);
-
-        $list = $response->json();
-
-        usort($list, function ($a, $b) {
-            $ad = new \DateTime($a["commit"]["committer"]["date"]);
-            $bd = new \DateTime($b["commit"]["committer"]["date"]);
-
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? -1 : 1;
-        });
-
-        $split = array_slice(array_values($list), 0, 7);
-
-        return array_map(function ($item): GithubCommit {
-            return new GithubCommit(
-                author: $item["commit"]["author"]["name"],
-                sha: $item["sha"],
-                message: $item["commit"]["message"],
-                url: $item["html_url"],
-                date: new \DateTime($item["commit"]["author"]["date"]),
-            );
-        }, $split);
+        return GithubRepositoryApi::get()->searchRepository($search);
     }
 
     private function getRepoTopics(string $url): array
     {
-        $response = Http::get("$url/topics");
+        $response = $this->makeGet("$url/topics", null);
 
         return $response->json()["names"];
     }
 
-    private function getRepoLanguages(string $url): array
-    {
-        $response = Http::get("$url/languages");
-
-        return $response->json();
-    }
-
-    private function getRepoDetails(string $url)
-    {
-        $response = Http::get($url);
-
-        // print_r($response->status());
-        // php artisan make:cache-table
-
-        return $response->json();
-    }
-
     public function getRepository(string $org, string $repo)
     {
-        $mainUrl = "https://api.github.com/repos/$org/$repo";
-        $details = $this->getRepoDetails($mainUrl);
+        $repoApiUrl = "https://api.github.com/repos/$org/$repo";
+        Log::info("action=get_repository, org=$org, repo=$repo");
 
-        //print_r($details);
+        $details = GithubRepositoryApi::forRepository(
+            $repoApiUrl,
+        )->getRepository();
+        Log::info("action=load_details, status=success");
 
-        $languages = $this->getRepoLanguages($mainUrl);
-        $commit = $this->getRepoFirstCommit($mainUrl, $details["created_at"]);
-        $topics = $this->getRepoTopics($mainUrl);
+        $commits = GithubCommitApi::forRepository(
+            $repoApiUrl,
+        )->getRepositoryCommits();
+        Log::info("action=load_commits, status=success");
+
+        $languages = GithubLanguagesApi::forRepository(
+            $repoApiUrl,
+        )->getRepoLanguages();
+        Log::info("action=load_languages, status=success");
+
+        $contributors = GithubContributorsApi::forRepository(
+            $repoApiUrl,
+        )->getContributors();
+        Log::info("action=load_contributors, status=success");
+
+        $topics = $this->getRepoTopics($repoApiUrl);
+        Log::info("action=load_topics, status=success");
+
+        $releases = GithubReleasesApi::forRepository(
+            $repoApiUrl,
+        )->getReleases();
+        Log::info("action=load_release, status=success");
 
         return [
-            "repository" => $this->parseRepository($details),
+            "repository" => $details,
+            "commits" => $commits,
             "languages" => $languages,
-            "commit" => $commit,
             "topics" => $topics,
+            "releases" => $releases,
+            "contributors" => $contributors,
         ];
     }
 
     public function getRateLimit(): GithubRateLimit
     {
-        $response = Http::get("https://api.github.com/rate_limit");
+        $response = $this->makeGet("https://api.github.com/rate_limit", null);
         $states = $response->json();
 
         $nextReset = new DateTime()->setTimestamp($states["rate"]["reset"]);

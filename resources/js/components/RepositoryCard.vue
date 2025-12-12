@@ -30,6 +30,7 @@
             label="Rating"
             size="small"
             appearance="filled"
+            :loading="loading"
         >
             See history
         </wa-button>
@@ -47,20 +48,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
-import { showRepoHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { progress } from "@inertiajs/vue3"
+import { computed, ref } from "vue"
+import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubSearchResultItem } from "@/types/github"
 
+const loading = ref<boolean>(false)
 const props = defineProps<{
     repository: GithubSearchResultItem
 }>()
 
 const historyUrl = computed(() => {
-    return showRepoHistory.url({
+    return showRepositoryHistory.url({
         org: props.repository.owner.login,
         repo: props.repository.name,
     })
 })
+
+function showLoading() {
+    loading.value = true
+    progress.start()
+}
 </script>
 
 <style scoped>
