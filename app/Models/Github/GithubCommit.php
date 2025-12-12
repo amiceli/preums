@@ -5,8 +5,6 @@ namespace App\Models\Github;
 class GithubCommit {
     public readonly string $dateStr;
 
-    public int $treeCount;
-
     public function __construct(
         public string $author,
         public string | null $authorImg,
