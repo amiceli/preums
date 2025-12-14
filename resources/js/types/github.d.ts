@@ -32,6 +32,13 @@ export type GithubCommitDiff = {
     days: number
 }
 
+export type GithubCommitActivity = {
+    totalCommits: number
+    days: {
+        [key: string]: number
+    }
+}
+
 export type GithubCommit = {
     dateStr: string
     author: string

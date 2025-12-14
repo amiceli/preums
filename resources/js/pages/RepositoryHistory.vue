@@ -42,6 +42,7 @@
             :last-commit="props.commits.lastCommit"
             :first-commit="props.commits.firstCommit"
             :total="props.commits.totalCommits"
+            :activity="props.commits.activity"
         />
         <br />
         <h1>
@@ -63,7 +64,7 @@ import RepositoryDetails from "@/components/repository/RepositoryDetails.vue"
 import RepositoryLanguages from "@/components/repository/RepositoryLanguages.vue"
 import RepositoryRelease from "@/components/repository/RepositoryRelease.vue"
 import RepositoryTopics from "@/components/repository/RepositoryTopics.vue"
-import type { GithubCommit, GithubCommitDiff, GithubRelease, GithubSearchResultItem } from "@/types/github"
+import type { GithubCommit, GithubCommitActivity, GithubCommitDiff, GithubRelease, GithubSearchResultItem } from "@/types/github"
 
 const props = defineProps<{
     repository: GithubSearchResultItem
@@ -73,6 +74,7 @@ const props = defineProps<{
         middleCommit: GithubCommit | null
         diff: GithubCommitDiff
         totalCommits: number
+        activity: GithubCommitActivity
     }
     releases: {
         firstRelease: GithubRelease | null
