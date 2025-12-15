@@ -2,28 +2,24 @@
 
 namespace App\Models\Github;
 
-use App\Models\Github\GithubRepositoryOwner;
-use DateTime;
-
-class GithubRepository
-{
+class GithubRepository {
     public readonly string $createdAtStr;
 
     public readonly string $updatedAtStr;
 
     /**
-     * @param string[] $topics
+     * @param  string[]  $topics
      */
     public function __construct(
         public string $id,
         public int $stars,
         public string $name,
         public string $fullName,
-        public string|null $description,
+        public ?string $description,
         public string $url,
         public \DateTime $createdAt,
         public \DateTime $updatedAt,
-        public string|null $language,
+        public ?string $language,
         public array $topics,
         public int $watchers,
         public int $forks,
