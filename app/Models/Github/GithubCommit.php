@@ -7,8 +7,8 @@ class GithubCommit {
 
     public function __construct(
         public string $author,
-        public string | null $authorImg,
-        public string | null $authorUrl,
+        public ?string $authorImg,
+        public ?string $authorUrl,
         public string $message,
         public string $sha,
         public string $url,

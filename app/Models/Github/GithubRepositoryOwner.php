@@ -2,8 +2,7 @@
 
 namespace App\Models\Github;
 
-class GithubRepositoryOwner
-{
+class GithubRepositoryOwner {
     public function __construct(
         public string $login,
         public string $id,
