@@ -4,12 +4,16 @@
 
         <form @submit.prevent="submit">
             <wa-input
-                label="Search story of"
-                placeholder="A repository or an author"
+                label="Get history of"
+                placeholder="A repository who changes your like"
                 v-model="name"
                 appearance="filled-outlined"
+                required
             ></wa-input>
-            <wa-button type="submit">Search</wa-button>
+            <wa-button
+                type="submit"
+                :loading="isLoading"
+            >Search</wa-button>
         </form>
 
         <div class="page__title">
@@ -51,6 +55,7 @@ import RepositoryCard from "@/components/RepositoryCard.vue"
 import type { GithubSearchResult } from "@/types/github"
 
 const name = ref<string>("")
+const isLoading = ref(false)
 
 const props = defineProps<{
     oldestRepos: {
@@ -59,6 +64,8 @@ const props = defineProps<{
 }>()
 
 function submit() {
+    isLoading.value = true
+
     router.visit("/github/search", {
         data: {
             name: name.value,

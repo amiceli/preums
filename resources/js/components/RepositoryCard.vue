@@ -25,7 +25,7 @@
         </p>
 
         <wa-button
-            :href="historyUrl"
+            @click="goToRepository()"
             slot="footer"
             label="Rating"
             size="small"
@@ -48,8 +48,8 @@
 </template>
 
 <script setup lang="ts">
-import { progress } from "@inertiajs/vue3"
-import { computed, ref } from "vue"
+import { router } from "@inertiajs/vue3"
+import { ref } from "vue"
 import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubSearchResultItem } from "@/types/github"
 
@@ -58,16 +58,15 @@ const props = defineProps<{
     repository: GithubSearchResultItem
 }>()
 
-const historyUrl = computed(() => {
-    return showRepositoryHistory.url({
-        org: props.repository.owner.login,
-        repo: props.repository.name,
-    })
-})
-
-function showLoading() {
+function goToRepository() {
     loading.value = true
-    progress.start()
+
+    router.visit(
+        showRepositoryHistory.url({
+            org: props.repository.owner.login,
+            repo: props.repository.name,
+        }),
+    )
 }
 </script>
 
