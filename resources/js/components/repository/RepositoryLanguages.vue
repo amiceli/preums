@@ -26,36 +26,28 @@
 </template>
 
 <script lang="ts" setup>
-import Chart from "chart.js/auto"
+// @ts-expect-error
 import Colors from "language-colors"
-import { onMounted, useTemplateRef } from "vue"
 
 const props = defineProps<{
     languages: Record<string, number>
 }>()
 
-function getStyle(lang: string) {
-    const borderColor = Colors[lang.toLowerCase()] || "var(--wa-color-border-normal, var(--wa-color-brand-border-normal))"
+function getColor(lang: string) {
+    return Colors[lang.toLowerCase().replace("-", "_")]?.toString() || "white"
+}
 
-    return `border-color: ${borderColor};`
+function getStyle(lang: string) {
+    return `border-color: ${getColor(lang)};`
 }
 
 function getLineStyle(lang: string, index: number) {
     const width = Math.round(props.languages[lang])
     const maxIndex = Object.values(props.languages).reduce((iMax, x, i, arr) => (x > arr[iMax] ? i : iMax), 0)
 
-    console.debug(lang, index, maxIndex === index)
-
-    if (maxIndex === index) {
-        return {
-            flex: "1",
-            backgroundColor: Colors[lang.toLowerCase()].toString(),
-        }
-    }
-
     return {
-        width: `${width > 0 ? width : 1}%`,
-        backgroundColor: Colors[lang.toLowerCase()].toString(),
+        [maxIndex === index ? "flex" : "width"]: maxIndex === index ? 1 : `${width > 0 ? width : 1}%`,
+        backgroundColor: getColor(lang),
     }
 }
 </script>
