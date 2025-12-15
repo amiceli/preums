@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
 
     /*
     |--------------------------------------------------------------------------
@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'ssr' => [
+    'ssr' => array(
         'enabled' => true,
         'url' => 'http://127.0.0.1:13714',
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
-    ],
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,21 +32,21 @@ return [
     |
     */
 
-    'testing' => [
+    'testing' => array(
         'ensure_pages_exist' => true,
 
-        'page_paths' => [
+        'page_paths' => array(
             resource_path('js/pages'),
-        ],
+        ),
 
-        'page_extensions' => [
+        'page_extensions' => array(
             'js',
             'jsx',
             'svelte',
             'ts',
             'tsx',
             'vue',
-        ],
-    ],
+        ),
+    ),
 
-];
+);
