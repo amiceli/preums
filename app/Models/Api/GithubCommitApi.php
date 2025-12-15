@@ -25,6 +25,42 @@ class GithubCommitApi extends ApiClient
         return new GithubCommitApi(root: $url);
     }
 
+    private function sumWeeksDay(array $activity, int $index)
+    {
+        return array_sum(
+            array_map(function ($item) use ($index) {
+                return $item["days"][$index];
+            }, $activity),
+        );
+    }
+
+    private function getCommitsActivity()
+    {
+        $response = $this->makeGet($this->root . "/stats/commit_activity");
+        $activy = $response->json();
+
+        $totalCommits = array_sum(
+            array_map(function ($item) {
+                return $item["total"];
+            }, $activy),
+        );
+
+        $days = [
+            "Di" => $this->sumWeeksDay($activy, 0),
+            "Lu" => $this->sumWeeksDay($activy, 1),
+            "Ma" => $this->sumWeeksDay($activy, 2),
+            "Mr" => $this->sumWeeksDay($activy, 3),
+            "Je" => $this->sumWeeksDay($activy, 4),
+            "Ve" => $this->sumWeeksDay($activy, 5),
+            "Sa" => $this->sumWeeksDay($activy, 6),
+        ];
+
+        return [
+            "totalCommits" => $totalCommits,
+            "days" => $days,
+        ];
+    }
+
     public function getRepositoryCommits()
     {
         $response = $this->makeGet($this->root . "/commits", [
@@ -32,6 +68,7 @@ class GithubCommitApi extends ApiClient
             "per_page" => 1,
         ]);
         $lastCommit = $this->parseCommit($response->json()[0]);
+        $activity = $this->getCommitsActivity();
 
         $firstCommit = null;
         $lastPage = $this->getLastPageUrl($response);
@@ -45,6 +82,7 @@ class GithubCommitApi extends ApiClient
             "totalCommits" => $lastPage["count"],
             "lastCommit" => $lastCommit,
             "firstCommit" => $firstCommit,
+            "activity" => $activity,
             "diff" => $firstCommit
                 ? $lastCommit->date->diff($firstCommit->date)
                 : -1,
