@@ -6,14 +6,19 @@
             label="First commit"
         />
         <div class="p-commits__details">
-            <div>
-                <h3>
-                    {{ props.total }} commit(s) in
-                    {{ props.diff.days }}
-                    day(s)
-                </h3>
-                <br />
-                <h3>{{ props.activity.totalCommits }} last year</h3>
+            <div class="for--text">
+                <div class="parent">
+                    <div class="div1">
+                        <h1>{{ props.total }} commit(s)</h1>
+                    </div>
+                    <div class="div3">
+                        <h2>in {{ props.diff.days }}</h2>
+                    </div>
+                    <div class="div5">
+                        <h3>day(s)</h3>
+                    </div>
+                </div>
+                <h3>{{ props.activity.totalCommits }} commit(s) last year</h3>
             </div>
             <wa-divider orientation="vertical"></wa-divider>
             <div>
@@ -44,26 +49,28 @@ const props = defineProps<{
 }>()
 
 onMounted(() => {
-    new Chart(charts.value!, {
-        type: "bar",
-        data: {
-            labels: Object.keys(props.activity.days),
-            datasets: [
-                {
-                    label: "# days activity",
-                    data: Object.values(props.activity.days),
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
+    if (charts.value) {
+        new Chart(charts.value, {
+            type: "bar",
+            data: {
+                labels: Object.keys(props.activity.days),
+                datasets: [
+                    {
+                        label: "# days activity",
+                        data: Object.values(props.activity.days),
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
                 },
             },
-        },
-    })
+        })
+    }
 })
 </script>
 
@@ -79,5 +86,49 @@ onMounted(() => {
 }
 .p-commits__details h2 {
     text-align: center;
+}
+
+.for--text {
+    text-align: center;
+}
+
+.parent + h3 {
+    margin-top: 20px;
+}
+
+.parent {
+
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.div1 {
+    grid-column: span 2 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div3 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div5 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 1;
+
+    text-align: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding-left: 10px;
 }
 </style>
