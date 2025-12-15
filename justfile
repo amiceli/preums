@@ -30,8 +30,14 @@ test_api endpoint="" output="out":
         -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/amiceli/vitest-cucumber{{endpoint}} > {{output}}.json
 
-pint:
-    ./vendor/bin/pint
+# Test file(s) with Pint
+pint file="":
+    ./vendor/bin/pint {{file}} --test
 
+# Test and fix files with Pint
+pint_fix file="":
+    ./vendor/bin/pint {{file}}
+
+# Run PHP tests
 pest:
   ./vendor/bin/pest
