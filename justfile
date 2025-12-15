@@ -29,3 +29,9 @@ test_api endpoint="" output="out":
         -H "Authorization: Bearer $GITHUB_TOKEN" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/amiceli/vitest-cucumber{{endpoint}} > {{output}}.json
+
+pint:
+    ./vendor/bin/pint
+
+pest:
+  ./vendor/bin/pest
