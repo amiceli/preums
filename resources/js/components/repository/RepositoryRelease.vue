@@ -65,16 +65,20 @@
             </wa-card>
         </template>
         <div v-else>
-            <h1>No published releases</h1>
-            <wa-skeleton></wa-skeleton>
-            <wa-skeleton></wa-skeleton>
-            <wa-skeleton></wa-skeleton>
+
+            <wa-card class="for--skeleton">
+                <h3 slot="header">
+                    No published releases
+                </h3>
+                <Skeleton  />
+            </wa-card>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
 import type { GithubCommitDiff, GithubRelease } from "@/types/github"
+import Skeleton from "../common/Skeleton.vue"
 
 const props = defineProps<{
     firstRelease: GithubRelease | null
@@ -82,10 +86,6 @@ const props = defineProps<{
     diff: GithubCommitDiff
     total: number
 }>()
-
-// function isEmpty(r: GithubRelease) {
-//     return r.reactions.total === 0
-// }
 
 function releaseReaction(r: GithubRelease) {
     return Object.keys(r.reactions)
@@ -129,5 +129,11 @@ wa-card img {
 }
 .p-releases__details wa-card {
     display: inline-block;
+}
+.for--skeleton {
+    width: 70%
+}
+wa-card h3 {
+    margin: 0;
 }
 </style>
