@@ -3,6 +3,10 @@
 namespace App\Models\Github;
 
 class GithubOrg {
+    public readonly string $createdAtStr;
+
+    public readonly string $updatedAtStr;
+
     public function __construct(
         public string $url,
         public string $avatarUrl,
@@ -13,5 +17,8 @@ class GithubOrg {
         public \DateTime $updatedAt,
         public ?string $location,
         public ?string $blog,
-    ) {}
+    ) {
+        $this->createdAtStr = $this->createdAt->format('c');
+        $this->updatedAtStr = $this->updatedAt->format('c');
+    }
 }
