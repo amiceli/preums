@@ -2,19 +2,9 @@
     <Layout>
         <Marquee />
 
-        <form @submit.prevent="submit">
-            <wa-input
-                label="Get history of"
-                placeholder="A repository who changes your like"
-                v-model="name"
-                appearance="filled-outlined"
-                required
-            ></wa-input>
-            <wa-button
-                type="submit"
-                :loading="isLoading"
-            >Search</wa-button>
-        </form>
+        <div class="page__form">
+            <SearchForm />
+        </div>
 
         <div class="page__title">
             <h1>
@@ -47,31 +37,17 @@
 </template>
 
 <script setup lang="ts">
-import { router } from "@inertiajs/vue3"
-import { ref } from "vue"
 import Layout from "@/components/Layout.vue"
 import Marquee from "@/components/Marquee.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
+import SearchForm from "@/components/search/SearchForm.vue"
 import type { GithubSearchResult } from "@/types/github"
-
-const name = ref<string>("")
-const isLoading = ref(false)
 
 const props = defineProps<{
     oldestRepos: {
         [key: string]: GithubSearchResult["items"]
     }
 }>()
-
-function submit() {
-    isLoading.value = true
-
-    router.visit("/github/search", {
-        data: {
-            name: name.value,
-        },
-    })
-}
 </script>
 
 <style scoped>
@@ -93,14 +69,8 @@ h2 {
     margin-top: 40px;
     margin-bottom: 40px;
 }
-
-form {
-    display: grid;
-    grid-template-columns: 400px auto;
-    align-items: end;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 100px;
-    margin-bottom: 100px;
+.page__form {
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 </style>
