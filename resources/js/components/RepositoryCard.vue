@@ -5,10 +5,7 @@
             :src="props.repository.owner.avatarUrl"
             alt="repo image"
         />
-        <strong>
-            {{ props.repository.owner.login}} /
-            {{ props.repository.name }}
-        </strong>
+        <RepositoryBreadCrumb :repo="props.repository" />
         <br />
         <p>
             {{ props.repository.description }}
@@ -52,6 +49,7 @@ import { router } from "@inertiajs/vue3"
 import { ref } from "vue"
 import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubSearchResultItem } from "@/types/github"
+import RepositoryBreadCrumb from "./repository/RepositoryBreadCrumb.vue"
 
 const loading = ref<boolean>(false)
 const props = defineProps<{
