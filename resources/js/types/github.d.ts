@@ -21,6 +21,20 @@ export type GithubSearchResultItem = {
     ownerIsOrganization: boolean
 }
 
+export type GithubOrg = {
+    createdAtStr: string
+    updatedAtStr: string
+    url: string
+    avatarUrl: string
+    name: string
+    countRepos: number
+    followers: number
+    createdAt: Date
+    updatedAt: Date
+    location: string
+    blog: string | null
+}
+
 export type GithubSearchResult = {
     totalCount: number
     items: Array<GithubSearchResultItem>
