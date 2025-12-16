@@ -12,20 +12,28 @@
                         <h1>{{ props.total }} commit(s)</h1>
                     </div>
                     <div class="div3">
-                        <h2>in {{ props.diff.days }}</h2>
+                        <h2 v-if="props.diff.days > 0">
+                            in {{ props.diff.days }}
+                        </h2>
+                        <h2 v-else>it's</h2>
                     </div>
                     <div class="div5">
-                        <h3>day(s)</h3>
+                        <h3 v-if="props.diff.days > 0">day(s)</h3>
+                        <h3 v-else>enough</h3>
                     </div>
                 </div>
-                <h3>{{ props.activity.totalCommits }} commit(s) last year</h3>
+                <h3>{{ props.activity.totalCommits || "No" }} commit(s) last year</h3>
             </div>
             <wa-divider orientation="vertical"></wa-divider>
             <div>
-                <h2>
-                    Yearly most coded days
-                </h2>
-                <canvas ref="charts"></canvas>
+                <template v-if="props.activity.totalCommits > 0">
+                    <h2>Yearly most coded days</h2>
+                    <canvas ref="charts"></canvas>
+                </template>
+                <div v-else>
+                    <h2>No enough stats</h2>
+                    <Skeleton :line="true" />
+                </div>
             </div>
         </div>
         <CommitCard :commit="props.lastCommit" label="Last commit" />
@@ -36,6 +44,7 @@
 import Chart from "chart.js/auto"
 import { onMounted, useTemplateRef } from "vue"
 import type { GithubCommit, GithubCommitActivity, GithubCommitDiff } from "@/types/github"
+import Skeleton from "../common/Skeleton.vue"
 import CommitCard from "./CommitCard.vue"
 
 const charts = useTemplateRef("charts")
@@ -97,7 +106,6 @@ onMounted(() => {
 }
 
 .parent {
-
     display: inline-grid;
     align-items: center;
     justify-content: center;

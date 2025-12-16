@@ -15,13 +15,18 @@
         <br>
         <div class="lang__charts">
             <div
-            v-for="(lang, index) in Object.keys(props.languages)"
-            :key="`line-${lang}`"
-            :style="getLineStyle(lang, index)"
-            >
-
-            </div>
+                v-for="(lang, index) in Object.keys(props.languages)"
+                :key="`line-${lang}`"
+                :style="getLineStyle(lang, index)"
+                :id="`badge-${lang}`"
+            ></div>
         </div>
+        <wa-tooltip
+            v-for="lang in Object.keys(props.languages)"
+            :key="`tooltip-${lang}`"
+            :for="`badge-${lang}`"
+            placement="top"
+        >{{ lang }}</wa-tooltip>
     </wa-card>
 </template>
 
