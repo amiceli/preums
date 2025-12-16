@@ -24,6 +24,7 @@ class GithubRepository {
         public int $watchers,
         public int $forks,
         public GithubRepositoryOwner $owner,
+        public bool $ownerIsOrganization,
     ) {
         $this->createdAtStr = $this->createdAt->format('c');
         $this->updatedAtStr = $this->updatedAt->format('c');

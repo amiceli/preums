@@ -34,6 +34,7 @@ class GithubRepositoryApi extends ApiClient {
                 id: $item['owner']['id'],
                 avatarUrl: $item['owner']['avatar_url'],
             ),
+            ownerIsOrganization: $item['owner']['type'] === 'Organization',
         );
     }
 

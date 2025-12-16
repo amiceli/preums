@@ -18,6 +18,7 @@ export type GithubSearchResultItem = {
         id: number
         avatarUrl: string
     }
+    ownerIsOrganization: boolean
 }
 
 export type GithubSearchResult = {
