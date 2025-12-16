@@ -6,6 +6,7 @@ use App\Models\Api\ApiClient;
 use App\Models\Api\GithubCommitApi;
 use App\Models\Api\GithubContributorsApi;
 use App\Models\Api\GithubLanguagesApi;
+use App\Models\Api\GithubOrgApi;
 use App\Models\Api\GithubReleasesApi;
 use App\Models\Api\GithubRepositoryApi;
 use DateTime;
@@ -24,6 +25,10 @@ class GithubApi extends ApiClient {
         $response = $this->makeGet("$url/topics", null);
 
         return $response->json()['names'];
+    }
+
+    public function getOrg(string $orgName) {
+        return GithubOrgApi::forOrg($orgName)->getOrg();
     }
 
     public function getRepository(string $org, string $repo) {
