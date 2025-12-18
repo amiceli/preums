@@ -48,11 +48,9 @@ class GithubController extends Controller {
     }
 
     public function showOrgHistory(string $org) {
-        $org = $this->client->getOrg($org);
+        $details = $this->client->getOrg($org);
 
-        return Inertia::render('OrgHistory', array(
-            'org' => $org,
-        ));
+        return Inertia::render('OrgHistory', $details);
     }
 
     public function showUserHistory(string $name) {
