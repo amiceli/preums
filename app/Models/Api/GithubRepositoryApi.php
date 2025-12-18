@@ -7,6 +7,10 @@ use App\Models\Github\GithubRepositoryOwner;
 use DateTime;
 
 class GithubRepositoryApi extends ApiClient {
+    public static function forOrganization(string $url) {
+        return new GithubRepositoryApi(root: $url);
+    }
+
     public static function forRepository(string $url) {
         return new GithubRepositoryApi(root: $url);
     }
@@ -65,6 +69,36 @@ class GithubRepositoryApi extends ApiClient {
         return $this->parseRepository($response->json());
     }
 
+    public function getRepositories() {
+        $response = $this->makeGet($this->root.'/repos');
+
+        return $this->sortRepositoriesByDate(
+            array_map(function ($item) {
+                return $this->parseRepository($item);
+            }, $response->json()),
+        );
+    }
+
+    /**
+     * @return GithubRepository[]
+     */
+    private function sortRepositoriesByDate(array $list): array {
+        $clone = array_merge(array(), $list);
+
+        usort($clone, function ($a, $b) {
+            $ad = $a->createdAt;
+            $bd = $b->createdAt;
+
+            if ($ad == $bd) {
+                return 0;
+            }
+
+            return $ad < $bd ? -1 : 1;
+        });
+
+        return $clone;
+    }
+
     /**
      * @return GithubRepository[]
      */
@@ -83,17 +117,6 @@ class GithubRepositoryApi extends ApiClient {
             return $this->parseRepository($item);
         }, $response->json()['items']);
 
-        usort($list, function ($a, $b) {
-            $ad = $a->createdAt;
-            $bd = $b->createdAt;
-
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? -1 : 1;
-        });
-
-        return $list;
+        return $this->sortRepositoriesByDate($list);
     }
 }
