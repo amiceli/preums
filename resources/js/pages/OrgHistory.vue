@@ -66,12 +66,12 @@ import MasonryWall from "@yeger/vue-masonry-wall"
 import { computed } from "vue"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
-import type { GithubOrg, GithubRepository, GithubUser } from "@/types/github"
+import type { GithubOrg, GithubOwner, GithubRepository } from "@/types/github"
 
 const props = defineProps<{
     org: GithubOrg
     repositories: GithubRepository[]
-    members: GithubUser[]
+    members: GithubOwner[]
 }>()
 
 const diffYears = computed(() => {

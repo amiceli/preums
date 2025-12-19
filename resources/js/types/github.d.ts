@@ -1,6 +1,7 @@
 export type GithubOwner = {
     login: string
     avatarUrl: string
+    url: string
 }
 
 export type GithubUser = GithubOwner & {

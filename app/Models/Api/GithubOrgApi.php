@@ -41,7 +41,7 @@ class GithubOrgApi extends ApiClient {
             'org' => $this->parseOrg($response->json()),
             'repositories' => $repositories,
             'members' => array_map(function ($u) {
-                return $this->parseUser($u);
+                return $this->parserOwner($u);
             }, $members->json()),
         );
     }

@@ -2,7 +2,7 @@
 
 namespace App\Models\Github;
 
-class GithubUser {
+class GithubUser extends GithubOwner {
     public readonly string $createdAtStr;
 
     public function __construct(
@@ -17,6 +17,12 @@ class GithubUser {
         public int $following,
         public \DateTime $createdAt,
     ) {
+        parent::__construct(
+            url: $url,
+            login: $login,
+            avatarUrl: $avatarUrl,
+        );
+
         $this->createdAtStr = $this->createdAt->format('c');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Api;
 
+use App\Models\Github\GithubOwner;
 use App\Models\Github\GithubUser;
 use App\Models\ParseLinkHeader;
 use Illuminate\Http\Client\Response;
@@ -40,6 +41,14 @@ abstract class ApiClient {
         return false;
     }
 
+    protected function parserOwner(array $item): GithubOwner {
+        return new GithubOwner(
+            login: $item['login'],
+            url: $item['html_url'],
+            avatarUrl: $item['avatar_url'],
+        );
+    }
+
     protected function parseUser(array $item): GithubUser {
         return new GithubUser(
             login: $item['login'],
@@ -48,8 +57,8 @@ abstract class ApiClient {
             location: $item['location'] ?? null,
             blog: $item['blog'] ?? null,
             company: $item['company'] ?? null,
-            followers: $item['followers'],
-            following: $item['following'],
+            followers: $item['followers'] ?? 0,
+            following: $item['following'] ?? 0,
             createdAt: new \DateTime($item['created_at']),
             countRepos: $item['public_repos'],
         );
