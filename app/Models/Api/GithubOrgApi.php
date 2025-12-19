@@ -30,7 +30,7 @@ class GithubOrgApi extends ApiClient {
         );
     }
 
-    public function getOrg(): array {
+    public function getDetails(): array {
         $response = $this->makeGet($this->root);
         $repositories = GithubRepositoryApi::forOrganization(
             $this->root,

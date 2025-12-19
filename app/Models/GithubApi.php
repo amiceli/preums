@@ -17,7 +17,7 @@ class GithubApi extends ApiClient {
         return GithubRepositoryApi::get()->getOldestRepositories();
     }
 
-    public function searchRepository(string $search) {
+    public function searchRepositories(string $search) {
         return GithubRepositoryApi::get()->searchRepository($search);
     }
 
@@ -28,7 +28,7 @@ class GithubApi extends ApiClient {
     }
 
     public function getOrg(string $orgName) {
-        return GithubOrgApi::forOrg($orgName)->getOrg();
+        return GithubOrgApi::forOrg($orgName)->getDetails();
     }
 
     public function getRepository(string $org, string $repo) {

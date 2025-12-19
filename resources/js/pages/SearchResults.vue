@@ -2,9 +2,9 @@
     <Layout>
         <div class="page__title">
             <h1>
-                We found {{ props.items.length }} repositories
+                We found {{ props.repositories.length }} repositories
             </h1>
-            <p v-if="props.items.length > 0">
+            <p v-if="props.repositories.length > 0">
                 Repositories are sort by created date. It reminds time when we
                 coded like searcher.
             </p>
@@ -17,7 +17,7 @@
                 <RepositoryCard :repository="p" />
             </div>
         </div>
-        <Skeleton v-if="props.items.length === 0" />
+        <Skeleton v-if="props.repositories.length === 0" />
     </Layout>
 </template>
 
@@ -26,10 +26,10 @@ import Skeleton from "@/components/common/Skeleton.vue"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import SearchForm from "@/components/search/SearchForm.vue"
-import type { GithubSearchResult } from "@/types/github"
+import type { GithubRepository } from "@/types/github"
 
 const props = defineProps<{
-    items: GithubSearchResult["items"]
+    repositories: GithubRepository[]
 }>()
 </script>
 

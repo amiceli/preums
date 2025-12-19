@@ -42,7 +42,10 @@ class GithubRepositoryApi extends ApiClient {
         );
     }
 
-    public function searchRepository(string $search) {
+    /**
+     * @return GithubRepository[]
+     */
+    public function searchRepository(string $search): array {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(
@@ -58,9 +61,7 @@ class GithubRepositoryApi extends ApiClient {
             return $this->parseRepository($item);
         }, $response->json()['items']);
 
-        return array(
-            'items' => $list,
-        );
+        return $list;
     }
 
     public function getRepository() {
@@ -102,7 +103,7 @@ class GithubRepositoryApi extends ApiClient {
     /**
      * @return GithubRepository[]
      */
-    public function getOldestRepositories() {
+    public function getOldestRepositories(): array {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(

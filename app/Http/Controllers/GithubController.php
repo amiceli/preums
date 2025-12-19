@@ -42,9 +42,11 @@ class GithubController extends Controller {
 
     public function search(Request $req): \Inertia\Response {
         $value = $req->get('name');
-        $res = $this->client->searchRepository($value);
+        $repositories = $this->client->searchRepositories($value);
 
-        return Inertia::render('SearchResults', $res);
+        return Inertia::render('SearchResults', array(
+            'repositories' => $repositories,
+        ));
     }
 
     public function showOrgHistory(string $org) {

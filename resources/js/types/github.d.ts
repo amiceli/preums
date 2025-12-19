@@ -1,4 +1,4 @@
-export type GithubSearchResultItem = {
+export type GithubRepository = {
     id: number
     stars: number
     name: string
@@ -37,7 +37,7 @@ export type GithubOrg = {
 
 export type GithubSearchResult = {
     totalCount: number
-    items: Array<GithubSearchResultItem>
+    items: Array<GithubRepository>
 }
 
 export type GithubCommitDiff = {
