@@ -15,7 +15,7 @@ define('PROJECT_ROOT', dirname(__DIR__));
 
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+    ->in('Unit', 'Feature');
 
 /*
 |--------------------------------------------------------------------------
