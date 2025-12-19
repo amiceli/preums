@@ -2,6 +2,7 @@
 
 namespace App\Models\Api;
 
+use App\Models\Github\GithubUser;
 use App\Models\ParseLinkHeader;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -16,10 +17,7 @@ abstract class ApiClient {
         $this->root = $root;
     }
 
-    protected function makeGet(
-        string $url,
-        ?array $options = null,
-    ): Response {
+    protected function makeGet(string $url, ?array $options = null): Response {
         $response = Http::withHeaders(array(
             'Authorization' => 'Bearer '.$this->token,
         ))->get($url, $options);
@@ -40,5 +38,13 @@ abstract class ApiClient {
         }
 
         return false;
+    }
+
+    protected function parseUser(array $item): GithubUser {
+        return new GithubUser(
+            login: $item['login'],
+            url: $item['html_url'],
+            avatarUrl: $item['avatar_url'],
+        );
     }
 }

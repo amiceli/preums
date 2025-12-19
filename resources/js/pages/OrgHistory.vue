@@ -33,23 +33,31 @@
             </h3>
             <h1>~</h1>
         </div>
-
-        <!-- <wa-card orientation="horizontal" class="main__card">
-            <div slot="media">
-                <img
-                    :src="props.org.avatarUrl"
-                    alt="A kitten sits patiently between a terracotta pot and decorative grasses."
-                />
-            </div>
-            <h1>
-                {{ props.org.name }}
-            </h1>
-
-        </wa-card> -->
-        <h1>{{ props.repositories.length }} Repositories</h1>
+        <h1>Repositories</h1>
         <MasonryWall :items="props.repositories" :column-width="300" :gap="20">
             <template #default="{ item, index }">
                 <RepositoryCard :repository="item" />
+            </template>
+        </MasonryWall>
+        <h1>
+            Thanks to {{ props.org.name }} family
+            <small>
+                {{ props.members.length }} member(s)
+            </small>
+        </h1>
+        <br />
+        <MasonryWall :items="props.members" :column-width="70" :gap="15">
+            <template #default="{ item, index }">
+                <wa-tooltip :for="`member-${index}`">
+                    {{ item.login }}
+                </wa-tooltip>
+
+                <a :href="item.url" target="_blank">
+                    <wa-avatar
+                        :image="item.avatarUrl"
+                        :id="`member-${index}`"
+                    ></wa-avatar>
+                </a>
             </template>
         </MasonryWall>
     </Layout>
@@ -60,11 +68,12 @@ import MasonryWall from "@yeger/vue-masonry-wall"
 import { computed } from "vue"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
-import type { GithubOrg, GithubSearchResultItem } from "@/types/github"
+import type { GithubOrg, GithubRepository, GithubUser } from "@/types/github"
 
 const props = defineProps<{
     org: GithubOrg
-    repositories: GithubSearchResultItem[]
+    repositories: GithubRepository[]
+    members: GithubUser[]
 }>()
 
 const diffYears = computed(() => {
@@ -78,6 +87,7 @@ const diffYears = computed(() => {
     align-items: center;
     justify-content: center;
     gap: 30px;
+    padding-top: 40px;
 
     img {
         max-height: 200px;
@@ -99,6 +109,14 @@ const diffYears = computed(() => {
 
 wa-card h3 {
     margin-bottom: 0;
+}
+
+wa-avatar {
+    --size: 70px;
+}
+
+.masonry-wall + h1 {
+    margin-top: 40px;
 }
 
 /**/

@@ -35,10 +35,14 @@ class GithubOrgApi extends ApiClient {
         $repositories = GithubRepositoryApi::forOrganization(
             $this->root,
         )->getRepositories();
+        $members = $this->makeGet($this->root.'/members');
 
         return array(
             'org' => $this->parseOrg($response->json()),
             'repositories' => $repositories,
+            'members' => array_map(function ($u) {
+                return $this->parseUser($u);
+            }, $members->json()),
         );
     }
 }

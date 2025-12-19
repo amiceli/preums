@@ -1,3 +1,9 @@
+export type GithubUser = {
+    login: string
+    avatarUrl: string
+    url: string
+}
+
 export type GithubRepository = {
     id: number
     stars: number
