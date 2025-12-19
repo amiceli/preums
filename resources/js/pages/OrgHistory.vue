@@ -19,7 +19,7 @@
                     {{ new Date(props.org.createdAtStr).toLocaleDateString() }}
                 </template>
             </h3>
-            <h3>
+            <h3 v-if="props.org.location">
                 <i class="hn hn-flag-solid"></i>
                 {{ props.org.location }}
             </h3>
