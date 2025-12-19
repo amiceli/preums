@@ -39,5 +39,5 @@ pint_fix file="":
     ./vendor/bin/pint {{file}}
 
 # Run Pest tests
-pest:
-    ./vendor/bin/pest
+pest file="":
+    ./vendor/bin/pest {{file}}

@@ -12,6 +12,8 @@ $githubUserRepositories = json_decode(
 
 dataset('github-user', array(array($githubUser)));
 
+dataset('github-repos', array(array($githubUserRepositories)));
+
 dataset('github-user-history', array(
     array(
         'user' => $githubUser,
