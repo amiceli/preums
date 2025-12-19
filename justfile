@@ -38,6 +38,6 @@ pint file="":
 pint_fix file="":
     ./vendor/bin/pint {{file}}
 
-# Run PHP tests
+# Run Pest tests
 pest:
-  ./vendor/bin/pest
+    ./vendor/bin/pest

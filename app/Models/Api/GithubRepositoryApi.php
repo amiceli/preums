@@ -7,6 +7,14 @@ use App\Models\Github\GithubRepositoryOwner;
 use DateTime;
 
 class GithubRepositoryApi extends ApiClient {
+    public static function forOrganization(string $url) {
+        return new GithubRepositoryApi(root: $url);
+    }
+
+    public static function forUser(string $url) {
+        return new GithubRepositoryApi(root: $url);
+    }
+
     public static function forRepository(string $url) {
         return new GithubRepositoryApi(root: $url);
     }
@@ -34,10 +42,14 @@ class GithubRepositoryApi extends ApiClient {
                 id: $item['owner']['id'],
                 avatarUrl: $item['owner']['avatar_url'],
             ),
+            ownerIsOrganization: $item['owner']['type'] === 'Organization',
         );
     }
 
-    public function searchRepository(string $search) {
+    /**
+     * @return GithubRepository[]
+     */
+    public function searchRepository(string $search): array {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(
@@ -53,9 +65,7 @@ class GithubRepositoryApi extends ApiClient {
             return $this->parseRepository($item);
         }, $response->json()['items']);
 
-        return array(
-            'items' => $list,
-        );
+        return $list;
     }
 
     public function getRepository() {
@@ -64,10 +74,40 @@ class GithubRepositoryApi extends ApiClient {
         return $this->parseRepository($response->json());
     }
 
+    public function getRepositories() {
+        $response = $this->makeGet($this->root.'/repos');
+
+        return $this->sortRepositoriesByDate(
+            array_map(function ($item) {
+                return $this->parseRepository($item);
+            }, $response->json()),
+        );
+    }
+
     /**
      * @return GithubRepository[]
      */
-    public function getOldestRepositories() {
+    private function sortRepositoriesByDate(array $list): array {
+        $clone = array_merge(array(), $list);
+
+        usort($clone, function ($a, $b) {
+            $ad = $a->createdAt;
+            $bd = $b->createdAt;
+
+            if ($ad == $bd) {
+                return 0;
+            }
+
+            return $ad < $bd ? -1 : 1;
+        });
+
+        return $clone;
+    }
+
+    /**
+     * @return GithubRepository[]
+     */
+    public function getOldestRepositories(): array {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(
@@ -82,17 +122,6 @@ class GithubRepositoryApi extends ApiClient {
             return $this->parseRepository($item);
         }, $response->json()['items']);
 
-        usort($list, function ($a, $b) {
-            $ad = $a->createdAt;
-            $bd = $b->createdAt;
-
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? -1 : 1;
-        });
-
-        return $list;
+        return $this->sortRepositoriesByDate($list);
     }
 }

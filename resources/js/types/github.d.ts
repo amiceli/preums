@@ -1,4 +1,22 @@
-export type GithubSearchResultItem = {
+export type GithubOwner = {
+    login: string
+    avatarUrl: string
+    url: string
+}
+
+export type GithubUser = GithubOwner & {
+    createdAtStr: string
+    url: string
+    location: string | null
+    blog: string | null
+    company: string | null
+    countRepos: number
+    followers: number
+    following: number
+    createdAt: Date
+}
+
+export type GithubRepository = {
     id: number
     stars: number
     name: string
@@ -13,16 +31,27 @@ export type GithubSearchResultItem = {
     forks: number
     createdAtStr: string
     updatedAtStr: string
-    owner: {
-        login: string
-        id: number
-        avatarUrl: string
-    }
+    owner: GithubOwner
+    ownerIsOrganization: boolean
+}
+
+export type GithubOrg = {
+    createdAtStr: string
+    updatedAtStr: string
+    url: string
+    avatarUrl: string
+    name: string
+    countRepos: number
+    followers: number
+    createdAt: Date
+    updatedAt: Date
+    location: string
+    blog: string | null
 }
 
 export type GithubSearchResult = {
     totalCount: number
-    items: Array<GithubSearchResultItem>
+    items: Array<GithubRepository>
 }
 
 export type GithubCommitDiff = {

@@ -1,5 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+
 html {
     background: #091128;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
 }
 
 /* custom */
@@ -34,4 +38,14 @@ a.p-link:hover {
     border-color: #111;
     box-shadow: 4px 4px 0 #111;
     transform: translate(-2px, -2px);
+}
+
+/* typography */
+
+h1 {
+    font-weight: 900;
+}
+
+h1 small {
+    opacity: 0.7;
 }

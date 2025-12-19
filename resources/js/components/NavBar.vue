@@ -28,9 +28,7 @@
     </nav>
 </template>
 
-<script setup lang="ts">
-// import test from '../../../node_modules/@hackernoon/pixel-icon-library/icons/SVG/regular/git'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .preums-nav {

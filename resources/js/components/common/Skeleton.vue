@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    line: boolean
+    line?: boolean
 }>()
 </script>
 

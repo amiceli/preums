@@ -85,8 +85,6 @@ const props = defineProps<{
     topics: string[]
     languages: Record<string, number>
 }>()
-
-// console.debug(JSON.stringify(props))
 </script>
 
 <style scoped>
