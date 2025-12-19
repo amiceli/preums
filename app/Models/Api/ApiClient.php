@@ -14,7 +14,7 @@ abstract class ApiClient {
     protected readonly string $root;
 
     public function __construct(string $root = '') {
-        $this->token = env('GITHUB_TOKEN');
+        $this->token = env('GITHUB_TOKEN') ?? '';
         $this->root = $root;
     }
 
