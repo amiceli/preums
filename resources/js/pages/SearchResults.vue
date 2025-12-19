@@ -13,7 +13,7 @@
             <SearchForm />
         </div>
         <div class="preums_grid">
-            <div class="grid__item" v-for="p in props.items" :key="p.id">
+            <div class="grid__item" v-for="p in props.repositories" :key="p.id">
                 <RepositoryCard :repository="p" />
             </div>
         </div>

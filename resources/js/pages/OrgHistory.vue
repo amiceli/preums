@@ -41,9 +41,7 @@
         </MasonryWall>
         <h1>
             Thanks to {{ props.org.name }} family
-            <small>
-                {{ props.members.length }} member(s)
-            </small>
+            <small> {{ props.members.length }} member(s) </small>
         </h1>
         <br />
         <MasonryWall :items="props.members" :column-width="70" :gap="15">

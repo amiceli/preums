@@ -56,11 +56,9 @@ class GithubController extends Controller {
     }
 
     public function showUserHistory(string $name) {
-        $org = $this->client->getOrg($name);
+        $userHistory = $this->client->getUserHistory($name);
 
-        return Inertia::render('UserHistory', array(
-            'org' => $org,
-        ));
+        return Inertia::render('UserHistory', $userHistory);
     }
 
     public function showRepositoryHistory(string $org, string $repo) {
