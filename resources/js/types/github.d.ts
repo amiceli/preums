@@ -1,7 +1,18 @@
-export type GithubUser = {
+export type GithubOwner = {
     login: string
     avatarUrl: string
+}
+
+export type GithubUser = GithubOwner & {
+    createdAtStr: string
     url: string
+    location: string | null
+    blog: string | null
+    company: string | null
+    countRepos: number
+    followers: number
+    following: number
+    createdAt: Date
 }
 
 export type GithubRepository = {
@@ -19,11 +30,7 @@ export type GithubRepository = {
     forks: number
     createdAtStr: string
     updatedAtStr: string
-    owner: {
-        login: string
-        id: number
-        avatarUrl: string
-    }
+    owner: GithubOwner
     ownerIsOrganization: boolean
 }
 
