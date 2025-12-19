@@ -9,6 +9,7 @@ use App\Models\Api\GithubLanguagesApi;
 use App\Models\Api\GithubOrgApi;
 use App\Models\Api\GithubReleasesApi;
 use App\Models\Api\GithubRepositoryApi;
+use App\Models\Api\GithubUserApi;
 use DateTime;
 use Illuminate\Support\Facades\Log;
 
@@ -29,6 +30,10 @@ class GithubApi extends ApiClient {
 
     public function getOrg(string $orgName) {
         return GithubOrgApi::forOrg($orgName)->getDetails();
+    }
+
+    public function getUserHistory(string $userName) {
+        return GithubUserApi::forUser($userName)->getHistory();
     }
 
     public function getRepository(string $org, string $repo) {

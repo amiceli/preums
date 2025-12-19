@@ -45,6 +45,13 @@ abstract class ApiClient {
             login: $item['login'],
             url: $item['html_url'],
             avatarUrl: $item['avatar_url'],
+            location: $item['location'] ?? null,
+            blog: $item['blog'] ?? null,
+            company: $item['company'] ?? null,
+            followers: $item['followers'],
+            following: $item['following'],
+            createdAt: new \DateTime($item['created_at']),
+            countRepos: $item['public_repos'],
         );
     }
 }

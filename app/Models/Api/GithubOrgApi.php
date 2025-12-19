@@ -18,7 +18,7 @@ class GithubOrgApi extends ApiClient {
 
     private function parseOrg(array $org) {
         return new GithubOrg(
-            name: $org['name'],
+            name: $org['name'] ?? $org['login'],
             countRepos: $org['public_repos'],
             followers: $org['followers'],
             createdAt: new DateTime($org['created_at']),

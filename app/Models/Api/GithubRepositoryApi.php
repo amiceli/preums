@@ -11,6 +11,10 @@ class GithubRepositoryApi extends ApiClient {
         return new GithubRepositoryApi(root: $url);
     }
 
+    public static function forUser(string $url) {
+        return new GithubRepositoryApi(root: $url);
+    }
+
     public static function forRepository(string $url) {
         return new GithubRepositoryApi(root: $url);
     }
