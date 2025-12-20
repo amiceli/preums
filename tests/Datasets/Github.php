@@ -16,6 +16,8 @@ $githubContributors = getGithubSample('contirbutors.json');
 $githubOrgMembers = getGithubSample('org-members.json');
 $githubLanguages = getGithubSample('languages.json');
 $githubReleases = getGithubSample('releases.json');
+$githubCommits = getGithubSample('commits.json');
+$githubCommitsActivty = getGithubSample('commit-activity.json');
 
 // datasets
 
@@ -44,6 +46,13 @@ dataset('github-user-history', array(
 
 dataset('github-contributors', array(
     array($githubContributors),
+));
+
+dataset('github-commits', array(
+    array(
+        'commits' => $githubCommits,
+        'activity' => $githubCommitsActivty,
+    ),
 ));
 
 dataset('github-org-history', array(

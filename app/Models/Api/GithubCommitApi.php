@@ -32,6 +32,12 @@ class GithubCommitApi extends ApiClient {
         );
     }
 
+    /**
+     * @return array{
+     *     days: array<string, int>,
+     *     totalCommits: int
+     * }
+     */
     private function getCommitsActivity() {
         $response = $this->makeGet($this->root.'/stats/commit_activity');
         $activy = $response->json();
@@ -64,7 +70,6 @@ class GithubCommitApi extends ApiClient {
             'per_page' => 1,
         ));
         $lastCommit = $this->parseCommit($response->json()[0]);
-        $activity = $this->getCommitsActivity();
 
         $firstCommit = null;
         $lastPage = $this->getLastPageUrl($response);
@@ -73,6 +78,8 @@ class GithubCommitApi extends ApiClient {
             $lastResponse = $this->makeGet($lastPage['link']);
             $firstCommit = $this->parseCommit($lastResponse->json()[0]);
         }
+
+        $activity = $this->getCommitsActivity();
 
         return array(
             'totalCommits' => $lastPage['count'],
