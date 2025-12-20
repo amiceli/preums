@@ -5,8 +5,10 @@ namespace App\Models\Api;
 use App\Models\Github\GithubContributor;
 
 class GithubContributorsApi extends ApiClient {
-    public static function forRepository(string $url) {
-        return new GithubContributorsApi($url);
+    public static function forRepository(string $repoFullName) {
+        return new GithubContributorsApi(
+            "https://api.github.com/repos/$repoFullName"
+        );
     }
 
     private function parseContributor(array $item): GithubContributor {

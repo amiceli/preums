@@ -5,8 +5,10 @@ namespace App\Models\Api;
 use App\Models\Github\GithubRelease;
 
 class GithubReleasesApi extends ApiClient {
-    public static function forRepository(string $url) {
-        return new GithubReleasesApi(root: $url);
+    public static function forRepository(string $repoFullName) {
+        return new GithubReleasesApi(
+            "https://api.github.com/repos/$repoFullName"
+        );
     }
 
     private function parseRelease(array $item): GithubRelease {

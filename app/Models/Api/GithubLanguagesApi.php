@@ -3,8 +3,10 @@
 namespace App\Models\Api;
 
 class GithubLanguagesApi extends ApiClient {
-    public static function forRepository(string $url) {
-        return new GithubLanguagesApi($url);
+    public static function forRepository(string $repoFullName) {
+        return new GithubLanguagesApi(
+            "https://api.github.com/repos/$repoFullName"
+        );
     }
 
     private function calculatePercentage(array $langs) {
@@ -18,7 +20,7 @@ class GithubLanguagesApi extends ApiClient {
         return $percentages;
     }
 
-    public function getRepoLanguages(): array {
+    public function getLanguages(): array {
         $response = $this->makeGet($this->root.'/languages');
 
         return $this->calculatePercentage($response->json());
