@@ -3,15 +3,13 @@
 namespace App\Models\Api;
 
 use App\Models\Github\GithubOrg;
+use App\Models\Github\GithubOwner;
+use App\Models\Github\GithubRepository;
 use DateTime;
 
 class GithubOrgApi extends ApiClient {
     public static function forOrg(string $orgName) {
         return new GithubOrgApi($orgName);
-    }
-
-    public static function get() {
-        return new GithubOrgApi('');
     }
 
     private function parseOrg(array $org) {
@@ -28,6 +26,13 @@ class GithubOrgApi extends ApiClient {
         );
     }
 
+    /**
+     * @return array{
+     *     org: GithubOrg,
+     *     repositories: GithubRepository[],
+     *     members: GithubOwner[]
+     * }
+     */
     public function getDetails(): array {
         $response = $this->makeGet(
             'https://api.github.com/orgs/'.$this->root

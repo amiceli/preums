@@ -1,23 +1,29 @@
 <?php
 
-$githubUser = json_decode(
-    file_get_contents(PROJECT_ROOT.'/tests/samples/user.json'),
-    true,
+function getGithubSample(string $filename) {
+    return json_decode(
+        file_get_contents(PROJECT_ROOT.'/tests/samples/'.$filename),
+        true,
+    );
+}
+
+// samples from github api
+
+$githubUser = getGithubSample('user.json');
+$githubOrg = getGithubSample('org.json');
+$githubUserRepositories = getGithubSample('user-repos.json');
+$githubContributors = getGithubSample('contirbutors.json');
+$githubOrgMembers = getGithubSample('org-members.json');
+
+// datasets
+
+dataset('github-user', array(
+    array($githubUser))
 );
 
-$githubUserRepositories = json_decode(
-    file_get_contents(PROJECT_ROOT.'/tests/samples/user-repos.json'),
-    true,
+dataset('github-repos', array(
+    array($githubUserRepositories))
 );
-
-$githubContributors = json_decode(
-    file_get_contents(PROJECT_ROOT.'/tests/samples/contirbutors.json'),
-    true,
-);
-
-dataset('github-user', array(array($githubUser)));
-
-dataset('github-repos', array(array($githubUserRepositories)));
 
 dataset('github-user-history', array(
     array(
@@ -26,4 +32,14 @@ dataset('github-user-history', array(
     ),
 ));
 
-dataset('github-contributors', array(array($githubContributors)));
+dataset('github-contributors', array(
+    array($githubContributors),
+));
+
+dataset('github-org-history', array(
+    array(
+        'org' => $githubOrg,
+        'repos' => $githubUserRepositories,
+        'members' => $githubOrgMembers,
+    ),
+));
