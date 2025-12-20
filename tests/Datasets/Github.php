@@ -15,6 +15,7 @@ $githubUserRepositories = getGithubSample('user-repos.json');
 $githubContributors = getGithubSample('contirbutors.json');
 $githubOrgMembers = getGithubSample('org-members.json');
 $githubLanguages = getGithubSample('languages.json');
+$githubReleases = getGithubSample('releases.json');
 
 // datasets
 
@@ -24,6 +25,10 @@ dataset('github-user', array(
 
 dataset('github-languages', array(
     array($githubLanguages))
+);
+
+dataset('github-releases', array(
+    array($githubReleases))
 );
 
 dataset('github-repos', array(

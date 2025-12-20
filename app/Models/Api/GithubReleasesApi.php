@@ -7,7 +7,7 @@ use App\Models\Github\GithubRelease;
 class GithubReleasesApi extends ApiClient {
     public static function forRepository(string $repoFullName) {
         return new GithubReleasesApi(
-            "https://api.github.com/repos/$repoFullName"
+            "https://api.github.com/repos/$repoFullName",
         );
     }
 
@@ -31,6 +31,14 @@ class GithubReleasesApi extends ApiClient {
         );
     }
 
+    /**
+     * @return array{
+     *     totalReleases: int,
+     *     diff: \DateInterval,
+     *     firstRelease: ?GithubRelease,
+     *     lastRelease: ?GithubRelease,
+     * }
+     */
     public function getReleases() {
         $response = $this->makeGet($this->root.'/releases', array(
             'page' => 1,
@@ -55,7 +63,7 @@ class GithubReleasesApi extends ApiClient {
         }
 
         return array(
-            'totalReleases' => $lastPage['count'],
+            'totalReleases' => $lastPage['count'] ?? 1,
             'lastRelease' => $lastRelease,
             'firstRelease' => $firstRelease,
             'diff' => $firstRelease
