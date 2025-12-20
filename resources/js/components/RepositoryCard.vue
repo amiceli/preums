@@ -1,12 +1,20 @@
 <template>
     <wa-card class="card-overview">
-        <img
-            slot="media"
-            :src="props.repository.owner.avatarUrl"
-            alt="repo image"
-        />
-        <RepositoryBreadCrumb :repo="props.repository" />
-        <br />
+        <template v-if="showAvatar">
+            <img
+                slot="media"
+                :src="props.repository.owner.avatarUrl"
+                alt="repo image"
+            />
+            <h3>
+                <RepositoryBreadCrumb :repo="props.repository" />
+            </h3>
+            <br />
+        </template>
+        <h3 slot="header" v-if="!props.showAvatar">
+            <RepositoryBreadCrumb :repo="props.repository" />
+        </h3>
+
         <p>
             {{ props.repository.description }}
         </p>
@@ -48,12 +56,13 @@
 import { router } from "@inertiajs/vue3"
 import { ref } from "vue"
 import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
-import type { GithubSearchResultItem } from "@/types/github"
+import type { GithubRepository } from "@/types/github"
 import RepositoryBreadCrumb from "./repository/RepositoryBreadCrumb.vue"
 
 const loading = ref<boolean>(false)
 const props = defineProps<{
-    repository: GithubSearchResultItem
+    repository: GithubRepository
+    showAvatar?: boolean
 }>()
 
 function goToRepository() {
@@ -72,6 +81,9 @@ function goToRepository() {
 .nb-card-actions {
     display: flex;
     justify-content: space-between;
+}
+.card-overview h3 {
+    margin-bottom: 0;
 }
 wa-card {
     width: 350px;
