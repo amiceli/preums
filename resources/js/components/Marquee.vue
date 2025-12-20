@@ -26,7 +26,7 @@
 import { onMounted, ref } from "vue"
 
 const langs = ["JavaScript", "PHP", "Rust", "Go", "Ruby", "Python", "Kotlin", "Perl", "Java", "C#"]
-const currentText = ref<string>(langs.at(0) || '')
+const currentText = ref<string>(langs.at(0) || "")
 
 onMounted(() => {
     setInterval(() => {
