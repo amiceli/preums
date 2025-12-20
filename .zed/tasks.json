@@ -1,0 +1,10 @@
+[
+    {
+        "label": "Pint fix",
+        "command": "just pint_fix",
+        "use_new_terminal": false,
+        "allow_concurrent_runs": false,
+        "reveal": "never",
+        "shell": "system"
+    }
+]

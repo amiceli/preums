@@ -18,8 +18,10 @@ class GithubCommitApi extends ApiClient {
         );
     }
 
-    public static function forRepository(string $url) {
-        return new GithubCommitApi(root: $url);
+    public static function forRepository(string $repoFullName) {
+        return new GithubCommitApi(
+            "https://api.github.com/repos/$repoFullName"
+        );
     }
 
     private function sumWeeksDay(array $activity, int $index) {
@@ -30,6 +32,12 @@ class GithubCommitApi extends ApiClient {
         );
     }
 
+    /**
+     * @return array{
+     *     days: array<string, int>,
+     *     totalCommits: int
+     * }
+     */
     private function getCommitsActivity() {
         $response = $this->makeGet($this->root.'/stats/commit_activity');
         $activy = $response->json();
@@ -56,13 +64,12 @@ class GithubCommitApi extends ApiClient {
         );
     }
 
-    public function getRepositoryCommits() {
+    public function getCommits() {
         $response = $this->makeGet($this->root.'/commits', array(
             'page' => 1,
             'per_page' => 1,
         ));
         $lastCommit = $this->parseCommit($response->json()[0]);
-        $activity = $this->getCommitsActivity();
 
         $firstCommit = null;
         $lastPage = $this->getLastPageUrl($response);
@@ -71,6 +78,8 @@ class GithubCommitApi extends ApiClient {
             $lastResponse = $this->makeGet($lastPage['link']);
             $firstCommit = $this->parseCommit($lastResponse->json()[0]);
         }
+
+        $activity = $this->getCommitsActivity();
 
         return array(
             'totalCommits' => $lastPage['count'],

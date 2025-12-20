@@ -1,5 +1,7 @@
 <?php
 
+define('PROJECT_ROOT', dirname(__DIR__));
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -13,7 +15,7 @@
 
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+    ->in('Unit', 'Feature');
 
 /*
 |--------------------------------------------------------------------------

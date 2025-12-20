@@ -1,27 +1,64 @@
 <?php
 
-dataset('github-owner', array(
+function getGithubSample(string $filename) {
+    return json_decode(
+        file_get_contents(PROJECT_ROOT.'/tests/samples/'.$filename),
+        true,
+    );
+}
+
+// samples from github api
+
+$githubUser = getGithubSample('user.json');
+$githubOrg = getGithubSample('org.json');
+$githubUserRepositories = getGithubSample('user-repos.json');
+$githubContributors = getGithubSample('contirbutors.json');
+$githubOrgMembers = getGithubSample('org-members.json');
+$githubLanguages = getGithubSample('languages.json');
+$githubReleases = getGithubSample('releases.json');
+$githubCommits = getGithubSample('commits.json');
+$githubCommitsActivty = getGithubSample('commit-activity.json');
+
+// datasets
+
+dataset('github-user', array(
+    array($githubUser))
+);
+
+dataset('github-languages', array(
+    array($githubLanguages))
+);
+
+dataset('github-releases', array(
+    array($githubReleases))
+);
+
+dataset('github-repos', array(
+    array($githubUserRepositories))
+);
+
+dataset('github-user-history', array(
     array(
-        array(
-            'login' => 'larson-carter',
-            'id' => 21244267,
-            'node_id' => 'MDQ6VXNlcjIxMjQ0MjY3',
-            'avatar_url' => 'https://avatars.githubusercontent.com/u/21244267?v=4',
-            'gravatar_id' => '',
-            'url' => 'https://api.github.com/users/larson-carter',
-            'html_url' => 'https://github.com/larson-carter',
-            'followers_url' => 'https://api.github.com/users/larson-carter/followers',
-            'following_url' => 'https://api.github.com/users/larson-carter/following{/other_user}',
-            'gists_url' => 'https://api.github.com/users/larson-carter/gists{/gist_id}',
-            'starred_url' => 'https://api.github.com/users/larson-carter/starred{/owner}{/repo}',
-            'subscriptions_url' => 'https://api.github.com/users/larson-carter/subscriptions',
-            'organizations_url' => 'https://api.github.com/users/larson-carter/orgs',
-            'repos_url' => 'https://api.github.com/users/larson-carter/repos',
-            'events_url' => 'https://api.github.com/users/larson-carter/events{/privacy}',
-            'received_events_url' => 'https://api.github.com/users/larson-carter/received_events',
-            'type' => 'User',
-            'user_view_type' => 'public',
-            'site_admin' => false,
-        ),
+        'user' => $githubUser,
+        'repos' => $githubUserRepositories,
+    ),
+));
+
+dataset('github-contributors', array(
+    array($githubContributors),
+));
+
+dataset('github-commits', array(
+    array(
+        'commits' => $githubCommits,
+        'activity' => $githubCommitsActivty,
+    ),
+));
+
+dataset('github-org-history', array(
+    array(
+        'org' => $githubOrg,
+        'repos' => $githubUserRepositories,
+        'members' => $githubOrgMembers,
     ),
 ));
