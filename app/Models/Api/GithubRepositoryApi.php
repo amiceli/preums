@@ -7,16 +7,26 @@ use App\Models\Github\GithubRepositoryOwner;
 use DateTime;
 
 class GithubRepositoryApi extends ApiClient {
-    public static function forOrganization(string $url) {
-        return new GithubRepositoryApi(root: $url);
+    public static function forOrganization(string $orgName) {
+        return new GithubRepositoryApi(
+            'https://api.github.com/orgs/'.$orgName
+        );
     }
 
-    public static function forUser(string $url) {
-        return new GithubRepositoryApi(root: $url);
+    public static function forUser(string $userName) {
+        return new GithubRepositoryApi(
+            'https://api.github.com/users/'.$userName
+        );
     }
 
-    public static function forRepository(string $url) {
-        return new GithubRepositoryApi(root: $url);
+    public static function fromName(string $repoFullName) {
+        if (! str_contains($repoFullName, '/')) {
+            throw new \Exception('Invalid repository full name');
+        }
+
+        return new GithubRepositoryApi(
+            'https://api.github.com/repos/'.$repoFullName
+        );
     }
 
     public static function get() {
