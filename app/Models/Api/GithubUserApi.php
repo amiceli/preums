@@ -3,10 +3,8 @@
 namespace App\Models\Api;
 
 class GithubUserApi extends ApiClient {
-    public static function forUser(string $orgName) {
-        $apiUrl = "https://api.github.com/users/$orgName";
-
-        return new GithubUserApi(root: $apiUrl);
+    public static function forUser(string $userName) {
+        return new GithubUserApi($userName);
     }
 
     public static function get() {
@@ -14,7 +12,9 @@ class GithubUserApi extends ApiClient {
     }
 
     public function getHistory() {
-        $user = $this->makeGet($this->root);
+        $user = $this->makeGet(
+            'https://api.github.com/users/'.$this->root
+        );
         $repositories = GithubRepositoryApi::forUser(
             $this->root,
         )->getRepositories();

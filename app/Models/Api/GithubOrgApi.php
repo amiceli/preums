@@ -7,9 +7,7 @@ use DateTime;
 
 class GithubOrgApi extends ApiClient {
     public static function forOrg(string $orgName) {
-        $apiUrl = "https://api.github.com/orgs/$orgName";
-
-        return new GithubOrgApi(root: $apiUrl);
+        return new GithubOrgApi($orgName);
     }
 
     public static function get() {
@@ -31,11 +29,15 @@ class GithubOrgApi extends ApiClient {
     }
 
     public function getDetails(): array {
-        $response = $this->makeGet($this->root);
+        $response = $this->makeGet(
+            'https://api.github.com/orgs/'.$this->root
+        );
         $repositories = GithubRepositoryApi::forOrganization(
             $this->root,
         )->getRepositories();
-        $members = $this->makeGet($this->root.'/members');
+        $members = $this->makeGet(
+            'https://api.github.com/orgs/'.$this->root.'/members'
+        );
 
         return array(
             'org' => $this->parseOrg($response->json()),
