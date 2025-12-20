@@ -14,11 +14,16 @@ $githubOrg = getGithubSample('org.json');
 $githubUserRepositories = getGithubSample('user-repos.json');
 $githubContributors = getGithubSample('contirbutors.json');
 $githubOrgMembers = getGithubSample('org-members.json');
+$githubLanguages = getGithubSample('languages.json');
 
 // datasets
 
 dataset('github-user', array(
     array($githubUser))
+);
+
+dataset('github-languages', array(
+    array($githubLanguages))
 );
 
 dataset('github-repos', array(
