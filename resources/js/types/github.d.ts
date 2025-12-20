@@ -71,6 +71,7 @@ export type GithubCommitActivity = {
 export type GithubCommit = {
     dateStr: string
     author: string
+    authorLogin: string
     authorUrl: string
     authorImg: string
     message: string

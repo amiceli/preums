@@ -8,9 +8,9 @@
                 />
             </div>
 
-            <h1>
-                {{ props.repository.fullName }}
-            </h1>
+            <h3>
+                <RepositoryBreadCrumb :repo="props.repository" />
+            </h3>
             {{ props.repository.description }}
 
             <section>
@@ -60,6 +60,7 @@
 <script setup lang="ts">
 import RepositoryCommits from "@/components/commit/RepositoryCommits.vue"
 import Layout from "@/components/Layout.vue"
+import RepositoryBreadCrumb from "@/components/repository/RepositoryBreadCrumb.vue"
 import RepositoryDetails from "@/components/repository/RepositoryDetails.vue"
 import RepositoryLanguages from "@/components/repository/RepositoryLanguages.vue"
 import RepositoryRelease from "@/components/repository/RepositoryRelease.vue"
