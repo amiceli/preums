@@ -20,6 +20,7 @@ class GithubController extends Controller {
         ));
     }
 
+    // TODO move year logic in Model
     public function index(): \Inertia\Response {
         $oldestRepos = $this->client->getOldestRepositories();
         $years = array();

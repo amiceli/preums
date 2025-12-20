@@ -37,13 +37,13 @@ class GithubApi extends ApiClient {
     }
 
     public function getRepository(string $org, string $repo) {
+        $details = GithubRepositoryApi::fromName(
+            "$org/$repo",
+        )->getRepository();
+        Log::info('action=load_repostiory_details, status=success');
+
         $repoApiUrl = "https://api.github.com/repos/$org/$repo";
         Log::info("action=get_repository, org=$org, repo=$repo");
-
-        $details = GithubRepositoryApi::forRepository(
-            $repoApiUrl,
-        )->getRepository();
-        Log::info('action=load_details, status=success');
 
         $commits = GithubCommitApi::forRepository(
             $repoApiUrl,
