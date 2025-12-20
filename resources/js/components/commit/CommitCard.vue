@@ -15,7 +15,15 @@
             </div>
         </div>
         <h3>
-            {{ props.label }} - <b>{{ props.commit.author }}</b>
+            <wa-breadcrumb>
+                <wa-breadcrumb-item>
+                    {{ props.label }}
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item :href="authorUrl">
+                    {{ props.commit.author }}
+                </wa-breadcrumb-item>
+            </wa-breadcrumb>
+            <!-- {{ props.label }} - <b>{{ props.commit.author }}</b> -->
         </h3>
         <p class="wa-caption">
             <i class="hn hn-calender-solid"></i>
@@ -28,12 +36,19 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue"
+import { showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubCommit } from "@/types/github"
 
 const props = defineProps<{
     commit: GithubCommit
     label: string
 }>()
+const authorUrl = computed(() => {
+    return showUserHistory.url({
+        name: props.commit.authorLogin,
+    })
+})
 </script>
 
 <style scoped>

@@ -5,11 +5,6 @@
             Preums
         </a>
         <div>
-            <wa-button href="/" variant="neutral" appearance="accent">
-                <i class="hn hn-home" slot="start"></i>
-                Home
-            </wa-button>
-
             <wa-button href="/history" variant="neutral" appearance="filled">
                 <i slot="start" class="hn hn-book-heart"></i>
                 Project history

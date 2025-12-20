@@ -6,9 +6,14 @@
                     <img :src="props.firstRelease.authorImg" />
                 </div>
                 <h3>
-                    <a :href="props.firstRelease.url" target="_blank">
-                        First release
-                    </a>
+                    <wa-breadcrumb>
+                        <wa-breadcrumb-item :href="props.firstRelease.url" target="_blank">
+                            First release
+                        </wa-breadcrumb-item>
+                        <wa-breadcrumb-item :href="props.firstRelease.url" target="_blank">
+                            {{ props.firstRelease.name }}
+                        </wa-breadcrumb-item>
+                    </wa-breadcrumb>
                 </h3>
                 <p class="wa-caption">
                     <i class="hn hn-calender-solid"></i>
@@ -42,9 +47,14 @@
                     <img :src="props.lastRelease.authorImg" />
                 </div>
                 <h3>
-                    <a :href="props.lastRelease.url" target="_blank">
-                        Last release
-                    </a>
+                    <wa-breadcrumb>
+                        <wa-breadcrumb-item :href="props.lastRelease.url" target="_blank">
+                            Last release
+                        </wa-breadcrumb-item>
+                        <wa-breadcrumb-item :href="props.lastRelease.url" target="_blank">
+                            {{ props.lastRelease.name }}
+                        </wa-breadcrumb-item>
+                    </wa-breadcrumb>
                 </h3>
                 <p class="wa-caption">
                     <i class="hn hn-calender-solid"></i>
@@ -132,8 +142,5 @@ wa-card img {
 }
 .for--skeleton {
     width: 70%
-}
-wa-card h3 {
-    margin: 0;
 }
 </style>
