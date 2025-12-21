@@ -14,7 +14,7 @@
                 <b class="for--magical">magical.</b>
             </h1>
             <h3>
-                <a href="/languages">
+                <a :href="languages.url()">
                     See languages stats
                 </a>
             </h3>
@@ -24,6 +24,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue"
+import { languages } from "@/actions/App/Http/Controllers/GithubController"
 
 const langs = ["JavaScript", "PHP", "Rust", "Go", "Ruby", "Python", "Kotlin", "Perl", "Java", "C#"]
 const currentText = ref<string>(langs.at(0) || "")

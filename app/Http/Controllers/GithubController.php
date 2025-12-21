@@ -67,4 +67,14 @@ class GithubController extends Controller {
 
         return Inertia::render('RepositoryHistory', $repository);
     }
+
+    public function languages() {
+        // $repository = $this->client->getRepository($org, $repo);
+
+        return Inertia::render('LanguageStats', array());
+    }
+
+    public function road() {
+        return Inertia::render('Road', array());
+    }
 }

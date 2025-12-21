@@ -30,3 +30,6 @@ Route::get('/rate-limit', array(GithubController::class, 'rateLimit'))
 
 Route::get('/road', array(GithubController::class, 'road'))
     ->name('project-road');
+
+Route::get('/languages', array(GithubController::class, 'languages'))
+    ->name('languages-stats');
