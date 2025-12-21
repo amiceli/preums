@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <Marquee />
+        <MainTitle />
 
         <div class="page__form">
             <SearchForm />
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import Layout from "@/components/Layout.vue"
-import Marquee from "@/components/Marquee.vue"
+import MainTitle from "@/components/MainTitle.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import SearchForm from "@/components/search/SearchForm.vue"
 import type { GithubSearchResult } from "@/types/github"

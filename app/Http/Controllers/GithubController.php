@@ -36,7 +36,7 @@ class GithubController extends Controller {
             array_push($years[$year], $item);
         }
 
-        return Inertia::render('OldestRepositories', array(
+        return Inertia::render('HomePage', array(
             'oldestRepos' => $years,
         ));
     }
