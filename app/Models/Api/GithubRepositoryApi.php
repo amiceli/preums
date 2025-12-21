@@ -114,6 +114,22 @@ class GithubRepositoryApi extends ApiClient {
         return $clone;
     }
 
+    public function getOldStarred(string $lang): GithubRepository {
+        $response = $this->makeGet(
+            'https://api.github.com/search/repositories',
+            array(
+                'q' => 'stars:>0 language:'.$lang,
+                'sort' => 'updated',
+                'order' => 'asc',
+                'per_page' => 1,
+                'page' => 1,
+            ),
+        );
+        [$item] = $response->json()['items'];
+
+        return $this->parseRepository($item);
+    }
+
     /**
      * @return GithubRepository[]
      */

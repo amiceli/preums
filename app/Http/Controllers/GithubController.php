@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GithubApi;
+use App\Models\LangStats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -18,6 +19,15 @@ class GithubController extends Controller {
         return Inertia::render('RateLimit', array(
             'nextReset' => Session::get('nextReset'),
         ));
+    }
+
+    public function oldStars(Request $r) {
+        $lang = $r->json()->get('lang');
+        $data = $this->client->getOldStarred($lang);
+
+        return response()->json(
+            $data
+        );
     }
 
     // TODO move year logic in Model
@@ -68,10 +78,23 @@ class GithubController extends Controller {
         return Inertia::render('RepositoryHistory', $repository);
     }
 
-    public function languages() {
-        // $repository = $this->client->getRepository($org, $repo);
+    public function languages(string $iso) {
+        // $isos = DB::table('lang_stats')
+        $isos = LangStats::distinct()
+            ->pluck('iso_code')
+            ->toArray();
 
-        return Inertia::render('LanguageStats', array());
+        $langs = LangStats::where('iso_code', strtoupper($iso))
+            ->orderBy('pushers', 'desc')
+            ->orderBy('year', 'desc')
+            ->get()
+            ->groupBy('year');
+
+        return Inertia::render('LanguageStats', array(
+            'langs' => $langs,
+            'currentIso' => $iso,
+            'isoList' => $isos,
+        ));
     }
 
     public function road() {
