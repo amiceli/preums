@@ -14,7 +14,7 @@
                 <b class="for--magical">magical.</b>
             </h1>
             <h3>
-                <a :href="languages.url()">
+                <a :href="languages.url({ iso : 'FR' })">
                     See languages stats
                 </a>
             </h3>
