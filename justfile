@@ -13,6 +13,11 @@ install:
 biome:
     npx biome check --write
 
+# Lint everything
+lint:
+    just biome
+    just pint_fix
+
 # run and detach project with tmux
 up:
     tmux new-session -d -s "preums"
