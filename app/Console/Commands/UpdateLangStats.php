@@ -8,10 +8,13 @@ use Illuminate\Console\Command;
 class UpdateLangStats extends Command {
     private readonly string $csvUrl;
 
+    private readonly int $statsYear;
+
     public function __construct() {
         parent::__construct();
 
         $this->csvUrl = 'https://raw.githubusercontent.com/github/innovationgraph/refs/heads/main/data/languages.csv';
+        $this->statsYear = env('GITHUB_STATS_YEAR', date('Y'));
     }
 
     /**
@@ -37,8 +40,6 @@ class UpdateLangStats extends Command {
         $fileHandle = fopen($this->csvUrl, 'r');
         $csvLines = array();
 
-        print_r('ici');
-
         while (($csvRow = fgets($fileHandle)) !== false) {
             [
                 $pushers,
@@ -48,18 +49,19 @@ class UpdateLangStats extends Command {
                 $year,
                 $querter,
             ] = explode(',', $csvRow);
-            $key = $year.'_'.$iso.'_'.$language.'_'.$type;
 
-            if (isset($csvLines[$key])) {
-                $csvLines[$key]['pushers'] += intval($pushers);
-            } else {
-                $csvLines[$key] = array(
-                    'pushers' => intval($pushers),
-                    'year' => intval($year),
-                    'name' => $language,
-                    'type' => $type,
-                    'iso_code' => $iso,
-                );
+            if ($year == $this->statsYear) {
+                $key = $language.'_'.$type;
+
+                if (isset($csvLines[$key])) {
+                    $csvLines[$key]['pushers'] += intval($pushers);
+                } else {
+                    $csvLines[$key] = array(
+                        'pushers' => intval($pushers),
+                        'name' => $language,
+                        'type' => $type,
+                    );
+                }
             }
         }
 

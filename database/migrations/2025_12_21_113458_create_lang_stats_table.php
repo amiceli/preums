@@ -13,10 +13,8 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->integer('pushers');
-            $table->integer('year');
             $table->string('name');
             $table->string('type');
-            $table->string('iso_code');
         });
     }
 
