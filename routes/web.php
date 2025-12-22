@@ -31,9 +31,13 @@ Route::get('/rate-limit', array(GithubController::class, 'rateLimit'))
 Route::get('/road', array(GithubController::class, 'road'))
     ->name('project-road');
 
-Route::get('/languages/{iso}', array(GithubController::class, 'languages'))
+Route::get('/languages', array(GithubController::class, 'languages'))
     ->name('languages-stats');
 
 Route::post('/old-stars', array(GithubController::class, 'oldStars'))
     ->name('old-stars')
+    ->middleware(HandleGithubRateLimit::class);
+
+Route::post('/strred-stars', array(GithubController::class, 'starredStats'))
+    ->name('strred-stars')
     ->middleware(HandleGithubRateLimit::class);

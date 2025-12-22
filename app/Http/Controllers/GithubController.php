@@ -43,6 +43,7 @@ class GithubController extends Controller {
     public function index(): \Inertia\Response {
         $oldestRepos = $this->client->getOldestRepositories();
         $years = array();
+        $allLangs = LangStats::pluck('name')->toArray();
 
         foreach ($oldestRepos as $key => $item) {
             $year = $item->createdAt->format('Y');
@@ -57,6 +58,7 @@ class GithubController extends Controller {
 
         return Inertia::render('HomePage', array(
             'oldestRepos' => $years,
+            'allLangs' => $allLangs,
         ));
     }
 
@@ -87,22 +89,11 @@ class GithubController extends Controller {
         return Inertia::render('RepositoryHistory', $repository);
     }
 
-    public function languages(string $iso) {
-        // $isos = DB::table('lang_stats')
-        $isos = LangStats::distinct()
-            ->pluck('iso_code')
-            ->toArray();
-
-        $langs = LangStats::where('iso_code', strtoupper($iso))
-            ->orderBy('pushers', 'desc')
-            ->orderBy('year', 'desc')
-            ->get()
-            ->groupBy('year');
+    public function languages() {
+        $langs = LangStats::orderBy('pushers', 'desc')->get();
 
         return Inertia::render('LanguageStats', array(
             'langs' => $langs,
-            'currentIso' => $iso,
-            'isoList' => $isos,
         ));
     }
 

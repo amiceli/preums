@@ -23,6 +23,10 @@ class GithubApi extends ApiClient {
         return GithubRepositoryApi::get()->getOldStarred($lang);
     }
 
+    public function getSarred(string $lang) {
+        return GithubRepositoryApi::get()->getSarred($lang);
+    }
+
     public function searchRepositories(string $search) {
         return GithubRepositoryApi::get()->searchRepository($search);
     }
