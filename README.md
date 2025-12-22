@@ -1,12 +1,18 @@
+<p align="center">
+    <img alt="preums logo" src="https://github.com/amiceli/preums/blob/main/public/logo.png?raw=true" width="100" />
+</p>
+
 # Prums
 
-Preums *(first in French)* is a side project aimed at reminding people that coding is fun without AI.
-
-Remember first repo, first commit, first MR <3.
+Preums *(first in French)* is a side project
+aimed at reminding people that coding is fun / better without AI.
 
 ## Goals
 
-A brief look back in time with first repositories, first contributor, first issues etc with Github Api.
+- A brief back in time with first repositories, first contributor, first commits etc with Github Api.
+- Show oldest and most starred repositories by year or for a language
+- Get organization history
+- Having fun digging through GitHub repositories
 
 ## Technologies
 
@@ -21,17 +27,22 @@ With just :
 - `just up` (with tmux)
 - `just run`
 
+## Some ideas
+
+- https://githubtracker.com/dashboard
+
 ## Dependencies
 
 - [@hackernoon/pixel-icon-library](https://pixeliconlibrary.com/book-heart)
 - [lefthook](https://github.com/evilmartians/lefthook)
 - [@biomejs/biome](https://biomejs.dev/)
 
-### Docs
 
-- [Github api for commits](https://docs.github.com/en/rest/commits/commits?apiVersion=2022-11-28)
-- [Github api for repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository)
+## Road 
 
-## Idea : 
+While working on this project, I made some great discoveries. : 
 
-- https://githubtracker.com/dashboard
+- [sdkman-cli](https://github.com/sdkman/sdkman-cli) most starred project with Ggerkin as main language and I love Gherkin !
+- [sqlite-online](https://github.com/vwh/sqlite-online) perfect to view a SQLite file
+- Even if I don't like React, I use [typewriterjs](https://github.com/tameemsafi/typewriterjs) on this project.
+- Discover Leon language on [leanproved](https://github.com/htzh/leanproved), wow, code is [beautiful](https://github.com/htzh/leanproved/blob/master/migrated/algebra.lean).
