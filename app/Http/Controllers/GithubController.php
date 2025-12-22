@@ -15,53 +15,22 @@ class GithubController extends Controller {
         $this->client = new GithubApi();
     }
 
-    public function rateLimit() {
-        return Inertia::render('RateLimit', array(
-            'nextReset' => Session::get('nextReset'),
-        ));
-    }
-
-    public function starredStats(Request $r) {
-        $lang = $r->json()->get('lang');
-        $data = $this->client->getSarred($lang);
-
-        return response()->json(
-            $data
-        );
-    }
-
-    public function oldStars(Request $r) {
-        $lang = $r->json()->get('lang');
-        $data = $this->client->getOldStarred($lang);
-
-        return response()->json(
-            $data
-        );
-    }
-
-    // TODO move year logic in Model
+    /**
+     * Homepage show oldest and starred repositories
+     */
     public function index(): \Inertia\Response {
-        $oldestRepos = $this->client->getOldestRepositories();
-        $years = array();
+        $repositories = $this->client->getOldestStarredRepositories();
         $allLangs = LangStats::pluck('name')->toArray();
 
-        foreach ($oldestRepos as $key => $item) {
-            $year = $item->createdAt->format('Y');
-            $needKey = array_key_exists($year, $years) === false;
-
-            if ($needKey) {
-                $years[$year] = array();
-            }
-
-            array_push($years[$year], $item);
-        }
-
         return Inertia::render('HomePage', array(
-            'oldestRepos' => $years,
+            'oldestRepos' => $repositories,
             'allLangs' => $allLangs,
         ));
     }
 
+    /**
+     * Show result of search repository by name
+     */
     public function search(Request $req): \Inertia\Response {
         $value = $req->get('name');
         $repositories = $this->client->searchRepositories($value);
@@ -71,30 +40,75 @@ class GithubController extends Controller {
         ));
     }
 
-    public function showOrgHistory(string $org) {
-        $details = $this->client->getOrg($org);
+    /**
+     * Show organization history / details
+     */
+    public function showOrganizationHistory(string $org) {
+        $details = $this->client->getOrganizationDetails($org);
 
         return Inertia::render('OrgHistory', $details);
     }
 
+    /**
+     * Show user history
+     */
     public function showUserHistory(string $name) {
         $userHistory = $this->client->getUserHistory($name);
 
         return Inertia::render('UserHistory', $userHistory);
     }
 
+    /**
+     * Show repository history
+     */
     public function showRepositoryHistory(string $org, string $repo) {
         $repository = $this->client->getRepository($org, $repo);
 
         return Inertia::render('RepositoryHistory', $repository);
     }
 
-    public function languages() {
+    /**
+     * Handle Github API rate limit
+     */
+    public function rateLimit() {
+        return Inertia::render('RateLimit', array(
+            'nextReset' => Session::get('nextReset'),
+        ));
+    }
+
+    /**
+     * Show lang stats page
+     */
+    public function langStats() {
         $langs = LangStats::orderBy('pushers', 'desc')->get();
 
         return Inertia::render('LanguageStats', array(
             'langs' => $langs,
         ));
+    }
+
+    /**
+     * Search oldest repository by language
+     */
+    public function searchOldestRepository(Request $r) {
+        $lang = $r->json()->get('lang');
+        $data = $this->client->getOldestRepository($lang);
+
+        return response()->json(
+            $data
+        );
+    }
+
+    /**
+     * Search starred repository by lang
+     */
+    public function searchStarredRepository(Request $r) {
+        $lang = $r->json()->get('lang');
+        $data = $this->client->getStarredRepository($lang);
+
+        return response()->json(
+            $data
+        );
     }
 
     public function road() {

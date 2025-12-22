@@ -11,28 +11,46 @@ use App\Models\Api\GithubReleasesApi;
 use App\Models\Api\GithubRepositoryApi;
 use App\Models\Api\GithubTopicApi;
 use App\Models\Api\GithubUserApi;
+use App\Models\Github\GithubRepository;
 use DateTime;
 use Illuminate\Support\Facades\Log;
 
 class GithubApi extends ApiClient {
-    public function getOldestRepositories() {
-        return GithubRepositoryApi::get()->getOldestRepositories();
+    /**
+     * @return array<int, GithubRepository[]>
+     */
+    public function getOldestStarredRepositories(): array {
+        $repositories = GithubRepositoryApi::get()->getOldestStarredRepositories();
+        $years = array();
+
+        foreach ($repositories as $key => $item) {
+            $year = $item->createdAt->format('Y');
+            $needKey = array_key_exists($year, $years) === false;
+
+            if ($needKey) {
+                $years[$year] = array();
+            }
+
+            array_push($years[$year], $item);
+        }
+
+        return $years;
     }
 
-    public function getOldStarred(string $lang) {
-        return GithubRepositoryApi::get()->getOldStarred($lang);
+    public function getOldestRepository(string $lang) {
+        return GithubRepositoryApi::get()->getOldestRepository($lang);
     }
 
-    public function getSarred(string $lang) {
-        return GithubRepositoryApi::get()->getSarred($lang);
+    public function getStarredRepository(string $lang) {
+        return GithubRepositoryApi::get()->getStarredRepository($lang);
     }
 
     public function searchRepositories(string $search) {
         return GithubRepositoryApi::get()->searchRepository($search);
     }
 
-    public function getOrg(string $orgName) {
-        return GithubOrgApi::forOrg($orgName)->getDetails();
+    public function getOrganizationDetails(string $orgName) {
+        return GithubOrgApi::forOrg($orgName)->getOrganizationDetails();
     }
 
     public function getUserHistory(string $userName) {

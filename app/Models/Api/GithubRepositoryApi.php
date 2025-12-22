@@ -114,7 +114,7 @@ class GithubRepositoryApi extends ApiClient {
         return $clone;
     }
 
-    public function getSarred(string $lang): GithubRepository {
+    public function getStarredRepository(string $lang): GithubRepository {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(
@@ -130,7 +130,7 @@ class GithubRepositoryApi extends ApiClient {
         return $this->parseRepository($item);
     }
 
-    public function getOldStarred(string $lang): GithubRepository {
+    public function getOldestRepository(string $lang): GithubRepository {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(
@@ -149,7 +149,7 @@ class GithubRepositoryApi extends ApiClient {
     /**
      * @return GithubRepository[]
      */
-    public function getOldestRepositories(): array {
+    public function getOldestStarredRepositories(): array {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(

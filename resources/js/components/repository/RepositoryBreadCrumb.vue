@@ -11,16 +11,16 @@
 
 <script lang="ts" setup>
 import { computed } from "vue"
-import { showOrgHistory, showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
-import type { GithubSearchResultItem } from "@/types/github"
+import { showOrganizationHistory, showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
+import type { GithubRepository } from "@/types/github"
 
 const props = defineProps<{
-    repo: GithubSearchResultItem
+    repo: GithubRepository
 }>()
 
 const ownerUrl = computed(() => {
     return props.repo.ownerIsOrganization
-        ? showOrgHistory.url({
+        ? showOrganizationHistory.url({
               name: props.repo.owner.login,
           })
         : showUserHistory.url({

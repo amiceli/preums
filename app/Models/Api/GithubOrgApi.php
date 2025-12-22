@@ -33,7 +33,7 @@ class GithubOrgApi extends ApiClient {
      *     members: GithubOwner[]
      * }
      */
-    public function getDetails(): array {
+    public function getOrganizationDetails(): array {
         $response = $this->makeGet(
             'https://api.github.com/orgs/'.$this->root
         );

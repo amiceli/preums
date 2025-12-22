@@ -12,7 +12,7 @@
                 <b class="for--magical">magical.</b>
             </h1>
             <h3>
-                <a :href="languages.url()">
+                <a :href="langStats.url()">
                     See languages stats
                 </a>
             </h3>
@@ -24,7 +24,7 @@
 // @ts-expect-error
 import Typewriter from "typewriter-effect/dist/core"
 import { onMounted, useTemplateRef } from "vue"
-import { languages } from "@/actions/App/Http/Controllers/GithubController"
+import { langStats } from "@/actions/App/Http/Controllers/GithubController"
 
 const props = defineProps<{ langs: string[] }>()
 const forLang = useTemplateRef("for-lang")

@@ -46,10 +46,11 @@
 <script lang="ts" setup>
 import axios from "axios"
 import { ref, watch } from "vue"
-import { useLangStats } from "@/modules/langStats/store/useLangStats"
-import type { GithubRepository } from "@/types/github"
+import { searchOldestRepository, searchStarredRepository } from "@/actions/App/Http/Controllers/GithubController"
 import Skeleton from "@/components/common/Skeleton.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
+import { useLangStats } from "@/modules/langStats/store/useLangStats"
+import type { GithubRepository } from "@/types/github"
 
 const { selectedLang } = useLangStats()
 const oldestRep = ref<GithubRepository | null>(null)
@@ -57,14 +58,14 @@ const starredRepo = ref<GithubRepository | null>(null)
 const isLoading = ref<boolean>(false)
 
 async function getStareedRepo() {
-    const { data } = await axios.post<GithubRepository>("/strred-stars", {
+    const { data } = await axios.post<GithubRepository>(searchStarredRepository.url(), {
         lang: selectedLang.value,
     })
     starredRepo.value = data
 }
 
 async function getOldestRepo() {
-    const { data } = await axios.post<GithubRepository>("/old-stars", {
+    const { data } = await axios.post<GithubRepository>(searchOldestRepository.url(), {
         lang: selectedLang.value,
     })
     oldestRep.value = data

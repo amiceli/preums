@@ -18,7 +18,7 @@ describe('GithubOrgApiTest', function () {
             "$prgBaseUrl/repos" => Http::response($repos, 200),
         ));
 
-        $details = GithubOrgApi::forOrg('PSN')->getDetails();
+        $details = GithubOrgApi::forOrg('PSN')->getOrganizationDetails();
 
         expect(
             $details['org']->name

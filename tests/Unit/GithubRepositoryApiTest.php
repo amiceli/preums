@@ -176,7 +176,7 @@ describe('GithubRepositoryApi', function () {
                 ),
             ));
 
-            $list = GithubRepositoryApi::get()->getOldestRepositories();
+            $list = GithubRepositoryApi::get()->getOldestStarredRepositories();
 
             expect(
                 count($list)
