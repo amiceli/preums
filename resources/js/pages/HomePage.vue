@@ -1,6 +1,7 @@
 <template>
     <Layout>
-        <MainTitle />
+        <!-- {{ props.allLangs }} -->
+        <MainTitle :langs="props.allLangs" />
 
         <div class="page__form">
             <SearchForm />
@@ -50,6 +51,7 @@ const props = defineProps<{
     oldestRepos: {
         [key: string]: GithubSearchResult["items"]
     }
+    allLangs: string[]
 }>()
 </script>
 

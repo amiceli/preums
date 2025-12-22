@@ -93,7 +93,5 @@ export type GithubRelease = {
 export type LangStats = {
     type: string
     name: string
-    isoCode: string
     pushers: number
-    year: number
 }

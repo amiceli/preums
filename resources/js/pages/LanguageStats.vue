@@ -20,42 +20,38 @@
                         class="for--info"
                     >
                         innovationgraph
-                    </a>
+                    </a> for stats.
                 </h3>
             </div>
         </header>
 
-        <div class="lang__stats">
-            <div>
-                <LocationStats
-                    :current-iso="props.currentIso"
-                    :stats="props.langs"
-                    :iso-list="props.isoList"
-                    @change-lang="selectedLang = $event"
-                />
-            </div>
-            <wa-divider></wa-divider>
-            <div>
-                <WorldStates :lang="selectedLang" />
-            </div>
-        </div>
+        <LocationStats />
+        <br>
+        <WorldStates />
     </Layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { onBeforeMount } from "vue"
 import Layout from "@/components/Layout.vue"
-import LocationStats from "@/components/stats/LocationStats.vue"
-import WorldStates from "@/components/stats/WorldStates.vue"
+import LocationStats from "@/modules/langStats/components/LocationStats.vue"
+import WorldStates from "@/modules/langStats/components/WorldStates.vue"
+import { useLangStats } from "@/modules/langStats/store/useLangStats"
 import type { LangStats } from "@/types/github.d"
 
-const props = defineProps<{
-    langs: Record<number, LangStats[]>
-    currentIso: string
-    isoList: string[]
-}>()
+const props = defineProps<{ langs: LangStats[] }>()
+const { statsStore } = useLangStats()
 
-const selectedLang = ref<string | null>(null)
+onBeforeMount(() => {
+    statsStore.updateLangStats(props.langs)
+
+    const topProgrammingLang = props.langs.at(0)
+
+    if (topProgrammingLang) {
+        statsStore.selectType(topProgrammingLang.type)
+        // statsStore.chooseLang(topProgrammingLang.name)
+    }
+})
 </script>
 
 <style scoped>
@@ -76,7 +72,7 @@ header {
 
 .lang__stats {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 20px 1fr;
 }
 
 .stats__title {
