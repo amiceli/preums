@@ -196,7 +196,7 @@ describe('GithubRepositoryApi', function () {
                        $q === 'stars:>0' &&
                        $sort === 'stars' &&
                        $order === 'desc' &&
-                       $perPage === 35 &&
+                       $perPage === 50 &&
                        str_contains(
                            $r->url(), 'https://api.github.com/search/repositories'
                        );
