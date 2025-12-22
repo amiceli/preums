@@ -1,94 +1,53 @@
 <template>
     <div class="p-releases" :class="{ 'is--empty': props.total === 0 }">
         <template v-if="props.total > 0">
-            <wa-card v-if="props.firstRelease" orientation="horizontal">
-                <div slot="media">
-                    <img :src="props.firstRelease.authorImg" />
-                </div>
-                <h3>
-                    <wa-breadcrumb>
-                        <wa-breadcrumb-item :href="props.firstRelease.url" target="_blank">
-                            First release
-                        </wa-breadcrumb-item>
-                        <wa-breadcrumb-item :href="props.firstRelease.url" target="_blank">
-                            {{ props.firstRelease.name }}
-                        </wa-breadcrumb-item>
-                    </wa-breadcrumb>
-                </h3>
-                <p class="wa-caption">
-                    <i class="hn hn-calender-solid"></i>
-                    {{ new Date(props.firstRelease.dateStr).toLocaleString() }}
-                </p>
-                <b>{{ props.firstRelease.author }}</b>
-                <br />
-                <b>{{ props.firstRelease.name }}</b>
-                <div>
-                    <wa-badge
-                        appearance="outlined"
-                        v-for="r in releaseReaction(props.firstRelease)"
-                    >
-                        {{ r.icon }} {{ r.count }}
-                    </wa-badge>
-                </div>
-                <br />
-                <!-- {{ props.firstRelease.body }} -->
-            </wa-card>
+            <!-- first release -->
+            <ReleaseCard
+                v-if="props.firstRelease"
+                :release="props.firstRelease"
+                label="First release"
+            />
+            <!-- stats -->
             <div class="p-releases__details">
-                <wa-card>
-                    <h3>
-                        {{ props.total }} release(s) in
-                        {{ props.diff.days }}
-                        day(s)
-                    </h3>
-                </wa-card>
+                <div class="for--text">
+                    <div class="parent">
+                        <div class="div1">
+                            <h1>{{ props.total }} release(s)</h1>
+                        </div>
+                        <div class="div3">
+                            <h2 v-if="props.diff.days > 0">
+                                in {{ props.diff.days }}
+                            </h2>
+                            <h2 v-else>it's</h2>
+                        </div>
+                        <div class="div5">
+                            <h3 v-if="props.diff.days > 0">day(s)</h3>
+                            <h3 v-else>enough</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <wa-card orientation="horizontal">
-                <div slot="media">
-                    <img :src="props.lastRelease.authorImg" />
-                </div>
-                <h3>
-                    <wa-breadcrumb>
-                        <wa-breadcrumb-item :href="props.lastRelease.url" target="_blank">
-                            Last release
-                        </wa-breadcrumb-item>
-                        <wa-breadcrumb-item :href="props.lastRelease.url" target="_blank">
-                            {{ props.lastRelease.name }}
-                        </wa-breadcrumb-item>
-                    </wa-breadcrumb>
-                </h3>
-                <p class="wa-caption">
-                    <i class="hn hn-calender-solid"></i>
-                    {{ new Date(props.lastRelease.dateStr).toLocaleString() }}
-                </p>
-                <b>{{ props.lastRelease.author }}</b>
-                <br />
-                <b>{{ props.lastRelease.name }}</b>
-                <div>
-                    <wa-badge
-                        appearance="outlined"
-                        v-for="r in releaseReaction(props.lastRelease)"
-                    >
-                        {{ r.icon }} {{ r.count }}
-                    </wa-badge>
-                </div>
-                <!-- {{ props.lastRelease.body }} -->
-            </wa-card>
+            <!-- last release -->
+            <ReleaseCard
+                v-if="props.lastRelease"
+                :release="props.lastRelease"
+                label="Last release"
+            />
         </template>
         <div v-else>
-
             <wa-card class="for--skeleton">
-                <h3 slot="header">
-                    No published releases
-                </h3>
-                <Skeleton  />
+                <h3 slot="header">No published releases</h3>
+                <Skeleton />
             </wa-card>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
 import type { GithubCommitDiff, GithubRelease } from "@/types/github"
 import Skeleton from "../common/Skeleton.vue"
+import ReleaseCard from "../release/ReleaseCard.vue"
 
 const props = defineProps<{
     firstRelease: GithubRelease | null
@@ -129,8 +88,7 @@ wa-card img {
     max-height: 150px;
 }
 .p-releases__details {
-    height: 300px;
-    background: rgba(255, 0, 0, 0.2);
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,6 +99,49 @@ wa-card img {
     display: inline-block;
 }
 .for--skeleton {
-    width: 70%
+    width: 70%;
+}
+
+.for--text {
+    text-align: center;
+}
+
+.parent + h3 {
+    margin-top: 20px;
+}
+
+.parent {
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.div1 {
+    grid-column: span 2 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div3 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div5 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 1;
+
+    text-align: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding-left: 10px;
 }
 </style>
