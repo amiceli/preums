@@ -146,6 +146,22 @@ class GithubRepositoryApi extends ApiClient {
         return $this->parseRepository($item);
     }
 
+    public function getRecentRepository(string $lang): GithubRepository {
+        $response = $this->makeGet(
+            'https://api.github.com/search/repositories',
+            array(
+                'q' => 'language:'.$lang,
+                'sort' => 'updated',
+                'order' => 'desc',
+                'per_page' => 1,
+                'page' => 1,
+            ),
+        );
+        [$item] = $response->json()['items'];
+
+        return $this->parseRepository($item);
+    }
+
     /**
      * @return GithubRepository[]
      */

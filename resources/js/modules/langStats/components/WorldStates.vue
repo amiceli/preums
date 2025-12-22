@@ -6,14 +6,23 @@
         </h1> -->
         <div
             class="repo__stats"
-            v-if="starredRepo && oldestRep && !isLoading"
+            v-if="starredRepository && oldestRepository && recentRepository && !isLoading"
         >
             <div>
                 <h3>
                     Most starred repository
                 </h3>
                 <RepositoryCard
-                    :repository="starredRepo"
+                    :repository="(starredRepository as GithubRepository)"
+                    show-avatar
+                />
+            </div>
+            <div>
+                <h3>
+                    Most recent repository
+                </h3>
+                <RepositoryCard
+                    :repository="(recentRepository as GithubRepository)"
                     show-avatar
                 />
             </div>
@@ -27,7 +36,7 @@
                 </wa-tooltip>
 
                 <RepositoryCard
-                    :repository="oldestRep"
+                    :repository="(oldestRepository as GithubRepository)"
                     show-avatar
                 />
             </div>
@@ -44,45 +53,12 @@
 </template>
 
 <script lang="ts" setup>
-import axios from "axios"
-import { ref, watch } from "vue"
-import { searchOldestRepository, searchStarredRepository } from "@/actions/App/Http/Controllers/GithubController"
 import Skeleton from "@/components/common/Skeleton.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import { useLangStats } from "@/modules/langStats/store/useLangStats"
-import type { GithubRepository } from "@/types/github"
+import { GithubRepository } from "@/types/github"
 
-const { selectedLang } = useLangStats()
-const oldestRep = ref<GithubRepository | null>(null)
-const starredRepo = ref<GithubRepository | null>(null)
-const isLoading = ref<boolean>(false)
-
-async function getStareedRepo() {
-    const { data } = await axios.post<GithubRepository>(searchStarredRepository.url(), {
-        lang: selectedLang.value,
-    })
-    starredRepo.value = data
-}
-
-async function getOldestRepo() {
-    const { data } = await axios.post<GithubRepository>(searchOldestRepository.url(), {
-        lang: selectedLang.value,
-    })
-    oldestRep.value = data
-}
-
-watch(
-    () => selectedLang.value,
-    async () => {
-        isLoading.value = true
-
-        await Promise.all([getOldestRepo(), getStareedRepo()])
-
-        setTimeout(() => {
-            isLoading.value = false
-        }, 750)
-    },
-)
+const { oldestRepository, starredRepository, isLoading, recentRepository } = useLangStats()
 </script>
 
 <style scoped>

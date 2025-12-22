@@ -8,6 +8,10 @@ export function useLangStats() {
     const selectedType = useStore(statsStore.$selectedType)
     const typeList = useStore(statsStore.$typeList)
     const langList = useStore(statsStore.$langList)
+    const oldestRepository = useStore(statsStore.$oldestRepository)
+    const starredRepository = useStore(statsStore.$starredRepository)
+    const recentRepository = useStore(statsStore.$recentRepository)
+    const isLoading = useStore(statsStore.$isLoading)
 
     return {
         statsStore,
@@ -17,5 +21,9 @@ export function useLangStats() {
         selectedType,
         typeList,
         langList,
+        oldestRepository,
+        starredRepository,
+        isLoading,
+        recentRepository,
     }
 }

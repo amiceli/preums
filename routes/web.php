@@ -39,5 +39,9 @@ Route::post('/search-starred', array(GithubController::class, 'searchStarredRepo
     ->name('search-starred')
     ->middleware(HandleGithubRateLimit::class);
 
+Route::post('/search-recent', array(GithubController::class, 'searchRecentRepository'))
+    ->name('search-recent')
+    ->middleware(HandleGithubRateLimit::class);
+
 Route::get('/road', array(GithubController::class, 'road'))
     ->name('project-road');

@@ -100,6 +100,18 @@ class GithubController extends Controller {
     }
 
     /**
+     * Search recent repository by language
+     */
+    public function searchRecentRepository(Request $r) {
+        $lang = $r->json()->get('lang');
+        $data = $this->client->getRecentRepository($lang);
+
+        return response()->json(
+            $data
+        );
+    }
+
+    /**
      * Search starred repository by lang
      */
     public function searchStarredRepository(Request $r) {
