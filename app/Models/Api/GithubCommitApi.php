@@ -8,7 +8,7 @@ class GithubCommitApi extends ApiClient {
     private function parseCommit($item) {
         return new GithubCommit(
             author: $item['commit']['author']['name'],
-            authorLogin: $item['author']['login'],
+            authorLogin: $item['author']['login'] ?? $item['commit']['author']['name'],
             authorImg: $item['author'] ? $item['author']['avatar_url'] : null,
             authorUrl: $item['author'] ? $item['author']['html_url'] : null,
             sha: $item['sha'],

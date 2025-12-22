@@ -14,7 +14,10 @@
         </div>
         <div class="preums_grid">
             <div class="grid__item" v-for="p in props.repositories" :key="p.id">
-                <RepositoryCard :repository="p" />
+                <RepositoryCard
+                    :repository="p"
+                    show-avatar
+                />
             </div>
         </div>
         <Skeleton v-if="props.repositories.length === 0" />
