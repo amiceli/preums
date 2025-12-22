@@ -13,7 +13,7 @@
             </h1>
             <h3>
                 <a :href="langStats.url()">
-                    See languages stats
+                    See language stats
                 </a>
             </h3>
         </div>

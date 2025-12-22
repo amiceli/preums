@@ -1,6 +1,5 @@
 <template>
     <Layout>
-        <!-- {{ props.allLangs }} -->
         <MainTitle :langs="props.allLangs" />
 
         <div class="page__form">
@@ -10,7 +9,7 @@
         <div class="page__title">
             <h1>
                 <i class="hn hn-book-heart"></i>
-                Some parent and starred repositories
+                Top 50 oldest and starred repositories
             </h1>
             <p>
                 This list ranks among the oldest repositories with the most

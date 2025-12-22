@@ -2,7 +2,7 @@
     <form @submit.prevent="submit">
         <wa-input
             label="Get history of"
-            placeholder="A repository who changes your like"
+            placeholder="A repository who changed your life"
             v-model="name"
             appearance="filled-outlined"
             required
