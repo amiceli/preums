@@ -7,14 +7,12 @@
             <h1>
                 <b>Preums</b>, reminds me
                 that coding with
-                <b class="for--lang">
-                    {{ currentText }}
-                </b>
+                <b ref="for-lang" class="for--lang"></b>
                 is
                 <b class="for--magical">magical.</b>
             </h1>
             <h3>
-                <a href="/languages">
+                <a :href="langStats.url()">
                     See languages stats
                 </a>
             </h3>
@@ -23,19 +21,22 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue"
+// @ts-expect-error
+import Typewriter from "typewriter-effect/dist/core"
+import { onMounted, useTemplateRef } from "vue"
+import { langStats } from "@/actions/App/Http/Controllers/GithubController"
 
-const langs = ["JavaScript", "PHP", "Rust", "Go", "Ruby", "Python", "Kotlin", "Perl", "Java", "C#"]
-const currentText = ref<string>(langs.at(0) || "")
+const props = defineProps<{ langs: string[] }>()
+const forLang = useTemplateRef("for-lang")
 
 onMounted(() => {
-    setInterval(() => {
-        const item = langs[Math.floor(Math.random() * langs.length)]
-        currentText.value = item
-    }, 2000)
+    new Typewriter(forLang.value, {
+        strings: props.langs,
+        autoStart: true,
+        delay: 200,
+        pauseFor: 3000,
+    })
 })
-
-langs.at(0)
 </script>
 
 <style scoped>

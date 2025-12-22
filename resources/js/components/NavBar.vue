@@ -5,7 +5,7 @@
             Preums
         </a>
         <div>
-            <wa-button href="/history" variant="neutral" appearance="filled">
+            <wa-button :href="road.url()" variant="neutral" appearance="filled">
                 <i slot="start" class="hn hn-book-heart"></i>
                 Project history
             </wa-button>
@@ -23,7 +23,9 @@
     </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { road } from "@/actions/App/Http/Controllers/GithubController"
+</script>
 
 <style scoped>
 .preums-nav {

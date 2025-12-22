@@ -114,17 +114,49 @@ class GithubRepositoryApi extends ApiClient {
         return $clone;
     }
 
+    public function getStarredRepository(string $lang): GithubRepository {
+        $response = $this->makeGet(
+            'https://api.github.com/search/repositories',
+            array(
+                'q' => 'stars:>0 language:'.$lang,
+                'sort' => 'stars',
+                'order' => 'desc',
+                'per_page' => 1,
+                'page' => 1,
+            ),
+        );
+        [$item] = $response->json()['items'];
+
+        return $this->parseRepository($item);
+    }
+
+    public function getOldestRepository(string $lang): GithubRepository {
+        $response = $this->makeGet(
+            'https://api.github.com/search/repositories',
+            array(
+                'q' => 'language:'.$lang,
+                'sort' => 'updated',
+                'order' => 'asc',
+                'per_page' => 1,
+                'page' => 1,
+            ),
+        );
+        [$item] = $response->json()['items'];
+
+        return $this->parseRepository($item);
+    }
+
     /**
      * @return GithubRepository[]
      */
-    public function getOldestRepositories(): array {
+    public function getOldestStarredRepositories(): array {
         $response = $this->makeGet(
             'https://api.github.com/search/repositories',
             array(
                 'q' => 'stars:>0',
                 'sort' => 'stars',
                 'order' => 'desc',
-                'per_page' => 35,
+                'per_page' => 50,
             ),
         );
 

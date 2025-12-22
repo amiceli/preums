@@ -89,3 +89,9 @@ export type GithubRelease = {
     authorUrl: string
     authorImg: string
 }
+
+export type LangStats = {
+    type: string
+    name: string
+    pushers: number
+}
