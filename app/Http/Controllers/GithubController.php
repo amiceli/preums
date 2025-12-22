@@ -21,6 +21,15 @@ class GithubController extends Controller {
         ));
     }
 
+    public function starredStats(Request $r) {
+        $lang = $r->json()->get('lang');
+        $data = $this->client->getSarred($lang);
+
+        return response()->json(
+            $data
+        );
+    }
+
     public function oldStars(Request $r) {
         $lang = $r->json()->get('lang');
         $data = $this->client->getOldStarred($lang);
