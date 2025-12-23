@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GithubApi;
 use App\Models\LangStats;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
@@ -22,6 +23,8 @@ class GithubController extends Controller {
         $repositories = $this->client->getOldestStarredRepositories();
         $allLangs = LangStats::pluck('name')->toArray();
 
+        Log::info('action=root_index');
+
         return Inertia::render('HomePage', array(
             'oldestRepos' => $repositories,
             'allLangs' => $allLangs,
@@ -35,6 +38,8 @@ class GithubController extends Controller {
         $value = $req->get('name');
         $repositories = $this->client->searchRepositories($value);
 
+        Log::info('action=search_repositories, value='.$value);
+
         return Inertia::render('SearchResults', array(
             'repositories' => $repositories,
         ));
@@ -46,6 +51,8 @@ class GithubController extends Controller {
     public function showOrganizationHistory(string $org) {
         $details = $this->client->getOrganizationDetails($org);
 
+        Log::info('action=show_organization, name='.$org);
+
         return Inertia::render('OrgHistory', $details);
     }
 
@@ -55,6 +62,8 @@ class GithubController extends Controller {
     public function showUserHistory(string $name) {
         $userHistory = $this->client->getUserHistory($name);
 
+        Log::info('action=show_user, name='.$name);
+
         return Inertia::render('UserHistory', $userHistory);
     }
 
@@ -63,6 +72,8 @@ class GithubController extends Controller {
      */
     public function showRepositoryHistory(string $org, string $repo) {
         $repository = $this->client->getRepository($org, $repo);
+
+        Log::info("action=show_repository, org=$org, repo=$repo");
 
         return Inertia::render('RepositoryHistory', $repository);
     }
@@ -81,6 +92,8 @@ class GithubController extends Controller {
      */
     public function langStats() {
         $langs = LangStats::orderBy('pushers', 'desc')->get();
+
+        Log::info('action=show_lang_stats');
 
         return Inertia::render('LanguageStats', array(
             'langs' => $langs,
@@ -125,6 +138,8 @@ class GithubController extends Controller {
 
     public function road() {
         $road = $this->client->getRoad();
+
+        Log::info('action=show_road');
 
         return Inertia::render('Road', $road);
     }

@@ -109,6 +109,8 @@ class GithubApi extends ApiClient {
 
         $nextReset = (new \DateTime())->setTimestamp($states['rate']['reset']);
 
+        Log::info('action=rate_limit, next_reset='.$nextReset->format('c'));
+
         return new GithubRateLimit(
             remaining: $states['rate']['remaining'] > 0,
             nextReset: $nextReset,
