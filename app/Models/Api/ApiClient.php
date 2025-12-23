@@ -28,7 +28,7 @@ abstract class ApiClient {
 
     protected function getLastPageUrl(Response $response): array|false {
         if ($response->header('link')) {
-            $pages = new ParseLinkHeader($response->header('link'))->toArray();
+            $pages = (new ParseLinkHeader($response->header('link')))->toArray();
 
             if (array_key_exists('last', $pages)) {
                 return array(
