@@ -1,11 +1,11 @@
 <template>
     <Layout>
-        <header class="is--flex">
+        <div class="stats__head">
             <div>
                 <i class="hn hn-analytics"></i>
             </div>
             <div>
-                <div class="stats__title">
+                <div class="head__title">
                     <h1>
                         <b>Preums</b>, show me languages
                         <b class="for--info">stats</b> and
@@ -23,7 +23,7 @@
                     </a> for stats.
                 </h3>
             </div>
-        </header>
+        </div>
 
         <LocationStats />
         <br>
@@ -49,39 +49,37 @@ onBeforeMount(() => {
 
     if (topProgrammingLang) {
         statsStore.selectType(topProgrammingLang.type)
-        // statsStore.chooseLang(topProgrammingLang.name)
+        statsStore.chooseLang(topProgrammingLang.name)
     }
 })
 </script>
 
-<style scoped>
-header {
-    gap: 40px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
+<style lang="scss" scoped>
+.stats {
+    &__head {
+        gap: 40px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
 
-    h1 {
-        margin-bottom: 0;
-    }
-    i {
-        font-size: 100px;
-    }
-}
+        h1 {
+            margin-bottom: 0;
+        }
 
-.lang__stats {
-    display: grid;
-    grid-template-columns: auto 20px 1fr;
-}
+        i {
+            font-size: 100px;
+        }
 
-.stats__title {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+        .head__title {
+            display: flex;
+            align-items: center;
+            gap: 30px;
 
-    h1 {
-        margin-bottom: 0;
+            h1 {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 </style>

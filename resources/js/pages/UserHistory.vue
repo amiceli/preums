@@ -8,7 +8,7 @@
                 </a>
             </h1>
         </div>
-        <br>
+        <br />
         <div class="user__details">
             <h1>~</h1>
             <h3>
@@ -63,29 +63,31 @@ const diffYears = computed(() => {
 })
 </script>
 
-<style scoped>
-.user__avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    padding-top: 40px;
-
-    img {
-        max-height: 200px;
-    }
-}
-
-.user__details {
-    text-align: center;
-
-    h3 {
+<style lang="scss" scoped>
+.user {
+    &__avatar {
         display: flex;
-        gap: 15px;
         align-items: center;
         justify-content: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        gap: 30px;
+        padding-top: 40px;
+
+        img {
+            max-height: 200px;
+        }
+    }
+
+    &__details {
+        text-align: center;
+
+        h3 {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
     }
 }
 </style>

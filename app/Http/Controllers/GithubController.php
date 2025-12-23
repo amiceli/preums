@@ -124,6 +124,8 @@ class GithubController extends Controller {
     }
 
     public function road() {
-        return Inertia::render('Road', array());
+        $road = $this->client->getRoad();
+
+        return Inertia::render('Road', $road);
     }
 }

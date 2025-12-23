@@ -7,9 +7,9 @@
             <h1>
                 <b>Preums</b>, reminds me
                 that coding with
-                <b ref="for-lang" class="for--lang"></b>
+                <b ref="for-lang" class="for--info"></b>
                 is
-                <b class="for--magical">magical.</b>
+                <b class="for--error">magical.</b>
             </h1>
             <h3>
                 <a :href="langStats.url()">
@@ -50,12 +50,5 @@ onMounted(() => {
 
 .p-main .hn-angellist {
     font-size: 200px;
-}
-
-.for--magical {
-    color : #D04542;
-}
-.for--lang {
-    color : #3278C1;
 }
 </style>

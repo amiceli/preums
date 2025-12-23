@@ -1,23 +1,18 @@
 <template>
     <Layout>
-        <div class="page__title">
-            <h1>
-                We found {{ props.repositories.length }} repositories
-            </h1>
+        <div class="search__title">
+            <h1>We found {{ props.repositories.length }} repositories</h1>
             <p v-if="props.repositories.length > 0">
                 Repositories are sort by created date. It reminds time when we
                 coded like searcher.
             </p>
         </div>
-        <div class="page__form">
+        <div class="search__form">
             <SearchForm />
         </div>
-        <div class="preums_grid">
+        <div class="search__grid">
             <div class="grid__item" v-for="p in props.repositories" :key="p.id">
-                <RepositoryCard
-                    :repository="p"
-                    show-avatar
-                />
+                <RepositoryCard :repository="p" show-avatar />
             </div>
         </div>
         <Skeleton v-if="props.repositories.length === 0" />
@@ -36,24 +31,26 @@ const props = defineProps<{
 }>()
 </script>
 
-<style scoped>
-.page__title {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
+<style lang="scss" scoped>
+.search {
+    &__title {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
 
-.preums_grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-}
+    &__form {
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
 
-.preums_grid + div {
-    width: 70%;
-}
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px;
 
-.page__form {
-    margin-bottom: 50px;
-    margin-top: 50px;
+        & + div {
+            width: 70%;
+        }
+    }
 }
 </style>
