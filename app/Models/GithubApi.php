@@ -107,6 +107,8 @@ class GithubApi extends ApiClient {
         $response = $this->makeGet('https://api.github.com/rate_limit', null);
         $states = $response->json();
 
+        print_r($states);
+
         $nextReset = (new \DateTime())->setTimestamp($states['rate']['reset']);
 
         return new GithubRateLimit(
