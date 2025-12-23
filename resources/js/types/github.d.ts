@@ -95,3 +95,10 @@ export type LangStats = {
     name: string
     pushers: number
 }
+
+export type Road = {
+    builtOn: Record<string, GithubRepository>
+    beautifulCode: Record<string, GithubRepository>
+    UiUx: Record<string, GithubRepository>
+    cleanRepo: Record<string, GithubRepository>
+}

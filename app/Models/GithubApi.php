@@ -115,4 +115,44 @@ class GithubApi extends ApiClient {
             nextReset: $nextReset,
         );
     }
+
+    private function getRepositories(array $tools) {
+        return array_map(fn ($name) => (
+            GithubRepositoryApi::fromName(
+                $name
+            )->getRepository()
+        ), $tools);
+    }
+
+    public function getRoad() {
+        $builtOn = $this->getRepositories(
+            array(
+                'laravel/laravel', 'vuejs/core',  'sqlite/sqlite', 'inertiajs/inertia', 'nanostores/nanostores',
+            )
+        );
+        $beautifulCode = $this->getRepositories(
+            array(
+                'biomejs/biome', 'laravel/pint',   'zed-industries/zed',
+            )
+        );
+        $UiUx = $this->getRepositories(
+            array(
+                'shoelace-style/webawesome', 'DerYeger/yeger',  'hackernoon/pixel-icon-library',
+            )
+        );
+        $cleanRepo = $this->getRepositories(
+            array(
+                'evilmartians/lefthook',
+                'conventional-changelog/commitlint',
+                'pestphp/pest',
+            )
+        );
+
+        return array(
+            'builtOn' => $builtOn,
+            'beautifulCode' => $beautifulCode,
+            'UiUx' => $UiUx,
+            'cleanRepo' => $cleanRepo,
+        );
+    }
 }
