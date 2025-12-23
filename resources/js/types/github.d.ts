@@ -101,4 +101,5 @@ export type Road = {
     beautifulCode: Record<string, GithubRepository>
     UiUx: Record<string, GithubRepository>
     cleanRepo: Record<string, GithubRepository>
+    surprises: Record<string, GithubRepository>
 }

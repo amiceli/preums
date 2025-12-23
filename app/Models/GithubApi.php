@@ -147,12 +147,19 @@ class GithubApi extends ApiClient {
                 'pestphp/pest',
             )
         );
+        $surprises = $this->getRepositories(
+            array(
+                'vwh/sqlite-online',
+                'htzh/leanproved',
+            )
+        );
 
         return array(
             'builtOn' => $builtOn,
             'beautifulCode' => $beautifulCode,
             'UiUx' => $UiUx,
             'cleanRepo' => $cleanRepo,
+            'surprises' => $surprises,
         );
     }
 }

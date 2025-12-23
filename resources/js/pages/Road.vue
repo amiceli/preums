@@ -3,20 +3,42 @@
         <div class="road">
             <div class="road__title">
                 <div>
-                    <img src="/logo.png" alt="logo" />
+                    <i class="hn hn-code"></i>
                 </div>
                 <div>
                     <h1>
-                        <b class="for--info"> Preums </b>
-                        history, framework, discover
+                        Having ideas, choosing a framework, building, improving,
+                        correcting, these are the best moments. <br />
                     </h1>
+                    <h2>
+                        Let me show you <b class="for--info">Preums</b> road.
+                        <br />
+                        <small>
+                            You don't need <b class="for--error">IA</b> to build
+                            a project. <br />
+                        </small>
+                    </h2>
                 </div>
             </div>
             <br />
             <h1>Built on</h1>
             <p>
-                I have already worked with several frameworks. But, for me,
-                Laravel and Vue are best. <br />
+                I have already worked with several frameworks like :
+                <a target="_blank" href="https://github.com/silexphp/Silex"
+                    >Silex</a
+                >,
+                <a target="_blank" href="https://github.com/nestjs/nest"
+                    >NestJs</a
+                >,
+                <a target="_blank" href="https://github.com/expressjs/express"
+                    >Express</a
+                >
+                <a target="_blank" href="https://github.com/mojolicious/mojo"
+                    >Mojo</a
+                >
+                etc.
+                <br />
+                But, for me, Laravel and Vue are best. <br />
                 And Inertia is a beautiful fusion ❤️. <br />
                 Finish with Sqlite, best solution when we need a little
                 database.
@@ -39,14 +61,85 @@
                 </div>
             </div>
             <h1>Make beautiful UI / UX</h1>
+            <p>
+                Choosing a UI framework is the most time-consuming part, but
+                it's one of my favorite moments. <br />
+                Web component, only CSS, Vue it's a perfect challenge.
+                <br />
+                It was time to do a project with WebAwesome, the successor to
+                Shoelace.
+            </p>
             <div class="road__repos">
                 <div v-for="b in props.UiUx" :key="b.name">
                     <RepositoryCard :repository="b" show-avatar />
                 </div>
             </div>
             <h1>Keep clean repository</h1>
+            <p>
+                And finally, even for side projects, tests, and conventional
+                commits, this is the basis!
+            </p>
             <div class="road__repos">
                 <div v-for="b in props.cleanRepo" :key="b.name">
+                    <RepositoryCard :repository="b" show-avatar />
+                </div>
+            </div>
+            <h1>Discoveries and surprises</h1>
+            <p>
+                Testing <b class="for--info">Preums</b>, I found cool projects I
+                want to share :
+            </p>
+            <ul>
+                <li>
+                    <a
+                        target="_blank"
+                        href="https://github.com/sdkman/sdkman-cli"
+                        class="for--info"
+                    >
+                        sdkman-cli
+                    </a>
+                    is most starred project with Gherkin as main language and I
+                    love Gherkin !
+                </li>
+                <li>
+                    <a
+                        target="_blank"
+                        href="https://github.com/vwh/sqlite-online"
+                        class="for--info"
+                    >
+                        sqlite-online
+                    </a>
+                    perfect to view a SQLite file
+                </li>
+                <li>
+                    Discovery
+                    <a
+                        target="_blank"
+                        href="https://github.com/leanprover/lean4"
+                        class="ior--info"
+                    >
+                        Leon language </a
+                    >. Wow, code is
+                    <a
+                        target="_blank"
+                        href="https://github.com/htzh/leanproved/blob/master/migrated/algebra.lean"
+                    >
+                        beautiful </a
+                    >.
+                </li>
+            </ul>
+            <p>
+                And something cool like VueJS was called SeedJs and Astro was
+                <a
+                    class="for--info"
+                    target="_blank"
+                    href="https://github.com/withastro/astro/commit/47d1c22449cb2c3a236170382ae9e8210a711ee0"
+                >
+                    magicthing !
+                </a>
+            </p>
+            <div class="road__repos">
+                <div v-for="b in props.surprises" :key="b.name">
                     <RepositoryCard :repository="b" show-avatar />
                 </div>
             </div>
@@ -77,6 +170,10 @@ const props = defineProps<Road>()
         gap: 40px;
         align-items: center;
         padding-top: 40px;
+
+        .hn {
+            font-size: 200px;
+        }
 
         img {
             border-radius: 10px;
