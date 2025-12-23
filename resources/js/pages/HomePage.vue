@@ -2,23 +2,21 @@
     <Layout>
         <MainTitle :langs="props.allLangs" />
 
-        <div class="page__form">
+        <div class="home__form">
             <SearchForm />
         </div>
 
-        <div class="page__title">
-            <h1>
-                <i class="hn hn-book-heart"></i>
-                Top 50 oldest and starred repositories
-            </h1>
-            <p>
-                This list ranks among the oldest repositories with the most
-                stars. It reminds us that it is possible to <br />
-                code and improve the tech field without AI.
-            </p>
-        </div>
+        <h1>
+            <i class="hn hn-book-heart"></i>
+            Top 50 oldest and starred repositories
+        </h1>
+        <p>
+            This list ranks among the oldest repositories with the most
+            stars. It reminds us that it is possible to <br />
+            code and improve the tech field without AI.
+        </p>
 
-        <div class="p-most">
+        <div class="home__most">
             <template
                 v-for="p in Object.keys(props.oldestRepos)"
                 :key="`year-${p}`"
@@ -26,7 +24,7 @@
                 <h2>
                     {{ p }}
                 </h2>
-                <div class="p-most__grid">
+                <div class="most__grid">
                     <div v-for="item in props.oldestRepos[p]" :key="item.id">
                         <RepositoryCard
                             :repository="item"
@@ -54,27 +52,31 @@ const props = defineProps<{
 }>()
 </script>
 
-<style scoped>
-.p-most {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 100px;
-}
-.p-most__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-}
+<style lang="scss" scoped>
+.home {
+    h2 {
+        display: block;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
 
-h2 {
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-.page__form {
-    margin-bottom: 50px;
-    margin-top: 50px;
+    &__form {
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+
+    &__most {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 100px;
+
+        .most__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+    }
 }
 </style>
