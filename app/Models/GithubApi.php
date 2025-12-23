@@ -12,7 +12,6 @@ use App\Models\Api\GithubRepositoryApi;
 use App\Models\Api\GithubTopicApi;
 use App\Models\Api\GithubUserApi;
 use App\Models\Github\GithubRepository;
-use DateTime;
 use Illuminate\Support\Facades\Log;
 
 class GithubApi extends ApiClient {
@@ -108,7 +107,7 @@ class GithubApi extends ApiClient {
         $response = $this->makeGet('https://api.github.com/rate_limit', null);
         $states = $response->json();
 
-        $nextReset = new DateTime()->setTimestamp($states['rate']['reset']);
+        $nextReset = (new \DateTime())->setTimestamp($states['rate']['reset']);
 
         return new GithubRateLimit(
             remaining: $states['rate']['remaining'] > 0,
