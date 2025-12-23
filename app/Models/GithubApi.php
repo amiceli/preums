@@ -151,6 +151,7 @@ class GithubApi extends ApiClient {
             array(
                 'vwh/sqlite-online',
                 'htzh/leanproved',
+                'withastro/astro',
             )
         );
 

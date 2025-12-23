@@ -26,17 +26,16 @@
                 I have already worked with several frameworks like :
                 <a target="_blank" href="https://github.com/silexphp/Silex"
                     >Silex</a
-                >,
+                >,&nbsp;
                 <a target="_blank" href="https://github.com/nestjs/nest"
                     >NestJs</a
-                >,
+                >,&nbsp;
                 <a target="_blank" href="https://github.com/expressjs/express"
                     >Express</a
-                >
+                >,&nbsp;
                 <a target="_blank" href="https://github.com/mojolicious/mojo"
                     >Mojo</a
-                >
-                etc.
+                >,&nbsp; etc.
                 <br />
                 But, for me, Laravel and Vue are best. <br />
                 And Inertia is a beautiful fusion ❤️. <br />
@@ -64,7 +63,7 @@
             <p>
                 Choosing a UI framework is the most time-consuming part, but
                 it's one of my favorite moments. <br />
-                Web component, only CSS, Vue it's a perfect challenge.
+                Web component, only CSS, Vue, it's a perfect challenge.
                 <br />
                 It was time to do a project with WebAwesome, the successor to
                 Shoelace.
@@ -86,8 +85,8 @@
             </div>
             <h1>Discoveries and surprises</h1>
             <p>
-                Testing <b class="for--info">Preums</b>, I found cool projects I
-                want to share :
+                Testing and coding on <b class="for--info">Preums</b>, I found
+                cool projects :
             </p>
             <ul>
                 <li>
@@ -100,6 +99,14 @@
                     </a>
                     is most starred project with Gherkin as main language and I
                     love Gherkin !
+                    <br />
+                    Now is the time to advertise
+                    <a
+                        target="_blank"
+                        href="https://github.com/amiceli/vitest-cucumber"
+                    >
+                        vitest-cucumber
+                    </a> ❤️.
                 </li>
                 <li>
                     <a
@@ -112,7 +119,7 @@
                     perfect to view a SQLite file
                 </li>
                 <li>
-                    Discovery
+                    Discovered
                     <a
                         target="_blank"
                         href="https://github.com/leanprover/lean4"
