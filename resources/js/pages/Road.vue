@@ -125,7 +125,7 @@
                         href="https://github.com/leanprover/lean4"
                         class="ior--info"
                     >
-                        Leon language </a
+                        Lean language </a
                     >. Wow, code is
                     <a
                         target="_blank"
