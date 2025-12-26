@@ -10,7 +10,7 @@
         >
             <div>
                 <h3>
-                    Most starred repository
+                    Most starred
                 </h3>
                 <RepositoryCard
                     :repository="(starredRepository as GithubRepository)"
@@ -19,7 +19,7 @@
             </div>
             <div>
                 <h3>
-                    Most recent repository
+                    Most recent
                 </h3>
                 <RepositoryCard
                     :repository="(recentRepository as GithubRepository)"
@@ -28,7 +28,7 @@
             </div>
             <div>
                 <h3>
-                    Oldest repository
+                    Oldest
                     <i class="hn hn-info-circle-solid" id="for-old"></i>
                 </h3>
                 <wa-tooltip for="for-old">

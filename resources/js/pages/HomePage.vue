@@ -24,20 +24,33 @@
                 <h2>
                     {{ p }}
                 </h2>
-                <div class="most__grid">
+                <MasonryWall
+                    :items="props.oldestRepos[p]"
+                    :column-width="300"
+                    :gap="20"
+                >
+                    <template #default="{ item, index }">
+                        <RepositoryCard
+                            :repository="item"
+                            :show-avatar="true"
+                        />
+                    </template>
+                </MasonryWall>
+                 <!-- <div class="most__grid">
                     <div v-for="item in props.oldestRepos[p]" :key="item.id">
                         <RepositoryCard
                             :repository="item"
                             :show-avatar="true"
                         />
                     </div>
-                </div>
+                </div>  -->
             </template>
         </div>
     </Layout>
 </template>
 
 <script setup lang="ts">
+import MasonryWall from "@yeger/vue-masonry-wall"
 import Layout from "@/components/Layout.vue"
 import MainTitle from "@/components/MainTitle.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
@@ -54,29 +67,17 @@ const props = defineProps<{
 
 <style lang="scss" scoped>
 .home {
-    h2 {
+
+    &__most h2 {
         display: block;
         margin-top: 40px;
         margin-bottom: 40px;
+        text-align: center;
     }
 
     &__form {
         margin-bottom: 50px;
         margin-top: 50px;
-    }
-
-    &__most {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 100px;
-
-        .most__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-        }
     }
 }
 </style>

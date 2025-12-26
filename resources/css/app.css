@@ -8,10 +8,9 @@ html {
 
 /* custom */
 
-.page__title {
-    p {
-        font-size: 20px;
-    }
+p:not(.wa-caption-s),
+ul li {
+    font-size: 22px;
 }
 
 /* typography */

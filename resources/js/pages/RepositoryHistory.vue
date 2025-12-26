@@ -109,5 +109,11 @@ const props = defineProps<{
     section {
         margin-top: 20px;
     }
+
+    [slot="media"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 </style>

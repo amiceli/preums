@@ -20,22 +20,78 @@
                     </h2>
                 </div>
             </div>
+            <br>
+            <h1>
+                NB: No need for <b class="for--error">AI</b> for every problem.
+            </h1>
+            <ul>
+                <li>
+                    There are tons of documents like
+                    <a target="_blank" href="https://docs.github.com/fr/rest">
+                        Github api doc
+                    </a>
+                    I used for this project.
+                </li>
+                <li>
+                    Never forget
+                    <a target="_blank" href="https://stackoverflow.com">
+                        StackOverflow
+                    </a>
+                    ❤️ !
+                </li>
+            </ul>
             <br />
             <h1>Built on</h1>
             <p>
                 I have already worked with several frameworks like :
-                <a target="_blank" href="https://github.com/silexphp/Silex"
-                    >Silex</a
-                >,&nbsp;
-                <a target="_blank" href="https://github.com/nestjs/nest"
-                    >NestJs</a
-                >,&nbsp;
-                <a target="_blank" href="https://github.com/expressjs/express"
-                    >Express</a
-                >,&nbsp;
-                <a target="_blank" href="https://github.com/mojolicious/mojo"
-                    >Mojo</a
-                >,&nbsp; etc.
+                <a
+                    target="_blank"
+                    :href="
+                        showRepositoryHistory.url({
+                            org: 'silexphp',
+                            repo: 'Silex',
+                        })
+                    "
+                >
+                    Silex
+                </a>
+                ,&nbsp;
+                <a
+                    target="_blank"
+                    :href="
+                        showRepositoryHistory.url({
+                            org: 'nestjs',
+                            repo: 'nest',
+                        })
+                    "
+                >
+                    NestJs
+                </a>
+                ,&nbsp;
+                <a
+                    target="_blank"
+                    :href="
+                        showRepositoryHistory.url({
+                            org: 'expressjs',
+                            repo: 'express',
+                        })
+                    "
+                >
+                    Express
+                </a>
+                ,&nbsp;
+                <a
+                    target="_blank"
+                    :href="
+                        showRepositoryHistory.url({
+                            org: 'mojolicious',
+                            repo: 'mojo',
+                        })
+                    "
+                >
+                    Mojo
+                </a>
+                ,&nbsp; etc.
                 <br />
                 But, for me, Laravel and Vue are best. <br />
                 And Inertia is a beautiful fusion ❤️. <br />
@@ -106,7 +162,8 @@
                         href="https://github.com/amiceli/vitest-cucumber"
                     >
                         vitest-cucumber
-                    </a> ❤️.
+                    </a>
+                    ❤️.
                 </li>
                 <li>
                     <a
@@ -155,6 +212,7 @@
 </template>
 
 <script setup lang="ts">
+import { showRepositoryHistory, showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import type { Road } from "@/types/github"
