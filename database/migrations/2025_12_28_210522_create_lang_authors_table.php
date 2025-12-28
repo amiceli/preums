@@ -9,12 +9,11 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('year_groups', function (Blueprint $table) {
+        Schema::create('lang_authors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('apiId')->unique();
-            $table->string('name')->unique();
-            $table->integer('position');
+            $table->string('name');
+            $table->string('pictureUrl')->nullable();
         });
     }
 
@@ -22,6 +21,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('year_groups');
+        Schema::dropIfExists('lang_authors');
     }
 };

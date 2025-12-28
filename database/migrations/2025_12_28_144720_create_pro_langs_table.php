@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->string('apiId');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->string('name');
             $table->string('company')->nullable();
             $table->jsonb('years');
@@ -22,9 +22,6 @@ return new class extends Migration {
             $table->foreign('yearGroupId')
                 ->references('id')
                 ->on('year_groups');
-
-            // $table->jsonb('predecessorsIds');
-            // $table->jsonb('authorsIds');
         });
     }
 
