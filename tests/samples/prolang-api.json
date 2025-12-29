@@ -1,0 +1,1543 @@
+{
+    "__comment": "https://api.prolanghistory.com/languages",
+    "data": {
+        "currentPage": 7,
+        "items": [
+            {
+                "authors": [],
+                "company": null,
+                "id": "612103bd20aaf1e4d5e852e5",
+                "link": "https://en.wikipedia.org/wiki/IBM_BASICA",
+                "name": "IBM BASICA",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e86"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e89"
+                            }
+                        ],
+                        "company": "Dartmouth College",
+                        "id": "612103bc20aaf1e4d5e84e92",
+                        "link": "https://en.wikipedia.org/wiki/BASIC",
+                        "longName": "",
+                        "name": "BASIC",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84dac" }, { "id": "612103bc20aaf1e4d5e84e8f" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1964]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85294",
+                    "name": "1980s",
+                    "position": 5
+                },
+                "years": [1981]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84e19",
+                        "link": "https://en.wikipedia.org/wiki/IBM",
+                        "name": "IBM",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84e9c",
+                "link": "https://en.wikipedia.org/wiki/IBM_RPG",
+                "name": "IBM RPG",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84e02",
+                    "name": "1960s",
+                    "position": 3
+                },
+                "years": [1964]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e851e5",
+                        "link": null,
+                        "name": "David Stern",
+                        "picture": null
+                    }
+                ],
+                "company": "Research Systems Inc",
+                "id": "612103bd20aaf1e4d5e851ed",
+                "link": "https://en.wikipedia.org/wiki/IDL_(programming_language)",
+                "longName": "",
+                "name": "IDL",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85031",
+                    "name": "1970s",
+                    "position": 4
+                },
+                "years": [1977]
+            },
+            {
+                "authors": [],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84ebd",
+                "link": "https://en.wikipedia.org/wiki/IITRAN",
+                "name": "IITRAN",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84e02",
+                    "name": "1960s",
+                    "position": 3
+                },
+                "years": [1964]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e850b3",
+                        "link": "https://en.wikipedia.org/wiki/Don_Woods_(programmer)",
+                        "name": "Don Woods",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e850b6",
+                        "link": null,
+                        "name": "James M. Lyon",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bd20aaf1e4d5e850b9",
+                "link": "https://en.wikipedia.org/wiki/INTERCAL",
+                "name": "INTERCAL",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85031",
+                    "name": "1970s",
+                    "position": 4
+                },
+                "years": [1972]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d29",
+                        "link": "https://en.wikipedia.org/wiki/Allen_Newell",
+                        "name": "Allen Newell",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2c",
+                        "link": "https://en.wikipedia.org/wiki/Cliff_Shaw",
+                        "name": "Cliff Shaw",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2f",
+                        "link": "https://en.wikipedia.org/wiki/Herbert_A._Simon",
+                        "name": "Herbert A. Simon",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84d32",
+                "link": "https://en.wikipedia.org/wiki/Information_Processing_Language",
+                "name": "IPL I",
+                "nameExtra": { "link": null, "name": "concept" },
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84c51",
+                    "name": "1950s",
+                    "position": 2
+                },
+                "years": [1954]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d29",
+                        "link": "https://en.wikipedia.org/wiki/Allen_Newell",
+                        "name": "Allen Newell",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2c",
+                        "link": "https://en.wikipedia.org/wiki/Cliff_Shaw",
+                        "name": "Cliff Shaw",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2f",
+                        "link": "https://en.wikipedia.org/wiki/Herbert_A._Simon",
+                        "name": "Herbert A. Simon",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84d7e",
+                "link": "https://en.wikipedia.org/wiki/Information_Processing_Language",
+                "name": "IPL II",
+                "nameExtra": { "link": null, "name": "implementation" },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d29"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d2c"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d2f"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84d32",
+                        "link": "https://en.wikipedia.org/wiki/Information_Processing_Language",
+                        "name": "IPL I",
+                        "nameExtra": { "link": null, "name": "concept" },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84c51" },
+                        "years": [1954]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84c51",
+                    "name": "1950s",
+                    "position": 2
+                },
+                "years": [1958]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d29",
+                        "link": "https://en.wikipedia.org/wiki/Allen_Newell",
+                        "name": "Allen Newell",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2c",
+                        "link": "https://en.wikipedia.org/wiki/Cliff_Shaw",
+                        "name": "Cliff Shaw",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2f",
+                        "link": "https://en.wikipedia.org/wiki/Herbert_A._Simon",
+                        "name": "Herbert A. Simon",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84dbe",
+                "link": "https://en.wikipedia.org/wiki/Information_Processing_Language",
+                "name": "IPL V",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d29"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d2c"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d2f"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84d7e",
+                        "link": "https://en.wikipedia.org/wiki/Information_Processing_Language",
+                        "name": "IPL II",
+                        "nameExtra": { "link": null, "name": "implementation" },
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84d32" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84c51" },
+                        "years": [1958]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84c51",
+                    "name": "1950s",
+                    "position": 2
+                },
+                "years": [1958]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85755",
+                        "link": null,
+                        "name": "ISO Standard ISLISP",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103be20aaf1e4d5e85759",
+                "link": "https://en.wikipedia.org/wiki/ISLISP",
+                "name": "ISLISP",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e8514f"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103bd20aaf1e4d5e85387",
+                        "link": "https://en.wikipedia.org/wiki/Common_Lisp",
+                        "longName": "",
+                        "name": "Common Lisp",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84d8a" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1984]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85519",
+                    "name": "1990s",
+                    "position": 6
+                },
+                "years": [1997]
+            },
+            {
+                "authors": [],
+                "company": "",
+                "id": "612103be20aaf1e4d5e85b26",
+                "link": "https://www.iso.org/standard/45001.html",
+                "name": "ISO/IEC 8652:1995/Amd 1:2007",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103be20aaf1e4d5e857f8",
+                    "name": "2000s",
+                    "position": 7
+                },
+                "years": [2007]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84f0d",
+                        "link": "https://en.wikipedia.org/wiki/Peter_J._Landin",
+                        "name": "Peter J. Landin",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84f11",
+                "link": "https://en.wikipedia.org/wiki/ISWIM",
+                "name": "ISWIM",
+                "nameExtra": { "link": null, "name": "Concept" },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d82"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103bc20aaf1e4d5e84d8a",
+                        "link": "https://en.wikipedia.org/wiki/Lisp_(programming_language)",
+                        "longName": "",
+                        "name": "LISP",
+                        "nameExtra": { "link": null, "name": "Concept" },
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84d87" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84c51" },
+                        "years": [1956, 1958]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84e02",
+                    "name": "1960s",
+                    "position": 3
+                },
+                "years": [1966]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d6e",
+                        "link": "https://en.wikipedia.org/wiki/Alan_Perlis",
+                        "name": "Alan Perlis",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84d76",
+                "link": null,
+                "name": "IT",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84c51",
+                    "name": "1950s",
+                    "position": 2
+                },
+                "years": [1955, 1956]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84e32",
+                        "link": "https://en.wikipedia.org/wiki/Ralph_Griswold",
+                        "name": "Ralph Griswold",
+                        "picture": null
+                    }
+                ],
+                "company": "",
+                "id": "612103bd20aaf1e4d5e851f8",
+                "link": "https://en.wikipedia.org/wiki/Icon_(programming_language)",
+                "longName": "",
+                "name": "Icon",
+                "nameExtra": { "link": null, "name": "Concept" },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e32"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84e3a",
+                        "link": "https://en.wikipedia.org/wiki/SNOBOL",
+                        "name": "SNOBOL",
+                        "nameExtra": {},
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84dac" }, { "id": "612103bc20aaf1e4d5e84da6" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1962]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85031",
+                    "name": "1970s",
+                    "position": 4
+                },
+                "years": [1977]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84e32",
+                        "link": "https://en.wikipedia.org/wiki/Ralph_Griswold",
+                        "name": "Ralph Griswold",
+                        "picture": null
+                    }
+                ],
+                "company": "",
+                "id": "612103bd20aaf1e4d5e8528a",
+                "link": "https://en.wikipedia.org/wiki/Icon_(programming_language)",
+                "longName": "",
+                "name": "Icon",
+                "nameExtra": { "link": null, "name": "Implementation" },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e32"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84e3a",
+                        "link": "https://en.wikipedia.org/wiki/SNOBOL",
+                        "name": "SNOBOL",
+                        "nameExtra": {},
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84dac" }, { "id": "612103bc20aaf1e4d5e84da6" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1962]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85031",
+                    "name": "1970s",
+                    "position": 4
+                },
+                "years": [1979]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85a25",
+                        "link": null,
+                        "name": "Edwin Brady",
+                        "picture": null
+                    }
+                ],
+                "company": "",
+                "id": "612103be20aaf1e4d5e85a2b",
+                "link": "https://en.wikipedia.org/wiki/Idris_(programming_language)",
+                "longName": "",
+                "name": "Idris",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e859a7"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103be20aaf1e4d5e859b1",
+                        "link": "https://en.wikipedia.org/wiki/Agda_(programming_language)",
+                        "name": "Agda",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [
+                            { "id": "612103bd20aaf1e4d5e8538e" },
+                            { "id": "612103be20aaf1e4d5e859ae" },
+                            { "id": "612103bd20aaf1e4d5e85551" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103be20aaf1e4d5e857f8" },
+                        "years": [2007]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e8538b"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bd20aaf1e4d5e8538e",
+                        "link": "https://en.wikipedia.org/wiki/Coq",
+                        "name": "Coq",
+                        "nameExtra": {},
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1984]
+                    },
+                    {
+                        "authors": [],
+                        "company": "",
+                        "id": "612103bd20aaf1e4d5e85551",
+                        "link": "https://en.wikipedia.org/wiki/Haskell_(programming_language)",
+                        "longName": "",
+                        "name": "Haskell",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e85401" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1990]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103be20aaf1e4d5e857f8",
+                    "name": "2000s",
+                    "position": 7
+                },
+                "years": [2009]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e853f0",
+                        "link": "https://en.wikipedia.org/wiki/IBM_Informix",
+                        "name": "Informix",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bd20aaf1e4d5e853f3",
+                "link": "https://en.wikipedia.org/wiki/IBM_Informix-4GL",
+                "name": "Informix-4GL",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85294",
+                    "name": "1980s",
+                    "position": 5
+                },
+                "years": [1986]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e851c7",
+                        "link": "https://en.wikipedia.org/wiki/Steve_Wozniak",
+                        "name": "Steve Wozniak",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bd20aaf1e4d5e851cb",
+                "link": "https://en.wikipedia.org/wiki/Integer_BASIC",
+                "name": "Integer BASIC",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e86"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e89"
+                            }
+                        ],
+                        "company": "Dartmouth College",
+                        "id": "612103bc20aaf1e4d5e84e92",
+                        "link": "https://en.wikipedia.org/wiki/BASIC",
+                        "longName": "",
+                        "name": "BASIC",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84dac" }, { "id": "612103bc20aaf1e4d5e84e8f" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1964]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85031",
+                    "name": "1970s",
+                    "position": 4
+                },
+                "years": [1976]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84f3e",
+                        "link": null,
+                        "name": "D.G. Bobrow",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84f41",
+                        "link": null,
+                        "name": "D.L. Murphy",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84f49",
+                "link": "https://en.wikipedia.org/wiki/Interlisp",
+                "name": "InterLisp",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84e02",
+                    "name": "1960s",
+                    "position": 3
+                },
+                "years": [1967]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e8586a",
+                        "link": null,
+                        "name": "Steve Dekorte",
+                        "picture": null
+                    }
+                ],
+                "company": "",
+                "id": "612103be20aaf1e4d5e85870",
+                "link": "https://en.wikipedia.org/wiki/Io_(programming_language)",
+                "longName": "",
+                "name": "Io",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e855e7"
+                            }
+                        ],
+                        "company": "Tecgraf, PUC-Rio",
+                        "id": "612103be20aaf1e4d5e855f5",
+                        "link": "https://en.wikipedia.org/wiki/Lua_(programming_language)",
+                        "longName": "",
+                        "name": "Lua",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [
+                            { "id": "612103bd20aaf1e4d5e8533e" },
+                            { "id": "612103bd20aaf1e4d5e85103" },
+                            { "id": "612103bd20aaf1e4d5e85180" },
+                            { "id": "612103bc20aaf1e4d5e84e3a" },
+                            { "id": "612103bd20aaf1e4d5e85159" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1993]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e8560c"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103be20aaf1e4d5e85611",
+                        "link": "https://en.wikipedia.org/wiki/NewtonScript",
+                        "name": "NewtonScript",
+                        "nameExtra": {},
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e85427" }, { "id": "612103be20aaf1e4d5e855a9" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1993]
+                    },
+                    {
+                        "authors": [],
+                        "company": "",
+                        "id": "612103bd20aaf1e4d5e85427",
+                        "link": "https://en.wikipedia.org/wiki/Self_(programming_language)",
+                        "longName": "",
+                        "name": "Self",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1987]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103be20aaf1e4d5e857f8",
+                    "name": "2000s",
+                    "position": 7
+                },
+                "years": [2002]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e8523c",
+                        "link": null,
+                        "name": "Arvind",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e8523f",
+                        "link": null,
+                        "name": "Gostelow",
+                        "picture": null
+                    }
+                ],
+                "company": "University of California, Irvine",
+                "id": "612103bd20aaf1e4d5e8513f",
+                "link": "https://en.wikipedia.org/wiki/Irvine_Dataflow",
+                "name": "Irvine Dataflow",
+                "nameExtra": { "link": null, "name": "concept" },
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85031",
+                    "name": "1970s",
+                    "position": 4
+                },
+                "years": [1975]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84e26",
+                        "link": "https://en.wikipedia.org/wiki/Kenneth_E._Iverson",
+                        "name": "Kenneth E. Iverson",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bd20aaf1e4d5e85547",
+                        "link": "https://en.wikipedia.org/wiki/Roger_Hui",
+                        "name": "Roger Hui",
+                        "picture": null
+                    }
+                ],
+                "company": "",
+                "id": "612103bd20aaf1e4d5e8554c",
+                "link": "https://en.wikipedia.org/wiki/J_(programming_language)",
+                "longName": "",
+                "name": "J",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e26"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103bc20aaf1e4d5e84e29",
+                        "link": "https://en.wikipedia.org/wiki/APL_(programming_language)",
+                        "name": "APL",
+                        "nameExtra": { "link": null, "name": "concept" },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1962]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e851cf"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103bd20aaf1e4d5e851d2",
+                        "link": "https://en.wikipedia.org/wiki/FP_(programming_language)",
+                        "longName": "",
+                        "name": "FP",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85031" },
+                        "years": [1977]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85519",
+                    "name": "1990s",
+                    "position": 6
+                },
+                "years": [1990]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84d2c",
+                        "link": "https://en.wikipedia.org/wiki/Cliff_Shaw",
+                        "name": "Cliff Shaw",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84e5d",
+                        "link": "https://en.wikipedia.org/wiki/RAND_Corporation",
+                        "name": "RAND",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84e61",
+                "link": "https://en.wikipedia.org/wiki/JOSS",
+                "name": "JOSS I",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84db0"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84db6",
+                        "link": "https://en.wikipedia.org/wiki/ALGOL_58",
+                        "name": "ALGOL 58",
+                        "nameExtra": { "link": null, "name": "IAL" },
+                        "predecessors": [
+                            { "id": "612103bc20aaf1e4d5e84d10" },
+                            { "id": "612103bc20aaf1e4d5e84d76" },
+                            { "id": "612103bc20aaf1e4d5e84d6a" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84c51" },
+                        "years": [1958]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84e02",
+                    "name": "1960s",
+                    "position": 3
+                },
+                "years": [1963]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84ef4",
+                        "link": null,
+                        "name": "Chuck Baker",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84e5d",
+                        "link": "https://en.wikipedia.org/wiki/RAND_Corporation",
+                        "name": "RAND",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84ef9",
+                "link": "https://en.wikipedia.org/wiki/JOSS",
+                "name": "JOSS II",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84d2c"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84e5d"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84e61",
+                        "link": "https://en.wikipedia.org/wiki/JOSS",
+                        "name": "JOSS I",
+                        "nameExtra": {},
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84db6" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1963]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84e02",
+                    "name": "1960s",
+                    "position": 3
+                },
+                "years": [1966]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bc20aaf1e4d5e84de0",
+                        "link": "https://en.wikipedia.org/wiki/Jules_Schwartz",
+                        "name": "Jules SchwartzSDC",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bc20aaf1e4d5e84de4",
+                "link": "https://en.wikipedia.org/wiki/JOVIAL",
+                "name": "JOVIAL",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84db0"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84db6",
+                        "link": "https://en.wikipedia.org/wiki/ALGOL_58",
+                        "name": "ALGOL 58",
+                        "nameExtra": { "link": null, "name": "IAL" },
+                        "predecessors": [
+                            { "id": "612103bc20aaf1e4d5e84d10" },
+                            { "id": "612103bc20aaf1e4d5e84d76" },
+                            { "id": "612103bc20aaf1e4d5e84d6a" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84c51" },
+                        "years": [1958]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bc20aaf1e4d5e84c51",
+                    "name": "1950s",
+                    "position": 2
+                },
+                "years": [1959]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103bb20aaf1e4d5e84bd7",
+                        "link": "https://en.wikipedia.org/wiki/Joseph_Marie_Jacquard",
+                        "name": "Joseph Marie Jacquard",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103bb20aaf1e4d5e84bde",
+                "link": "https://en.wikipedia.org/wiki/Jacquard_machine",
+                "name": "Jacquard machine",
+                "nameExtra": {},
+                "predecessors": [],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bb20aaf1e4d5e84bd4",
+                    "name": "Pre-1950",
+                    "position": 1
+                },
+                "years": [1804]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85681",
+                        "link": "https://en.wikipedia.org/wiki/James_Gosling",
+                        "name": "James Gosling",
+                        "picture": null
+                    }
+                ],
+                "company": "Sun Microsystems",
+                "id": "612103be20aaf1e4d5e8568b",
+                "link": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+                "name": "Java",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e850eb"
+                            }
+                        ],
+                        "company": "Alsys",
+                        "id": "612103bd20aaf1e4d5e85327",
+                        "link": "https://en.wikipedia.org/wiki/Ada_(programming_language)",
+                        "name": "Ada 83",
+                        "nameExtra": {
+                            "link": null,
+                            "name": "ANSI/MIL-STD-1815A"
+                        },
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e8529d" }, { "id": "612103bd20aaf1e4d5e8529a" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1983]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e852a1"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bd20aaf1e4d5e8533e",
+                        "link": "https://en.wikipedia.org/wiki/C%2B%2B",
+                        "name": "C++",
+                        "nameExtra": {},
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e8533b" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1983]
+                    },
+                    {
+                        "authors": [],
+                        "company": "Xerox PARC",
+                        "id": "612103bd20aaf1e4d5e85198",
+                        "link": "https://en.wikipedia.org/wiki/Mesa_(programming_language)",
+                        "longName": "",
+                        "name": "Mesa",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85031" },
+                        "years": [1976]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e8532b"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bd20aaf1e4d5e85334",
+                        "link": "https://en.wikipedia.org/wiki/Objective-C",
+                        "name": "Objective-C",
+                        "nameExtra": {},
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e85331" }, { "id": "612103bd20aaf1e4d5e851ab" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1983]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84f30"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84f33"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84f36"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bc20aaf1e4d5e84f3a",
+                        "link": "https://en.wikipedia.org/wiki/Simula",
+                        "name": "Simula 67",
+                        "nameExtra": { "link": null, "name": "implementation" },
+                        "predecessors": [{ "id": "612103bc20aaf1e4d5e84e06" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1967]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85519",
+                    "name": "1990s",
+                    "position": 6
+                },
+                "years": [1995]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e8568f",
+                        "link": "https://en.wikipedia.org/wiki/Brendan_Eich",
+                        "name": "Brendan EichNetscape",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103be20aaf1e4d5e856ba",
+                "link": "https://en.wikipedia.org/wiki/JavaScript",
+                "name": "JavaScript",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e8568f"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103be20aaf1e4d5e85695",
+                        "link": "https://en.wikipedia.org/wiki/JavaScript",
+                        "name": "LiveScript",
+                        "nameExtra": {},
+                        "predecessors": [
+                            { "id": "612103bd20aaf1e4d5e85427" },
+                            { "id": "612103bd20aaf1e4d5e851ab" },
+                            { "id": "612103bd20aaf1e4d5e85159" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1995]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103bd20aaf1e4d5e85519",
+                    "name": "1990s",
+                    "position": 6
+                },
+                "years": [1995]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e857fb",
+                        "link": null,
+                        "name": "G Stewart von Itzstein",
+                        "picture": null
+                    }
+                ],
+                "company": null,
+                "id": "612103be20aaf1e4d5e857ff",
+                "link": "https://en.wikipedia.org/wiki/Join_Java",
+                "name": "Join Java",
+                "nameExtra": {},
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e85681"
+                            }
+                        ],
+                        "company": "Sun Microsystems",
+                        "id": "612103be20aaf1e4d5e8568b",
+                        "link": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+                        "name": "Java",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [
+                            { "id": "612103bd20aaf1e4d5e85327" },
+                            { "id": "612103bd20aaf1e4d5e851ab" },
+                            { "id": "612103bd20aaf1e4d5e8533e" },
+                            { "id": "612103bd20aaf1e4d5e85198" },
+                            { "id": "612103bd20aaf1e4d5e85334" },
+                            { "id": "612103bc20aaf1e4d5e84f3a" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1995]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103be20aaf1e4d5e857f8",
+                    "name": "2000s",
+                    "position": 7
+                },
+                "years": [2000]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e8581d",
+                        "link": null,
+                        "name": "Manfred von Thun",
+                        "picture": null
+                    }
+                ],
+                "company": "",
+                "id": "612103be20aaf1e4d5e85822",
+                "link": "https://en.wikipedia.org/wiki/Joy_(programming_language)",
+                "longName": "",
+                "name": "Joy",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e851cf"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103be20aaf1e4d5e857ff",
+                        "link": "https://en.wikipedia.org/wiki/FP_(programming_language)",
+                        "longName": "",
+                        "name": "FP",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85031" },
+                        "years": [1977]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bc20aaf1e4d5e84fab"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103bc20aaf1e4d5e84fae",
+                        "link": "https://en.wikipedia.org/wiki/Forth_(programming_language)",
+                        "longName": "",
+                        "name": "Forth",
+                        "nameExtra": { "link": null, "name": "Concept" },
+                        "predecessors": [],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bc20aaf1e4d5e84e02" },
+                        "years": [1968]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103be20aaf1e4d5e857f8",
+                    "name": "2000s",
+                    "position": 7
+                },
+                "years": [2001]
+            },
+            {
+                "authors": [
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85af6",
+                        "link": "https://en.wikipedia.org/wiki/Alan_Edelman",
+                        "name": "Alan Edelman",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85aed",
+                        "link": "https://en.wikipedia.org/wiki/Jeff_Bezanson",
+                        "name": "Jeff Bezanson",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85af0",
+                        "link": "https://en.wikipedia.org/wiki/Stefan_Karpinski",
+                        "name": "Stefan Karpinski",
+                        "picture": null
+                    },
+                    {
+                        "birthDate": null,
+                        "country": null,
+                        "id": "612103be20aaf1e4d5e85af3",
+                        "link": null,
+                        "name": "Viral Shah",
+                        "picture": null
+                    }
+                ],
+                "company": "MIT",
+                "id": "612103be20aaf1e4d5e85b08",
+                "link": "https://en.wikipedia.org/wiki/Julia_(programming_language)",
+                "longName": "",
+                "name": "Julia",
+                "nameExtra": { "link": null, "name": null },
+                "predecessors": [
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e855e7"
+                            }
+                        ],
+                        "company": "Tecgraf, PUC-Rio",
+                        "id": "612103be20aaf1e4d5e855f5",
+                        "link": "https://en.wikipedia.org/wiki/Lua_(programming_language)",
+                        "longName": "",
+                        "name": "Lua",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [
+                            { "id": "612103bd20aaf1e4d5e8533e" },
+                            { "id": "612103bd20aaf1e4d5e85103" },
+                            { "id": "612103bd20aaf1e4d5e85180" },
+                            { "id": "612103bc20aaf1e4d5e84e3a" },
+                            { "id": "612103bd20aaf1e4d5e85159" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1993]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e85248"
+                            }
+                        ],
+                        "company": "University of New Mexico",
+                        "id": "612103bd20aaf1e4d5e8524c",
+                        "link": "https://en.wikipedia.org/wiki/MATLAB",
+                        "longName": "",
+                        "name": "MATLAB",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e851ea" }],
+                        "yearConfirmed": false,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85031" },
+                        "years": [1978]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e85439"
+                            }
+                        ],
+                        "company": null,
+                        "id": "612103bd20aaf1e4d5e85448",
+                        "link": "https://en.wikipedia.org/wiki/Perl",
+                        "name": "Perl",
+                        "nameExtra": {},
+                        "predecessors": [
+                            { "id": "612103bd20aaf1e4d5e851ab" },
+                            { "id": "612103bd20aaf1e4d5e85443" },
+                            { "id": "612103bd20aaf1e4d5e85445" },
+                            { "id": "612103bd20aaf1e4d5e85362" }
+                        ],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85294" },
+                        "years": [1987]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103bd20aaf1e4d5e8558f"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103bd20aaf1e4d5e85594",
+                        "link": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+                        "longName": "",
+                        "name": "Python",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e8512f" }, { "id": "612103bd20aaf1e4d5e851ab" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1991]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e855f9"
+                            },
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e855fc"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103be20aaf1e4d5e85600",
+                        "link": "https://en.wikipedia.org/wiki/R_(programming_language)",
+                        "longName": "",
+                        "name": "R",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e851bc" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1993]
+                    },
+                    {
+                        "authors": [
+                            {
+                                "birthDate": null,
+                                "id": "612103be20aaf1e4d5e856af"
+                            }
+                        ],
+                        "company": "",
+                        "id": "612103be20aaf1e4d5e856b4",
+                        "link": "https://en.wikipedia.org/wiki/Ruby_(programming_language)",
+                        "longName": "",
+                        "name": "Ruby",
+                        "nameExtra": { "link": null, "name": null },
+                        "predecessors": [{ "id": "612103bd20aaf1e4d5e85448" }],
+                        "yearConfirmed": true,
+                        "yearGroup": { "id": "612103bd20aaf1e4d5e85519" },
+                        "years": [1995]
+                    }
+                ],
+                "yearConfirmed": true,
+                "yearGroup": {
+                    "id": "612103be20aaf1e4d5e85a51",
+                    "name": "2010s",
+                    "position": 8
+                },
+                "years": [2012]
+            }
+        ],
+        "limit": 30,
+        "totalItems": 413,
+        "totalPages": 1
+    }
+}
