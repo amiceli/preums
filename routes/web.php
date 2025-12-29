@@ -29,7 +29,12 @@ Route::get('/rate-limit', array(GithubController::class, 'rateLimit'))
     ->middleware(HandleGithubRateLimit::class);
 
 Route::get('/lang-stats', array(GithubController::class, 'langStats'))
-    ->name('lang-stats');
+    ->name('lang-stats')
+    ->middleware(HandleGithubRateLimit::class);
+
+Route::get('/lang-history', array(GithubController::class, 'langHistory'))
+    ->name('lang-history')
+    ->middleware(HandleGithubRateLimit::class);
 
 Route::post('/search-oldest', array(GithubController::class, 'searchOldestRepository'))
     ->name('search-oldest')

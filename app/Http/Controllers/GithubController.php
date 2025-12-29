@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GithubApi;
 use App\Models\LangStats;
+use App\Models\YearGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -134,6 +135,19 @@ class GithubController extends Controller {
         return response()->json(
             $data
         );
+    }
+
+    /**
+     * Show lang history page
+     */
+    public function langHistory() {
+        $groups = YearGroup::with('languages.authors')
+            ->orderBy('position', 'ASC')
+            ->get();
+
+        return Inertia::render('LangHistory', array(
+            'groups' => $groups,
+        ));
     }
 
     public function road() {
