@@ -64,3 +64,12 @@ up_adminer:
         --link pg:db \
         -p 8080:8080 \
         adminer
+
+# Clean database
+clean:
+    php artisan migrate:fresh
+
+# Call prolang api
+sync_pro_lang:
+    just clean
+    php artisan app:load-pro-lang
