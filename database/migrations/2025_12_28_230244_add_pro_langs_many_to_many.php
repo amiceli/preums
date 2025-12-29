@@ -31,23 +31,19 @@ return new class extends Migration {
                 ->onDelete('cascade');
         });
 
-        Schema::create('famiglia', function (Blueprint $table) {
+        Schema::create('predecessors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('langId')->unsigned();
-            $table->integer('authorId')->unsigned();
 
-            $table
-                ->foreign('langId')
-                ->references('id')
-                ->on('pro_langs')
-                ->onDelete('cascade');
-
-            $table
-                ->foreign('authorId')
-                ->references('id')
-                ->on('lang_authors')
-                ->onDelete('cascade');
+            $table->foreignId('child_id')
+                ->constrained('pro_langs')
+                ->cascadeOnDelete();
+            $table->foreignId('parent_id')
+                ->constrained('pro_langs')
+                ->cascadeOnDelete();
+            $table->unique(
+                array('child_id', 'parent_id')
+            );
         });
     }
 
@@ -55,6 +51,7 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
+        Schema::dropIfExists('lang_author_pro_lang');
         Schema::dropIfExists('predecessors');
     }
 };
