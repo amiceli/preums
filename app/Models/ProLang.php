@@ -21,6 +21,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class ProLang extends Model {
     protected $guarded = array('id');
 
+    protected $casts = array(
+        'years' => 'array',
+    );
+
     public function yearGroup(): BelongsTo {
         return $this->belongsTo(YearGroup::class, 'yearGroupId');
     }

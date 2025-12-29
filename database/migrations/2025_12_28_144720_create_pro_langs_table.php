@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->timestamps();
             $table->string('apiId');
             $table->string('link')->nullable();
+            $table->string('pictureUrl')->nullable();
             $table->string('name');
             $table->string('company')->nullable();
             $table->jsonb('years');

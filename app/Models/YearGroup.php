@@ -19,7 +19,7 @@ class YearGroup extends Model {
         'apiId', 'name', 'position',
     );
 
-    public function proLangs(): HasMany {
-        return $this->hasMany(ProLang::class);
+    public function languages(): HasMany {
+        return $this->hasMany(ProLang::class, 'yearGroupId');
     }
 }
