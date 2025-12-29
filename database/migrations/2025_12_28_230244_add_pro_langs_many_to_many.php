@@ -12,22 +12,22 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('predecessors', function (Blueprint $table) {
+        Schema::create('lang_author_pro_lang', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('langId')->unsigned();
-            $table->integer('predecessorId')->unsigned();
+            $table->integer('pro_lang_id')->unsigned();
+            $table->integer('lang_author_id')->unsigned();
 
             $table
-                ->foreign('langId')
+                ->foreign('pro_lang_id')
                 ->references('id')
                 ->on('pro_langs')
                 ->onDelete('cascade');
 
             $table
-                ->foreign('predecessorId')
+                ->foreign('lang_author_id')
                 ->references('id')
-                ->on('pro_langs')
+                ->on('lang_authors')
                 ->onDelete('cascade');
         });
 

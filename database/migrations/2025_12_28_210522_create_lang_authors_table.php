@@ -12,8 +12,10 @@ return new class extends Migration {
         Schema::create('lang_authors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('pictureUrl')->nullable();
+            $table->string('country')->nullable();
+            $table->string('link')->nullable();
         });
     }
 
