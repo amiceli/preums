@@ -25,7 +25,27 @@ class ProLang extends Model {
         return $this->belongsTo(YearGroup::class, 'yearGroupId');
     }
 
+    // predecessors
+
+    public function parents(): BelongsToMany {
+        return $this->belongsToMany(ProLang::class, 'predecessors', 'child_id', 'parent_id');
+    }
+
+    public function children(): BelongsToMany {
+        return $this->belongsToMany(ProLang::class, 'predecessors', 'parent_id', 'child_id');
+    }
+
+    public function isOrphan(): bool {
+        return $this->parents()->count() === 0;
+    }
+
+    // authors
+
     public function authors(): BelongsToMany {
         return $this->belongsToMany(LangAuthor::class);
+    }
+
+    public function authorNames(): array {
+        return $this->authors()->pluck('name')->toArray();
     }
 }
