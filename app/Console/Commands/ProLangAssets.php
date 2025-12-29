@@ -20,7 +20,7 @@ class ProLangAssets extends Command {
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update prolang and author picture';
 
     private function getWikiImageSrc(string $authorLink) {
         $title = urldecode(basename(parse_url($authorLink, PHP_URL_PATH)));

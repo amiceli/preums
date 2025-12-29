@@ -55,6 +55,7 @@ up_db:
         -e POSTGRES_USER=root \
         -e POSTGRES_PASSWORD=toor \
         -p 5432:5432 \
+        -v $PWD/pgdata:/var/lib/postgresql \
         postgres
 
 # Run adminer
@@ -73,3 +74,4 @@ clean:
 sync_pro_lang:
     just clean
     php artisan app:load-pro-lang
+    php artisan app:pro-lang-assets
