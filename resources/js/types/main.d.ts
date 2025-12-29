@@ -1,3 +1,5 @@
+// Github types
+
 export type GithubOwner = {
     login: string
     avatarUrl: string
@@ -102,4 +104,34 @@ export type Road = {
     UiUx: Record<string, GithubRepository>
     cleanRepo: Record<string, GithubRepository>
     surprises: Record<string, GithubRepository>
+}
+
+// prolang
+
+export type ProLangAuthor = {
+    birthDate: string | null
+    country: string | null
+    apiId: string
+    link: string | null
+    name: string
+    pictureUrl: string | null
+}
+
+export type ProLangLanguage = {
+    // TODO: add predecessors in hisotry
+    id: number
+    apiId: string
+    company: string | null
+    link: string | null
+    pictureUrl: string | null
+    name: string
+    years: string
+    authors: ProLangAuthor[]
+}
+
+export type YearGroup = {
+    name: string
+    position: number
+    apiId: string
+    languages: ProLangLanguage[]
 }

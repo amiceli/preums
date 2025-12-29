@@ -24,7 +24,7 @@ import Skeleton from "@/components/common/Skeleton.vue"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import SearchForm from "@/components/search/SearchForm.vue"
-import type { GithubRepository } from "@/types/github"
+import type { GithubRepository } from "@/types/main"
 
 const props = defineProps<{
     repositories: GithubRepository[]

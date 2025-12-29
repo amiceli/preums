@@ -1,7 +1,7 @@
 import axios from "axios"
 import { atom, computed, type ReadableAtom } from "nanostores"
 import { searchOldestRepository, searchRecentRepository, searchStarredRepository } from "@/actions/App/Http/Controllers/GithubController"
-import type { GithubRepository, LangStats } from "@/types/github"
+import type { GithubRepository, LangStats } from "@/types/main"
 
 export class LangStatsStore {
     private readonly selectedLang = atom<string>("")

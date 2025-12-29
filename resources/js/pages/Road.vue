@@ -215,7 +215,7 @@
 import { showRepositoryHistory, showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
-import type { Road } from "@/types/github"
+import type { Road } from "@/types/main"
 
 const props = defineProps<Road>()
 </script>
