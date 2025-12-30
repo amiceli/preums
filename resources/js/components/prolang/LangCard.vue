@@ -11,11 +11,11 @@
 
         <h3>
             {{ props.lang.name }}
-            <br />
-            <small>
-                {{ castYears }}
-            </small>
         </h3>
+        <h4>
+            <i class="hn hn-calender-solid"></i>
+            {{ castYears }}
+        </h4>
 
         <h3>Authors</h3>
         <div
@@ -90,8 +90,12 @@ const castYears = JSON.parse(props.lang.years).join(", ")
         }
     }
 
+    h3 {
+        margin-bottom: 5px;
+    }
+
     i.hn {
-        vertical-align: sub;
+        vertical-align: text-bottom;
         margin-top: 10px;
     }
 }

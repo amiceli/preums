@@ -1,16 +1,24 @@
 <template>
     <Layout>
+        <div class="main__title">
+            <div>
+                <i class="hn hn-code"></i>
+            </div>
+            <div>
+                <h1>
+                    <b class="for--info">Preums</b>, tell me the history of
+                    programming languages since the dawn of time.
+                </h1>
+            </div>
+        </div>
+
         <div class="lang__history" v-for="g in props.groups" :key="g.apiId">
             <div class="history__title">
                 <h2>
                     {{ g.name }}
-                    <br>
-                    <small>
-                        {{ g.languages.length }} languages
-                    </small>
                 </h2>
             </div>
-            <div class="history__wall">
+            <div>
                 <MasonryWall :items="g.languages" :column-width="300" :gap="20">
                     <template #default="{ item }">
                         <LangCard :lang="item" :key="item.apiId" />
@@ -33,6 +41,18 @@ const props = defineProps<{
 </script>
 
 <style lang="scss" scoped>
+.main__title {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.main__title .hn {
+    font-size: 200px;
+}
+
 .lang__history {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -43,9 +63,7 @@ const props = defineProps<{
     .history__title {
         display: flex;
         height : 100%;
-        align-items: center;
         justify-content: center;
     }
-    .history__wall {}
 }
 </style>
