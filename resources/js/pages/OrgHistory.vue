@@ -68,7 +68,7 @@ import MasonryWall from "@yeger/vue-masonry-wall"
 import { computed } from "vue"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
-import type { GithubOrg, GithubOwner, GithubRepository } from "@/types/github"
+import type { GithubOrg, GithubOwner, GithubRepository } from "@/types/main"
 
 const props = defineProps<{
     org: GithubOrg

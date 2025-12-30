@@ -46,3 +46,32 @@ pint_fix file="":
 # Run Pest tests
 pest file="":
     ./vendor/bin/pest {{file}}
+
+# Run postgres with docker
+up_db:
+    docker run -d \
+        --name pg \
+        -e POSTGRES_DB=preums \
+        -e POSTGRES_USER=root \
+        -e POSTGRES_PASSWORD=toor \
+        -p 5432:5432 \
+        -v $PWD/pgdata:/var/lib/postgresql \
+        postgres
+
+# Run adminer
+up_adminer:
+    docker run -d \
+        --name adminer \
+        --link pg:db \
+        -p 8080:8080 \
+        adminer
+
+# Clean database
+clean:
+    php artisan migrate:fresh
+
+# Call prolang api
+sync_pro_lang:
+    just clean
+    php artisan app:load-pro-lang
+    php artisan app:pro-lang-assets

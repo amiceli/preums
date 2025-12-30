@@ -37,7 +37,7 @@ import Layout from "@/components/Layout.vue"
 import LocationStats from "@/modules/langStats/components/LocationStats.vue"
 import WorldStates from "@/modules/langStats/components/WorldStates.vue"
 import { useLangStats } from "@/modules/langStats/store/useLangStats"
-import type { LangStats } from "@/types/github.d"
+import type { LangStats } from "@/types/main"
 
 const props = defineProps<{ langs: LangStats[] }>()
 const { statsStore } = useLangStats()

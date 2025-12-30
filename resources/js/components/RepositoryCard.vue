@@ -56,7 +56,7 @@
 import { router } from "@inertiajs/vue3"
 import { ref } from "vue"
 import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
-import type { GithubRepository } from "@/types/github"
+import type { GithubRepository } from "@/types/main"
 import RepositoryBreadCrumb from "./repository/RepositoryBreadCrumb.vue"
 
 const loading = ref<boolean>(false)

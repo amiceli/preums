@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import { computed } from "vue"
 import { showOrganizationHistory, showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
-import type { GithubRepository } from "@/types/github"
+import type { GithubRepository } from "@/types/main"
 
 const props = defineProps<{
     repo: GithubRepository

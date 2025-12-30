@@ -56,7 +56,7 @@
 import Skeleton from "@/components/common/Skeleton.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import { useLangStats } from "@/modules/langStats/store/useLangStats"
-import { GithubRepository } from "@/types/github"
+import { GithubRepository } from "@/types/main"
 
 const { oldestRepository, starredRepository, isLoading, recentRepository } = useLangStats()
 </script>

@@ -43,7 +43,7 @@
 <script lang="ts" setup>
 import Chart from "chart.js/auto"
 import { onMounted, useTemplateRef } from "vue"
-import type { GithubCommit, GithubCommitActivity, GithubCommitDiff } from "@/types/github"
+import type { GithubCommit, GithubCommitActivity, GithubCommitDiff } from "@/types/main"
 import Skeleton from "../common/Skeleton.vue"
 import CommitCard from "./CommitCard.vue"
 

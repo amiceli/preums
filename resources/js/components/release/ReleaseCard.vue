@@ -49,7 +49,7 @@
 <script lang="ts" setup>
 import { computed } from "vue"
 import { showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
-import type { GithubRelease } from "@/types/github"
+import type { GithubRelease } from "@/types/main"
 
 const props = defineProps<{
     release: GithubRelease

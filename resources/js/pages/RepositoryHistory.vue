@@ -67,7 +67,7 @@ import RepositoryDetails from "@/components/repository/RepositoryDetails.vue"
 import RepositoryLanguages from "@/components/repository/RepositoryLanguages.vue"
 import RepositoryRelease from "@/components/repository/RepositoryRelease.vue"
 import RepositoryTopics from "@/components/repository/RepositoryTopics.vue"
-import type { GithubCommit, GithubCommitActivity, GithubCommitDiff, GithubRelease, GithubSearchResultItem } from "@/types/github"
+import type { GithubCommit, GithubCommitActivity, GithubCommitDiff, GithubRelease, GithubSearchResultItem } from "@/types/main"
 
 const props = defineProps<{
     repository: GithubSearchResultItem

@@ -55,7 +55,7 @@ import Layout from "@/components/Layout.vue"
 import MainTitle from "@/components/MainTitle.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import SearchForm from "@/components/search/SearchForm.vue"
-import type { GithubSearchResult } from "@/types/github"
+import type { GithubSearchResult } from "@/types/main"
 
 const props = defineProps<{
     oldestRepos: {
