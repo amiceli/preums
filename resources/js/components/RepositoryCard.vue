@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3"
 import { ref } from "vue"
-import { showRepositoryHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { showRepositoryHistory } from "@/actions/App/Http/Controllers/MainController"
 import type { GithubRepository } from "@/types/main"
 import RepositoryBreadCrumb from "./repository/RepositoryBreadCrumb.vue"
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
-class GithubController extends Controller {
+class MainController extends Controller {
     private GithubApi $client;
 
     public function __construct() {

@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue"
-import { showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { showUserHistory } from "@/actions/App/Http/Controllers/MainController"
 import type { GithubRelease } from "@/types/main"
 
 const props = defineProps<{

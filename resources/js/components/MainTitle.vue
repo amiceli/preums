@@ -24,7 +24,7 @@
 // @ts-expect-error
 import Typewriter from "typewriter-effect/dist/core"
 import { onMounted, useTemplateRef } from "vue"
-import { langHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { langHistory } from "@/actions/App/Http/Controllers/MainController"
 
 const props = defineProps<{ langs: string[] }>()
 const forLang = useTemplateRef("for-lang")

@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { road } from "@/actions/App/Http/Controllers/GithubController"
+import { road } from "@/actions/App/Http/Controllers/MainController"
 </script>
 
 <style scoped>
