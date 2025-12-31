@@ -6,6 +6,7 @@ use App\Models\LangAuthor;
 use App\Models\ProLang;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ProLangAssets extends Command {
     /**
@@ -42,6 +43,8 @@ class ProLangAssets extends Command {
      * Execute the console command.
      */
     public function handle() {
+        Log::info('action=prolang_assets_command, status=started');
+
         LangAuthor::whereNotNull('link')->each(
             function ($author) {
                 $img = $this->getWikiImageSrc($author->link);
@@ -61,5 +64,7 @@ class ProLangAssets extends Command {
                 );
             }
         );
+
+        Log::info('action=prolang_assets_command, status=finished');
     }
 }
