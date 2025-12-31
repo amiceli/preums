@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FrozenRepository;
 use App\Models\GithubApi;
 use App\Models\ProLang;
 use App\Models\YearGroup;
@@ -21,12 +22,15 @@ class MainController extends Controller {
      * Homepage show oldest and starred repositories
      */
     public function index(): \Inertia\Response {
-        $repositories = $this->client->getOldestStarredRepositories();
+        $repositories = FrozenRepository::orderBy('year')
+            ->orderBy('githubCreatedAt', 'asc')
+            ->get()
+            ->groupBy('year')
+            ->toArray();
+
         $allLangs = ProLang::pluck('name')->toArray();
 
         shuffle($allLangs);
-
-        Log::info('action=root_index');
 
         return Inertia::render('HomePage', array(
             'oldestRepos' => $repositories,

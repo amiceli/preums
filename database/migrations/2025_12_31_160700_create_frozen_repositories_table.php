@@ -12,22 +12,23 @@ return new class extends Migration {
         Schema::create('frozen_repositories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('github_id');
+            $table->string('githubId');
             $table->string('name');
-            $table->string('full_name');
-            $table->longText('description');
+            $table->string('fullName');
+            $table->longText('description')->nullable();
             $table->string('url');
-            $table->dateTime('github_created_at');
-            $table->dateTime('github_updated_at');
-            $table->string('language');
+            $table->dateTime('githubCreatedAt');
+            $table->dateTime('githubUpdatedAt');
+            $table->string('language')->nullable();
             $table->json('topics');
             $table->unsignedInteger('watchers');
             $table->unsignedInteger('forks');
             $table->unsignedInteger('stars');
-            $table->boolean('owner_is_organization');
-            $table->string('owner_login');
-            $table->string('owner_github_id');
-            $table->string('avatar_url');
+            $table->boolean('ownerIsOrganization');
+            $table->string('ownerLogin');
+            $table->string('ownerGithubId');
+            $table->string('ownerAvatarUrl');
+            $table->string('year');
         });
     }
 
