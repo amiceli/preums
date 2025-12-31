@@ -24,6 +24,8 @@ class MainController extends Controller {
         $repositories = $this->client->getOldestStarredRepositories();
         $allLangs = ProLang::pluck('name')->toArray();
 
+        shuffle($allLangs);
+
         Log::info('action=root_index');
 
         return Inertia::render('HomePage', array(
