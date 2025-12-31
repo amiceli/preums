@@ -28,10 +28,6 @@ Route::get('/rate-limit', array(MainController::class, 'rateLimit'))
     ->name('rate-limit')
     ->middleware(HandleGithubRateLimit::class);
 
-Route::get('/lang-stats', array(MainController::class, 'langStats'))
-    ->name('lang-stats')
-    ->middleware(HandleGithubRateLimit::class);
-
 Route::get('/lang-history', array(MainController::class, 'langHistory'))
     ->name('lang-history')
     ->middleware(HandleGithubRateLimit::class);

@@ -92,12 +92,6 @@ export type GithubRelease = {
     authorImg: string
 }
 
-export type LangStats = {
-    type: string
-    name: string
-    pushers: number
-}
-
 export type Road = {
     builtOn: Record<string, GithubRepository>
     beautifulCode: Record<string, GithubRepository>
