@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { showUserHistory } from "@/actions/App/Http/Controllers/MainController"
 import type { GithubCommitDiff, GithubRelease } from "@/types/main"
 import Skeleton from "../common/Skeleton.vue"
 import ReleaseCard from "../release/ReleaseCard.vue"

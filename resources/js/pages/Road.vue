@@ -212,7 +212,7 @@
 </template>
 
 <script setup lang="ts">
-import { showRepositoryHistory, showUserHistory } from "@/actions/App/Http/Controllers/GithubController"
+import { showRepositoryHistory, showUserHistory } from "@/actions/App/Http/Controllers/MainController"
 import Layout from "@/components/Layout.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
 import type { Road } from "@/types/main"

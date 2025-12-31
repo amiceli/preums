@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import MasonryWall from "@yeger/vue-masonry-wall"
 import { computed, ref } from "vue"
-import { search } from "@/actions/App/Http/Controllers/GithubController"
+import { search } from "@/actions/App/Http/Controllers/MainController"
 import Layout from "@/components/Layout.vue"
 import LangCard from "@/components/prolang/LangCard.vue"
 import type { YearGroup } from "@/types/main"

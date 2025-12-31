@@ -36,14 +36,6 @@
                         />
                     </template>
                 </MasonryWall>
-                 <!-- <div class="most__grid">
-                    <div v-for="item in props.oldestRepos[p]" :key="item.id">
-                        <RepositoryCard
-                            :repository="item"
-                            :show-avatar="true"
-                        />
-                    </div>
-                </div>  -->
             </template>
         </div>
     </Layout>

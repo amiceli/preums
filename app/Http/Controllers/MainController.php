@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\GithubApi;
-use App\Models\LangStats;
+use App\Models\ProLang;
 use App\Models\YearGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
-class GithubController extends Controller {
+class MainController extends Controller {
     private GithubApi $client;
 
     public function __construct() {
@@ -22,7 +22,9 @@ class GithubController extends Controller {
      */
     public function index(): \Inertia\Response {
         $repositories = $this->client->getOldestStarredRepositories();
-        $allLangs = LangStats::pluck('name')->toArray();
+        $allLangs = ProLang::pluck('name')->toArray();
+
+        shuffle($allLangs);
 
         Log::info('action=root_index');
 
@@ -85,19 +87,6 @@ class GithubController extends Controller {
     public function rateLimit() {
         return Inertia::render('RateLimit', array(
             'nextReset' => Session::get('nextReset'),
-        ));
-    }
-
-    /**
-     * Show lang stats page
-     */
-    public function langStats() {
-        $langs = LangStats::orderBy('pushers', 'desc')->get();
-
-        Log::info('action=show_lang_stats');
-
-        return Inertia::render('LanguageStats', array(
-            'langs' => $langs,
         ));
     }
 

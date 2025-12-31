@@ -1,9 +1,9 @@
 <template>
-    <div class="p-main">
+    <div class="main__title">
         <div>
             <i class="hn hn-angellist"></i>
         </div>
-        <div class="p-main__title">
+        <div>
             <h1>
                 <b>Preums</b>, reminds me
                 that coding with
@@ -12,8 +12,8 @@
                 <b class="for--error">magical.</b>
             </h1>
             <h3>
-                <a :href="langStats.url()">
-                    See language stats
+                <a :href="langHistory.url()">
+                    See language histories
                 </a>
             </h3>
         </div>
@@ -24,7 +24,7 @@
 // @ts-expect-error
 import Typewriter from "typewriter-effect/dist/core"
 import { onMounted, useTemplateRef } from "vue"
-import { langStats } from "@/actions/App/Http/Controllers/GithubController"
+import { langHistory } from "@/actions/App/Http/Controllers/MainController"
 
 const props = defineProps<{ langs: string[] }>()
 const forLang = useTemplateRef("for-lang")
@@ -39,16 +39,16 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-.p-main {
+<style lang="scss" scoped>
+.main__title {
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: 20px;
     align-items: center;
     padding-top: 40px;
-}
 
-.p-main .hn-angellist {
-    font-size: 200px;
+    .hn-angellist {
+        font-size: 200px;
+    }
 }
 </style>
