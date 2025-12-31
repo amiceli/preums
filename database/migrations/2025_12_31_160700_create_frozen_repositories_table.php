@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->string('full_name');
             $table->longText('description');
             $table->string('url');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->dateTime('github_created_at');
+            $table->dateTime('github_updated_at');
             $table->string('language');
             $table->json('topics');
             $table->unsignedInteger('watchers');
