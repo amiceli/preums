@@ -1,8 +1,10 @@
 <?php
 
-// use Illuminate\Foundation\Inspiring;
-// use Illuminate\Support\Facades\Artisan;
+use App\Console\Commands\FroozeRepositories;
+use App\Console\Commands\LoadProLang;
+use App\Console\Commands\ProLangAssets;
+use Illuminate\Support\Facades\Schedule;
 
-// Artisan::command('inspire', function () {
-//     $this->comment(Inspiring::quote());
-// })->purpose('Display an inspiring quote');
+Schedule::command(LoadProLang::class)->monthly();
+Schedule::command(ProLangAssets::class)->monthly();
+Schedule::command(FroozeRepositories::class)->monthly();

@@ -121,6 +121,10 @@ class LoadProLang extends Command {
      * Execute the console command.
      */
     public function handle() {
+        Log::info('action=load_prolang_command, status=started');
+
         $this->getLanguages(1);
+
+        Log::info('action=load_prolang_command, status=finished');
     }
 }

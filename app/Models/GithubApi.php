@@ -16,24 +16,12 @@ use Illuminate\Support\Facades\Log;
 
 class GithubApi extends ApiClient {
     /**
-     * @return array<int, GithubRepository[]>
+     * @return GithubRepository[]
      */
     public function getOldestStarredRepositories(): array {
         $repositories = GithubRepositoryApi::get()->getOldestStarredRepositories();
-        $years = array();
 
-        foreach ($repositories as $key => $item) {
-            $year = $item->createdAt->format('Y');
-            $needKey = array_key_exists($year, $years) === false;
-
-            if ($needKey) {
-                $years[$year] = array();
-            }
-
-            array_push($years[$year], $item);
-        }
-
-        return $years;
+        return $repositories;
     }
 
     public function getOldestRepository(string $lang) {
