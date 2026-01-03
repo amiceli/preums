@@ -12,6 +12,7 @@ return new class extends Migration {
         Schema::table('pro_langs', function (Blueprint $table) {
             $table->string('rawCodeLink')->nullable();
             $table->string('maintainRepo')->nullable();
+            $table->string('rawCode')->nullable();
         });
     }
 
@@ -22,6 +23,7 @@ return new class extends Migration {
         Schema::table('pro_langs', function (Blueprint $table) {
             $table->dropColumn('githubRaw');
             $table->dropColumn('maintainRepo');
+            $table->dropColumn('rawCode');
         });
     }
 };

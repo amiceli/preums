@@ -408,6 +408,40 @@ class ProLangAssets extends Command {
                 'maintainRepo' => null,
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/p/Pascal.p',
             ),
+            'ALGAE' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/a/Algae.algae',
+            ),
+            'CORAL66' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Coral%2066.cor',
+            ),
+            'Simula' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/s/Simula.sim',
+            ),
+            'Simula 67' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/s/Simula.sim',
+            ),
+            'Icon' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/i/Icon.icn',
+            ),
+            'Chapel' => array(
+                'maintainRepo' => 'https://github.com/chapel-lang/chapel',
+                'rawCode' => <<<'EOD'
+                    writeln("Hello, world!");
+
+                    // create a parallel task per processor core
+                    coforall tid in 0..<here.maxTaskPar do
+                      writeln("Hello from task ", tid);
+
+                    // print these 1,000 messages in parallel using all cores
+                    forall i in 1..1000 do
+                      writeln("Hello from iteration ", i);
+                EOD
+            ),
         );
 
         DB::transaction(function () use ($langsData) {
