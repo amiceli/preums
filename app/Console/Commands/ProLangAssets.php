@@ -144,6 +144,22 @@ class ProLangAssets extends Command {
                 'maintainRepo' => 'https://github.com/clojure/clojure',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Clojure.clj',
             ),
+            'REFAL' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/r/Refal.ref',
+            ),
+            'SNOBOL' => array(
+                'maintainRepo' => 'https://github.com/seanpm2001/Learn-SNOBOL?tab=readme-ov-file#Version-history',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/s/SNOBOL',
+            ),
+            'APL' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/a/APL.apl',
+            ),
+            'SNOBOL' => array(
+                'maintainRepo' => 'https://github.com/seanpm2001/Learn-SNOBOL?tab=readme-ov-file#Version-history',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/s/SNOBOL',
+            ),
             'FORTRAN' => array(
                 'maintainRepo' => 'https://github.com/fortran-lang',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/f/Fortran.f90',
@@ -332,7 +348,43 @@ class ProLangAssets extends Command {
                 'maintainRepo' => 'https://github.com/dotnet/roslyn',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/v/Visual%20Basic.vb',
             ),
-            'ANS Forth' => array(
+            'SQL' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/s/SQL.sql',
+            ),
+            'Objective-C' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/o/Objective%20C.m',
+            ),
+            'PostScript' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/p/PostScript.ps',
+            ),
+            'Miranda' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/m/Miranda.m',
+            ),
+            'Red' => array(
+                'maintainRepo' => 'https://github.com/red/red',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/r/Red.red',
+            ),
+            'Ceylon' => array(
+                'maintainRepo' => 'https://github.com/eclipse-archived/ceylon',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Ceylon.ceylon',
+            ),
+            'Genie' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/p/ParaSail.psi',
+            ),
+            'Parasail' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/g/Genie.gs',
+            ),
+            'Raku' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/r/Raku.raku',
+            ),
+            'Forth' => array(
                 'maintainRepo' => 'https://github.com/Forth-Standard/forth-standard',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/f/Forth.fth',
             ),
