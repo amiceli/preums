@@ -428,6 +428,32 @@ class ProLangAssets extends Command {
                 'maintainRepo' => null,
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/i/Icon.icn',
             ),
+            'FLOW-MATIC' => array(
+                'maintainRepo' => null,
+                'rawCode' => <<<'EOD'
+                    (0)  INPUT INVENTORY FILE-A PRICE FILE-B ; OUTPUT PRICED-INV FILE-C UNPRICED-INV
+                        FILE-D ; HSP D .
+                    (1)  COMPARE PRODUCT-NO (A) WITH PRODUCT-NO (B) ; IF GREATER GO TO OPERATION 10 ;
+                        IF EQUAL GO TO OPERATION 5 ; OTHERWISE GO TO OPERATION 2 .
+                    (2)  TRANSFER A TO D .
+                    (3)  WRITE-ITEM D .
+                    (4)  JUMP TO OPERATION 8 .
+                    (5)  TRANSFER A TO C .
+                    (6)  MOVE UNIT-PRICE (B) TO UNIT-PRICE (C) .
+                    (7)  WRITE-ITEM C .
+                    (8)  READ-ITEM A ; IF END OF DATA GO TO OPERATION 14 .
+                    (9)  JUMP TO OPERATION 1 .
+                    (10)  READ-ITEM B ; IF END OF DATA GO TO OPERATION 12 .
+                    (11)  JUMP TO OPERATION 1 .
+                    (12)  SET OPERATION 9 TO GO TO OPERATION 2 .
+                    (13)  JUMP TO OPERATION 2 .
+                    (14)  TEST PRODUCT-NO (B) AGAINST ; IF EQUAL GO TO OPERATION 16 ;
+                            OTHERWISE GO TO OPERATION 15 .
+                    (15)  REWIND B .
+                    (16)  CLOSE-OUT FILES C ; D .
+                    (17)  STOP . (END)
+                EOD
+            ),
             'Chapel' => array(
                 'maintainRepo' => 'https://github.com/chapel-lang/chapel',
                 'rawCode' => <<<'EOD'
@@ -440,6 +466,29 @@ class ProLangAssets extends Command {
                     // print these 1,000 messages in parallel using all cores
                     forall i in 1..1000 do
                       writeln("Hello from iteration ", i);
+                EOD
+            ),
+            'COWSEL' => array(
+                'maintainRepo' => null,
+                'rawCode' => <<<'EOD'
+                    function member
+                    lambda x y
+                    comment Is x a member of list y;
+                    define      y atom then *0 end
+                                y hd x equal then *1 end
+                                y tl -> y repeat up
+                EOD
+            ),
+            'MUMPS' => array(
+                'maintainRepo' => null,
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/m/Mumps.m',
+            ),
+            'SETL' => array(
+                'maintainRepo' => null,
+                'rawCode' => <<<'EOD'
+                    procedure factorial(n); -- calculates the factorial n!
+                    return if n = 1 then 1 else n * factorial(n - 1) end if;
+                    end factorial;
                 EOD
             ),
         );
