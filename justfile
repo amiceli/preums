@@ -75,3 +75,7 @@ sync_pro_lang:
     just clean
     php artisan app:load-pro-lang
     php artisan app:pro-lang-assets
+
+clean_smala:
+    php artisan config:clear
+    php artisan config:cache
