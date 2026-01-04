@@ -121,9 +121,10 @@ export type ProLangLanguage = {
     name: string
     years: string
     authors: ProLangAuthor[]
-    rawCodeLink: string | null
-    maintainRepo: string | null
+    mainRepository: string | null
+    codeTitle: string
     rawCode: string | null
+    rawCodeLink: string | null
 }
 
 export type YearGroup = {

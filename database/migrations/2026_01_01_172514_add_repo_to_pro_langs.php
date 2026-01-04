@@ -10,9 +10,11 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::table('pro_langs', function (Blueprint $table) {
-            $table->string('rawCodeLink')->nullable();
-            $table->string('maintainRepo')->nullable();
-            $table->string('rawCode')->nullable();
+            $table->string('mainRepository')->nullable();
+            $table->string('codeTitle')->default('Sample code');
+            $table->longText('rawCode')->nullable();
+            $table->longText('rawCodeLink')->nullable();
+            $table->boolean('isHidden')->default(false);
         });
     }
 
@@ -21,9 +23,10 @@ return new class extends Migration {
      */
     public function down(): void {
         Schema::table('pro_langs', function (Blueprint $table) {
-            $table->dropColumn('githubRaw');
-            $table->dropColumn('maintainRepo');
+            $table->dropColumn('mainRepository');
+            $table->dropColumn('codeTitle');
             $table->dropColumn('rawCode');
+            $table->dropColumn('isHidden');
         });
     }
 };
