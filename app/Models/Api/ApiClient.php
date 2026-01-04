@@ -14,13 +14,14 @@ abstract class ApiClient {
     protected readonly string $root;
 
     public function __construct(string $root = '') {
-        $this->token = env('GITHUB_TOKEN') ?? '';
+        $this->token = config('services.github.token') ?? '';
         $this->root = $root;
     }
 
     protected function makeGet(string $url, ?array $options = null): Response {
         $response = Http::withHeaders(array(
             'Authorization' => 'Bearer '.$this->token,
+            'X-GitHub-Api-Version' => '2022-11-28',
         ))->get($url, $options);
 
         return $response;

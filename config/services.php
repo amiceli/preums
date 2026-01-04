@@ -14,6 +14,11 @@ return array(
     |
     */
 
+    'github' => array(
+        'token' => env('GITHUB_API_TOKEN'),
+        'stats' => env('GITHUB_STATS_YEAR'),
+    ),
+
     'postmark' => array(
         'key' => env('POSTMARK_API_KEY'),
     ),
