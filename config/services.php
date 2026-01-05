@@ -19,6 +19,12 @@ return array(
         'stats' => env('GITHUB_STATS_YEAR'),
     ),
 
+    'umami' => array(
+        'url' => env('UMAMI_URL'),
+        'websiteId' => env('UMAMI_WEBSITE_ID'),
+        'domains' => env('UMAMI_DOMAIN'),
+    ),
+
     'postmark' => array(
         'key' => env('POSTMARK_API_KEY'),
     ),
