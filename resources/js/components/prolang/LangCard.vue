@@ -26,8 +26,6 @@
             </wa-button>
             &nbsp;
             <wa-button
-                variant="neutral"
-                appearance="outlined"
                 :href="props.lang.mainRepository"
                 target="_blank"
                 v-if="props.lang.mainRepository"
