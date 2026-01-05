@@ -93,16 +93,26 @@ class GithubApi extends ApiClient {
 
     public function getRateLimit(): GithubRateLimit {
         $response = $this->makeGet('https://api.github.com/rate_limit', null);
-        $states = $response->json();
 
-        $nextReset = (new \DateTime())->setTimestamp($states['rate']['reset']);
+        try {
+            $states = $response->json();
 
-        Log::info('action=rate_limit, next_reset='.$nextReset->format('c'));
+            $nextReset = (new \DateTime())->setTimestamp($states['rate']['reset']);
 
-        return new GithubRateLimit(
-            remaining: $states['rate']['remaining'] > 0,
-            nextReset: $nextReset,
-        );
+            Log::info('action=rate_limit, next_reset='.$nextReset->format('c'));
+
+            return new GithubRateLimit(
+                remaining: $states['rate']['remaining'] > 0,
+                nextReset: $nextReset,
+            );
+        } catch (\Exception $e) {
+            Log::error('action=load_rate_limit, status=failed, status='.$response->status().", reason=$e");
+
+            return new GithubRateLimit(
+                remaining: false,
+                nextReset: new \DateTime(),
+            );
+        }
     }
 
     private function getRepositories(array $tools) {

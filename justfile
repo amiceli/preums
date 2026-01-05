@@ -70,8 +70,13 @@ up_adminer:
 clean:
     php artisan migrate:fresh
 
-# Call prolang api
-sync_pro_lang:
+# Run all commands to sync
+sync:
     just clean
+    php artisan app:frooze-repositories
     php artisan app:load-pro-lang
     php artisan app:pro-lang-assets
+
+clean_smala:
+    php artisan config:clear
+    php artisan config:cache
