@@ -11,17 +11,11 @@
                 </h1>
                 <p>
                     Thanks to
-                    <a
-                        target="_blank"
-                        href="/github/leachim6/hello-world"
-                    >
+                    <a target="_blank" href="/github/leachim6/hello-world">
                         leachim6/hello-world
                     </a>
                     and
-                    <a
-                        target="_blank"
-                        href="/github/acmeism/RosettaCodeData"
-                    >
+                    <a target="_blank" href="/github/acmeism/RosettaCodeData">
                         acmeism/RosettaCodeData
                     </a>
                     for all code samples ❤️ !
@@ -29,14 +23,20 @@
             </div>
         </div>
         <div class="lang__form">
+            <wa-select label="Specific year ?" v-model="selectedOption">
+                <wa-option v-for="op in otpions" :value="op">{{
+                    op
+                }}</wa-option>
+            </wa-select>
             <wa-input
-                label="Specific year ?"
+                label="To"
                 v-model="searchYear"
                 placeholder="Like 1993 form OM foot club ?"
                 with-clear
                 type="number"
                 min="0"
-            ></wa-input>
+            >
+            </wa-input>
             <wa-input
                 label="Search a lang"
                 v-model="searchLang"
@@ -64,17 +64,26 @@
 <script setup lang="ts">
 import MasonryWall from "@yeger/vue-masonry-wall"
 import { computed, ref } from "vue"
-import { search } from "@/actions/App/Http/Controllers/MainController"
 import Layout from "@/components/Layout.vue"
 import LangCard from "@/components/prolang/LangCard.vue"
 import type { YearGroup } from "@/types/main"
 
 const searchYear = ref<string>("")
 const searchLang = ref<string>("")
+const otpions = ["=", ">=", "<=", ">", "<"]
+const selectedOption = ref<string>("=")
 
 const props = defineProps<{
     groups: YearGroup[]
 }>()
+
+const ops: Record<string, Function> = {
+    "=": (n: number) => n === year,
+    ">": (n: number) => n > year,
+    ">=": (n: number) => n >= year,
+    "<": (n: number) => n < year,
+    "<=": (n: number) => n <= year,
+}
 
 const showGroups = computed(() => {
     return props.groups
@@ -82,7 +91,15 @@ const showGroups = computed(() => {
             return {
                 ...g,
                 languages: g.languages.filter((l) => {
-                    return l.years.includes(searchYear.value) && l.name.toLowerCase().includes(searchLang.value.toLowerCase())
+                    const search = searchLang.value.toLowerCase()
+                    const year = Number(searchYear.value)
+
+                    const nameIsEqual = l.name.toLowerCase().includes(search)
+                    const years = JSON.parse(l.years)
+
+                    const yearIsEqual = !year || years.some(ops[selectedOption.value])
+
+                    return nameIsEqual && yearIsEqual
                 }),
             }
         })
@@ -105,7 +122,7 @@ const showGroups = computed(() => {
 
 .lang__form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 180px 1fr 1fr;
     gap: 40px;
     align-items: center;
     justify-content: space-between;
@@ -120,7 +137,7 @@ const showGroups = computed(() => {
 
     .history__title {
         display: flex;
-        height : 100%;
+        height: 100%;
         justify-content: center;
     }
 }
