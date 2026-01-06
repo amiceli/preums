@@ -1102,7 +1102,7 @@ class ProLangAssets extends Command {
                 if (array_key_exists('rawCodeLink', $value)) {
                     $value['codeTitle'] = str_contains($value['rawCodeLink'], 'RosettaCodeData')
                         ? 'Fibonacci'
-                        : (str_contains($value['rawCodeLink'], 'hello-world') ? 'Hello worlds' : null);
+                        : (str_contains($value['rawCodeLink'], 'hello-world') ? 'Hello worlds' : 'Sample code');
                 }
 
                 if (count($value) > 0) {
