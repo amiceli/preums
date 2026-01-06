@@ -77,14 +77,6 @@ const props = defineProps<{
     groups: YearGroup[]
 }>()
 
-const ops: Record<string, Function> = {
-    "=": (n: number) => n === year,
-    ">": (n: number) => n > year,
-    ">=": (n: number) => n >= year,
-    "<": (n: number) => n < year,
-    "<=": (n: number) => n <= year,
-}
-
 const showGroups = computed(() => {
     return props.groups
         .map((g) => {
@@ -93,6 +85,14 @@ const showGroups = computed(() => {
                 languages: g.languages.filter((l) => {
                     const search = searchLang.value.toLowerCase()
                     const year = Number(searchYear.value)
+
+                    const ops: Record<string, Function> = {
+                        "=": (n: number) => n === year,
+                        ">": (n: number) => n > year,
+                        ">=": (n: number) => n >= year,
+                        "<": (n: number) => n < year,
+                        "<=": (n: number) => n <= year,
+                    }
 
                     const nameIsEqual = l.name.toLowerCase().includes(search)
                     const years = JSON.parse(l.years)
