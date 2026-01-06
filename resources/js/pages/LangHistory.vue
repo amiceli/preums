@@ -9,6 +9,23 @@
                     <b class="for--info">Preums</b>, tell me the history of
                     programming languages since the dawn of time.
                 </h1>
+                <p>
+                    Thanks to
+                    <a
+                        target="_blank"
+                        href="/github/leachim6/hello-world"
+                    >
+                        leachim6/hello-world
+                    </a>
+                    and
+                    <a
+                        target="_blank"
+                        href="/github/acmeism/RosettaCodeData"
+                    >
+                        acmeism/RosettaCodeData
+                    </a>
+                    for all code samples ❤️ !
+                </p>
             </div>
         </div>
         <div class="lang__form">
@@ -82,7 +99,7 @@ const showGroups = computed(() => {
     padding-top: 40px;
 }
 
-.main__title .hn {
+.main__title .hn-code {
     font-size: 200px;
 }
 
