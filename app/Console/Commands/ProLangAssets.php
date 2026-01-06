@@ -398,8 +398,23 @@ class ProLangAssets extends Command {
             'SPARK' => array(
                 'mainRepository' => 'https://github.com/AdaCore/spark2014?utm_source=chatgpt.com',
             ),
-            'Turbo Pascal' => array(),
-            'Turbo Pascal OOP' => array(),
+            'Turbo Pascal' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/keskival/turbo-pascal-experiments/refs/heads/master/DISK/COOL.PAS',
+            ),
+            'Turbo Pascal OOP' => array(
+                'rawCode' => <<<'EOD'
+                    type object-identifier = object
+                    private
+                    field1 : field-type;
+                    field2 : field-type;
+                    ...
+                    public
+                    procedure proc1;
+                    function f1(): function-type;
+                    end;
+                    var objectvar : object-identifier;
+                EOD
+            ),
             'Vala' => array(
                 'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Vala/fibonacci-sequence-2.vala',
             ),
@@ -518,14 +533,13 @@ class ProLangAssets extends Command {
                                 y tl -> y repeat up
                 EOD
             ),
-            // TODO update / check
             'R' => array(
                 'mainRepository' => 'https://github.com/wch/r-source',
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/r/R.R',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/R/fibonacci-sequence-1.r',
             ),
             'Python' => array(
                 'mainRepository' => 'https://github.com/python/cpython',
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/p/Python%203.py',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Python/fibonacci-sequence-15.py',
             ),
             'C#' => array(
                 'mainRepository' => 'https://github.com/dotnet/roslyn',
@@ -533,7 +547,7 @@ class ProLangAssets extends Command {
             ),
             'Erlang' => array(
                 'mainRepository' => 'https://github.com/erlang/otp',
-                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Erlang/fibonacci-sequence-4.erl',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Erlang/fibonacci-sequence-1.erl',
             ),
             'Nim' => array(
                 'mainRepository' => 'https://github.com/nim-lang/Nim',
@@ -560,7 +574,7 @@ class ProLangAssets extends Command {
             ),
             'SNOBOL' => array(
                 'mainRepository' => 'https://github.com/seanpm2001/Learn-SNOBOL?tab=readme-ov-file#Version-history',
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/s/SNOBOL',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/SNOBOL4/fibonacci-sequence-2.sno',
             ),
             'FORTRAN' => array(
                 'mainRepository' => 'https://github.com/fortran-lang',
@@ -580,7 +594,7 @@ class ProLangAssets extends Command {
             ),
             'Go' => array(
                 'mainRepository' => 'https://github.com/golang/go',
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/g/Go.go',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Go/fibonacci-sequence-2.go',
             ),
             'BCPL' => array(
                 'mainRepository' => 'https://github.com/8l/bcpl',
@@ -616,7 +630,7 @@ class ProLangAssets extends Command {
             ),
             'Lua' => array(
                 'mainRepository' => 'https://github.com/lua/lua',
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/l/Lua.lua',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Lua/fibonacci-sequence-2.lua',
             ),
             'Racket' => array(
                 'mainRepository' => 'https://github.com/racket/racket',
@@ -806,10 +820,11 @@ class ProLangAssets extends Command {
                     END
                 EOD
             ),
-            // TODO empty
             'BASIC FOUR' => array(),
             'Boehm unnamed coding system' => array(),
-            'CLIPPER' => array(),
+            'CLIPPER' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Clipper.prg',
+            ),
             'CLU' => array(),
             'COMAL' => array(),
             'COMIT' => array(),
@@ -820,11 +835,15 @@ class ProLangAssets extends Command {
             'CS-4' => array(),
             'Claire' => array(),
             'Bourne Shell' => array(),
-            'Brainfuck' => array(),
+            'Brainfuck' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/b/Brainfuck.bf',
+            ),
             'C with classes' => array(),
             'C++' => array(),
             'Caml Light' => array(),
-            'Clean' => array(),
+            'Clean' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Clean.icl',
+            ),
             'Boo' => array(),
             'Cobra' => array(),
             'CoffeeScript' => array(),
@@ -1026,7 +1045,9 @@ class ProLangAssets extends Command {
             'occam 2' => array(),
             'EuLisp' => array(),
             'Fortran 2018' => array(),
-            'GDScript' => array(),
+            'GDScript' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/g/GDScript.gd',
+            ),
             'GPSS' => array(),
             'Hamilton C shell' => array(),
             'Io' => array(),
@@ -1035,13 +1056,23 @@ class ProLangAssets extends Command {
             'KornShell' => array(),
             'LabVIEW' => array(),
             'Modula-3' => array(),
-            'Nemerle' => array(),
-            'Oberon' => array(),
+            'Nemerle' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Nemerle/fibonacci-sequence-1.nemerle',
+            ),
+            'Oberon' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Oberon/fibonacci-sequence.oberon',
+            ),
             'Oberon-2' => array(),
             'PL/M' => array(),
-            'PowerBASIC' => array(),
-            'Pure' => array(),
-            'PureBasic' => array(),
+            'PowerBASIC' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/PowerBASIC/fibonacci-sequence.basic',
+            ),
+            'Pure' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Pure/fibonacci-sequence.pure',
+            ),
+            'PureBasic' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/PureBasic/fibonacci-sequence-2.basic',
+            ),
             'Q' => array(),
             'QuickBASIC' => array(),
             'REXX' => array(),
@@ -1050,12 +1081,17 @@ class ProLangAssets extends Command {
             'Speakeasy' => array(),
             'Speakeasy-IV' => array(),
             'Subtext' => array(),
-            'Turing' => array(),
+            'Turing' => array(
+                'mainRepository' => 'https://github.com/TuringLang',
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Turing/fibonacci-sequence.turing',
+            ),
             'UnrealScript' => array(),
             'Visual Basic' => array(),
             'Xojo' => array(),
             'Z Shell' => array(),
-            'occam' => array(),
+            'occam' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/o/occam.occam',
+            ),
             'Dart' => array(),
             'Common Lisp' => array(),
             'Windows PowerShell' => array(),
