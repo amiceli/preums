@@ -43,7 +43,7 @@ describe('FroozeRepositories', function () {
             FrozenRepository::where('name', 'remove-me')->first()
         )->toBe(null);
         expect(
-            FrozenRepository::all()->count()
+            FrozenRepository::where('forRoad', false)->count()
         )->toBe(count($repos));
         expect(
             FrozenRepository::where('name', 'beat.time')->first()

@@ -73,15 +73,21 @@
             </span>
         </div>
 
-        <wa-button slot="footer" variant="brand" pill @click="showCode()">
-            See details
+        <wa-button
+            slot="footer"
+            variant="brand"
+            pill
+            @click="showCode()"
+            v-if="hasEnoughData"
+        >
+            More details
         </wa-button>
     </wa-card>
 </template>
 
 <script lang="ts" setup>
 import { codeToHtml } from "shiki"
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import type { ProLangLanguage } from "@/types/main"
 
 const drawerOpen = ref<boolean>(false)
@@ -91,6 +97,9 @@ const props = defineProps<{
     lang: ProLangLanguage
 }>()
 
+const hasEnoughData = computed(() => {
+    return props.lang.link || props.lang.mainRepository
+})
 const castYears = JSON.parse(props.lang.years).join(", ")
 
 async function setCodeHtml(codeStr: string, lang?: string) {

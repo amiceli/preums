@@ -123,7 +123,7 @@ class GithubApi extends ApiClient {
         ), $tools);
     }
 
-    public function getRoad() {
+    public function getRoad(): array {
         $builtOn = $this->getRepositories(
             array(
                 'laravel/laravel', 'vuejs/core',  'sqlite/sqlite', 'inertiajs/inertia', 'nanostores/nanostores',
@@ -154,12 +154,13 @@ class GithubApi extends ApiClient {
             )
         );
 
-        return array(
-            'builtOn' => $builtOn,
-            'beautifulCode' => $beautifulCode,
-            'UiUx' => $UiUx,
-            'cleanRepo' => $cleanRepo,
-            'surprises' => $surprises,
+        return array_merge(
+            array(),
+            $builtOn,
+            $beautifulCode,
+            $UiUx,
+            $cleanRepo,
+            $surprises,
         );
     }
 }

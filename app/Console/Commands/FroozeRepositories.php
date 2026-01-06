@@ -22,20 +22,13 @@ class FroozeRepositories extends Command {
      */
     protected $description = 'Load and frooze oldest and starred repositories';
 
-    /**
-     * Execute the console command.
-     */
-    public function handle() {
-        $client = new GithubApi();
-        $repositories = $client->getOldestStarredRepositories();
-
-        FrozenRepository::truncate();
-
+    private function insertRepositories(array $list, bool $forRoad) {
         FrozenRepository::insert(
             array_map(
-                function ($rep) {
+                function ($rep) use ($forRoad) {
                     return array(
                         'created_at' => Carbon::now(),
+                        'forRoad' => $forRoad,
                         'name' => $rep->name,
                         'githubId' => $rep->id,
                         'fullName' => $rep->fullName,
@@ -54,7 +47,21 @@ class FroozeRepositories extends Command {
                         'ownerAvatarUrl' => $rep->owner->avatarUrl,
                         'year' => $rep->createdAt->format('Y'),
                     );
-                }, $repositories)
+                }, $list)
         );
+    }
+
+    /**
+     * Execute the console command.
+     */
+    public function handle() {
+        $client = new GithubApi();
+        $oldRepos = $client->getOldestStarredRepositories();
+        $roadRepos = $client->getRoad();
+
+        FrozenRepository::truncate();
+
+        $this->insertRepositories($oldRepos, false);
+        $this->insertRepositories($roadRepos, true);
     }
 }

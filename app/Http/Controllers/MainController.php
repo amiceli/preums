@@ -144,10 +144,28 @@ class MainController extends Controller {
     }
 
     public function road() {
-        $road = $this->client->getRoad();
-
         Log::info('action=show_road');
 
-        return Inertia::render('Road', $road);
+        return Inertia::render('Road', array(
+            'beautifulCode' => FrozenRepository::whereIn('fullName', array(
+                'biomejs/biome', 'laravel/pint',   'zed-industries/zed',
+            ))->get()->toArray(),
+            'builtOn' => FrozenRepository::whereIn('fullName', array(
+                'laravel/laravel', 'vuejs/core',  'sqlite/sqlite', 'inertiajs/inertia', 'nanostores/nanostores',
+            ))->get()->toArray(),
+            'UiUx' => FrozenRepository::whereIn('fullName', array(
+                'shoelace-style/webawesome', 'DerYeger/yeger',  'hackernoon/pixel-icon-library',
+            ))->get()->toArray(),
+            'cleanRepo' => FrozenRepository::whereIn('fullName', array(
+                'evilmartians/lefthook',
+                'conventional-changelog/commitlint',
+                'pestphp/pest',
+            ))->get()->toArray(),
+            'surprises' => FrozenRepository::whereIn('fullName', array(
+                'vwh/sqlite-online',
+                'htzh/leanproved',
+                'withastro/astro',
+            ))->get()->toArray(),
+        ));
     }
 }
