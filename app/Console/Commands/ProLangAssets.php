@@ -762,9 +762,7 @@ class ProLangAssets extends Command {
                 'mainRepository' => 'https://github.com/eclipse-archived/ceylon',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Ceylon.ceylon',
             ),
-            'Genie' => array(
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/p/ParaSail.psi',
-            ),
+            'Genie' => array(),
             'Forth' => array(
                 'mainRepository' => 'https://github.com/Forth-Standard/forth-standard',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/f/Forth.fth',
