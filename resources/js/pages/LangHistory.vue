@@ -53,7 +53,12 @@
             <div>
                 <MasonryWall :items="g.languages" :column-width="300" :gap="20">
                     <template #default="{ item }">
-                        <LangCard :lang="item" :key="item.apiId" />
+                        <LangCard
+                            :lang="item"
+                            :key="item.apiId"
+                            @select-lang="updateSelectedLang($event)"
+                            :selectedLang="selectedLang"
+                        />
                     </template>
                 </MasonryWall>
             </div>
@@ -70,12 +75,22 @@ import type { YearGroup } from "@/types/main"
 
 const searchYear = ref<string>("")
 const searchLang = ref<string>("")
+const selectedLang = ref<string | null>(null)
+
 const otpions = ["=", ">=", "<=", ">", "<"]
 const selectedOption = ref<string>("=")
 
 const props = defineProps<{
     groups: YearGroup[]
 }>()
+
+function updateSelectedLang(value: string) {
+    if (searchLang.value.length > 0) {
+        searchLang.value = value
+    }
+
+    selectedLang.value = value
+}
 
 const showGroups = computed(() => {
     return props.groups
@@ -86,7 +101,7 @@ const showGroups = computed(() => {
                     const search = searchLang.value.toLowerCase()
                     const year = Number(searchYear.value)
 
-                    const ops: Record<string, Function> = {
+                    const ops: Record<string, (a: number) => boolean> = {
                         "=": (n: number) => n === year,
                         ">": (n: number) => n > year,
                         ">=": (n: number) => n >= year,
