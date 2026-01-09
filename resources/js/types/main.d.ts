@@ -125,6 +125,8 @@ export type ProLangLanguage = {
     codeTitle: string
     rawCode: string | null
     rawCodeLink: string | null
+    children: ProLangLanguage[]
+    parents: ProLangLanguage[]
 }
 
 export type YearGroup = {

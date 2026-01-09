@@ -135,6 +135,8 @@ class MainController extends Controller {
      */
     public function langHistory() {
         $groups = YearGroup::with('languages.authors')
+            ->with('languages.parents')
+            ->with('languages.children')
             ->orderBy('position', 'ASC')
             ->get();
 
