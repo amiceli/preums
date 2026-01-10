@@ -26,7 +26,7 @@ import type { ProLangLanguage } from "@/types/main"
 const props = defineProps<{
     langs: ProLangLanguage[]
 }>()
-const { graphStore, graphData } = useLangGraph()
+const { graphStore, graphData, hasName } = useLangGraph()
 
 onMounted(() => {
     graphStore.initGraph(props.langs)
@@ -53,7 +53,10 @@ const configs = reactive(
         node: {
             normal: {
                 color: (n) => {
-                    return n.name === "Human" ? "#ff0000" : "#4466cc"
+                    if (hasName.value && n.name?.includes(hasName.value)) {
+                        return "#a45586"
+                    }
+                    return n.name === "Human" ? "#100d50" : "#08abff"
                 },
             },
             label: {
@@ -77,7 +80,5 @@ const configs = reactive(
     grid-template-columns: 300px 1fr;
     gap : 20px;
     height : calc(100vh - 80px);
-
-    // &__graph {}
 }
 </style>
