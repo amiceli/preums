@@ -4,6 +4,9 @@ import laravel from "laravel-vite-plugin"
 import { defineConfig } from "vite"
 
 export default defineConfig({
+    optimizeDeps: {
+        exclude: ["v-network-graph"],
+    },
     plugins: [
         laravel({
             input: ["resources/js/app.ts"],
