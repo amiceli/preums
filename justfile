@@ -80,3 +80,9 @@ sync:
 clean_smala:
     php artisan config:clear
     php artisan config:cache
+
+start:
+    just up
+    just up_db
+    just up_adminer
+    just open

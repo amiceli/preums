@@ -135,11 +135,24 @@ class MainController extends Controller {
      */
     public function langHistory() {
         $groups = YearGroup::with('languages.authors')
+            ->with('languages.parents')
+            ->with('languages.children')
             ->orderBy('position', 'ASC')
             ->get();
 
         return Inertia::render('LangHistory', array(
             'groups' => $groups,
+        ));
+    }
+
+    public function langFamily() {
+        $groups = ProLang::with('authors')
+            ->with('parents')
+            ->with('children')
+            ->get();
+
+        return Inertia::render('LangFamily', array(
+            'langs' => $groups,
         ));
     }
 

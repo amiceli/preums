@@ -762,9 +762,7 @@ class ProLangAssets extends Command {
                 'mainRepository' => 'https://github.com/eclipse-archived/ceylon',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/c/Ceylon.ceylon',
             ),
-            'Genie' => array(
-                'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/p/ParaSail.psi',
-            ),
+            'Genie' => array(),
             'Forth' => array(
                 'mainRepository' => 'https://github.com/Forth-Standard/forth-standard',
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/f/Forth.fth',
@@ -846,7 +844,9 @@ class ProLangAssets extends Command {
             ),
             'Boo' => array(),
             'Cobra' => array(),
-            'CoffeeScript' => array(),
+            'CoffeeScript' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/CoffeeScript/fibonacci-sequence-2.coffee',
+            ),
             'Commodore BASIC' => array(),
             'Compiler Description Language' => array(),
             'Component Pascal' => array(),
@@ -1050,7 +1050,27 @@ class ProLangAssets extends Command {
             ),
             'GPSS' => array(),
             'Hamilton C shell' => array(),
-            'Io' => array(),
+            'Io' => array(
+                'mainRepository' => 'https://github.com/IoLanguage/io?tab=readme-ov-file#example-code',
+                'rawCode' => <<<'EOD'
+                    #!/usr/bin/env io
+
+                    Account := Object clone do(
+                    balance := 0.0
+                    deposit := method(v,  balance = balance + v)
+                    show := method(write("Account balance: $", balance, "\n"))
+                    )
+
+                    "Inital: " print
+                    Account show
+
+                    "Depositing $10\n" print
+                    Account deposit(10.0)
+
+                    "Final: " print
+                    Account show
+                EOD
+            ),
             'JOSS II' => array(),
             'Jacquard machine' => array(),
             'KornShell' => array(),
@@ -1092,7 +1112,9 @@ class ProLangAssets extends Command {
             'occam' => array(
                 'rawCodeLink' => 'https://raw.githubusercontent.com/leachim6/hello-world/refs/heads/main/o/occam.occam',
             ),
-            'Dart' => array(),
+            'Dart' => array(
+                'rawCodeLink' => 'https://raw.githubusercontent.com/acmeism/RosettaCodeData/refs/heads/main/Task/Fibonacci-sequence/Dart/fibonacci-sequence-4.dart',
+            ),
             'Common Lisp' => array(),
             'Windows PowerShell' => array(),
         );

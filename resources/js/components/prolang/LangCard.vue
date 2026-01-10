@@ -1,7 +1,7 @@
 <template>
     <wa-drawer
-        :open="drawerOpen"
-        @wa-hide="drawerOpen = false"
+        :open="props.selectedLang === props.lang.name"
+        @wa-hide="emits('select-lang', null)"
         :label="props.lang.name"
         style="--size: 50vw"
     >
@@ -32,6 +32,60 @@
             >
                 Main repository
             </wa-button>
+        </div>
+
+        <div
+            v-if="
+                props.lang.children.length > 0 || props.lang.parents.length > 0
+            "
+        >
+            <h2>Family history</h2>
+            <br />
+            <div class="lang__family">
+                <wa-card>
+                    <h4 slot="header">Inspired by these languages</h4>
+                    <template v-for="p in props.lang.parents" :key="p.apiId">
+                        <wa-button
+                            appearance="outlined"
+                            variant="brand"
+                            size="small"
+                            @click="$emit('select-lang', p.name)"
+                            style="margin-bottom: 10px; margin-right: 10px"
+                        >
+                            {{ p.name }}
+                        </wa-button>
+                    </template>
+                    <p v-if="props.lang.parents.length === 0 && props.lang.authors.length > 0">
+                        Just thank you to :
+                        {{ props.lang.authors.map((a) => a.name).join(", ") }}
+                    </p>
+                    <p v-if="props.lang.parents.length === 0 && props.lang.authors.length === 0">
+                        I'm going to search the internet the <b class="for--info">old-fashioned</b> way.
+                        <br>
+                        No <b class="for--error">laziness</b>, no <b class="for--error">AI</b>.
+                    </p>
+                </wa-card>
+                <!--  -->
+                <wa-card>
+                    <h3 slot="header">Inspired these languages</h3>
+                    <template v-for="p in props.lang.children" :key="p.apiId">
+                        <wa-button
+                            appearance="outlined"
+                            variant="brand"
+                            size="small"
+                            @click="$emit('select-lang', p.name)"
+                            style="margin-bottom: 10px; margin-right: 10px"
+                        >
+                            {{ p.name }}
+                        </wa-button>
+                    </template>
+                    <p v-if="props.lang.children.length === 0">
+                        Not yet, but it could happen. Don't ask
+                        <b class="for--error">AI</b>, it can't predict the
+                        <b class="for--info">future</b>.
+                    </p>
+                </wa-card>
+            </div>
         </div>
 
         <!--  -->
@@ -90,11 +144,12 @@ import { codeToHtml } from "shiki"
 import { computed, ref } from "vue"
 import type { ProLangLanguage } from "@/types/main"
 
-const drawerOpen = ref<boolean>(false)
 const code = ref<string | null>(null)
+const emits = defineEmits(["select-lang"])
 
 const props = defineProps<{
     lang: ProLangLanguage
+    selectedLang: string | null
 }>()
 
 const hasEnoughData = computed(() => {
@@ -124,7 +179,7 @@ async function showCode() {
         }
     }
 
-    drawerOpen.value = true
+    emits("select-lang", props.lang.name)
 }
 </script>
 
@@ -138,6 +193,12 @@ wa-drawer {
             width: 100%;
         }
     }
+}
+
+.lang__family {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .drawer__section {
