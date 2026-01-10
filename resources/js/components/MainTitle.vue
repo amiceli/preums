@@ -15,6 +15,10 @@
                 <a :href="langHistory.url()">
                     See language histories
                 </a>
+                and
+                <a :href="langFamily.url()">
+                    languages family
+                </a>
             </h3>
         </div>
     </div>
@@ -24,7 +28,7 @@
 // @ts-expect-error
 import Typewriter from "typewriter-effect/dist/core"
 import { onMounted, useTemplateRef } from "vue"
-import { langHistory } from "@/actions/App/Http/Controllers/MainController"
+import { langFamily, langHistory } from "@/actions/App/Http/Controllers/MainController"
 
 const props = defineProps<{ langs: string[] }>()
 const forLang = useTemplateRef("for-lang")
