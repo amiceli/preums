@@ -32,6 +32,10 @@ Route::get('/lang-history', array(MainController::class, 'langHistory'))
     ->name('lang-history')
     ->middleware(HandleGithubRateLimit::class);
 
+Route::get('/lang-family', array(MainController::class, 'langFamily'))
+    ->name('lang-family')
+    ->middleware(HandleGithubRateLimit::class);
+
 Route::post('/search-oldest', array(MainController::class, 'searchOldestRepository'))
     ->name('search-oldest')
     ->middleware(HandleGithubRateLimit::class);

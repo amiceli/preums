@@ -145,6 +145,17 @@ class MainController extends Controller {
         ));
     }
 
+    public function langFamily() {
+        $groups = ProLang::with('authors')
+            ->with('parents')
+            ->with('children')
+            ->get();
+
+        return Inertia::render('LangFamily', array(
+            'langs' => $groups,
+        ));
+    }
+
     public function road() {
         Log::info('action=show_road');
 
