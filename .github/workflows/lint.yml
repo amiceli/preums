@@ -37,4 +37,6 @@ jobs:
         run: npx biome check
 
       - name: Lint TS errors
-        run: npx vue-tsc --noEmit --checkJs --project tsconfig.json
+        run: |
+          php artisan wayfinder:generate
+          npx vue-tsc --noEmit --checkJs --project tsconfig.json
