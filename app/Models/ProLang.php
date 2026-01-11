@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property int $id
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class ProLang extends Model {
     protected $guarded = array('id');
+
+    protected $appends = array('paths');
 
     protected $casts = array(
         'years' => 'array',
@@ -51,5 +54,39 @@ class ProLang extends Model {
 
     public function authorNames(): array {
         return $this->authors()->pluck('name')->toArray();
+    }
+
+    // paths
+
+    public function getPathsAttribute() {
+        $targetId = DB::table('pro_langs')->where('id', $this->id)->value('id');
+
+        $paths = DB::select("
+            WITH RECURSIVE paths AS (
+                SELECT
+                    l.id,
+                    l.name,
+                    l.name::text AS path
+                FROM pro_langs l
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM predecessors p WHERE p.child_id = l.id
+                )
+
+                UNION ALL
+
+                SELECT
+                    c.id,
+                    c.name,
+                    paths.path || ' -> ' || c.name
+                FROM paths
+                JOIN predecessors p ON p.parent_id = paths.id
+                JOIN pro_langs c ON c.id = p.child_id
+            )
+            SELECT path
+            FROM paths
+            WHERE id = ?
+        ", array($targetId));
+
+        return array_map(fn ($r) => $r->path, $paths);
     }
 }
