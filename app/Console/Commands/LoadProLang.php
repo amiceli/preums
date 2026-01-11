@@ -171,6 +171,14 @@ class LoadProLang extends Command {
             'PHP' => array('C', 'C++', 'Perl'),
             // Data : https://en.wikipedia.org/wiki/Hack_(programming_language)
             'Hack' => array('PHP', 'OCaml', 'Java', 'Scala', 'Haskell', 'C#'),
+            // Data : https://crystal-lang.org/ and https://en.wikipedia.org/wiki/Crystal_(programming_language)
+            'Crystal' => array('Ruby', 'Go'),
+            // Data : https://en.wikipedia.org/wiki/Ruby_(programming_language)
+            'Ruby' => array('Ada', 'Eiffel', 'Lua', 'Dylan'),
+            // Data : https://en.wikipedia.org/wiki/Dylan_(programming_language)
+            'Dylan' => array('ALGOL 60', 'EuLisp'),
+            // Data : https://en.wikipedia.org/wiki/Lasso_(programming_language)
+            'Lasso' => array('Dylan', 'Scala'),
         );
 
         foreach ($langFamilies as $name => $value) {
