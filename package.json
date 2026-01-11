@@ -26,7 +26,6 @@
         "@hackernoon/pixel-icon-library": "^1.0.6",
         "@inertiajs/vue3": "^2.2.19",
         "@nanostores/vue": "^1.0.1",
-        "@tailwindcss/vite": "^4.1.11",
         "@vueuse/core": "^12.8.2",
         "@yeger/vue-masonry-wall": "^5.1.4",
         "chart.js": "^4.5.1",
