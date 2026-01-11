@@ -34,26 +34,31 @@ class GithubRepositoryApi extends ApiClient {
     }
 
     private function parseRepository(array $item): GithubRepository {
-        return new GithubRepository(
-            id: $item['id'],
-            stars: $item['stargazers_count'],
-            name: $item['name'],
-            fullName: $item['full_name'],
-            description: $item['description'],
-            url: $item['html_url'],
-            createdAt: new DateTime($item['created_at']),
-            updatedAt: new DateTime($item['updated_at']),
-            language: $item['language'],
-            topics: $item['topics'],
-            watchers: $item['watchers'],
-            forks: $item['forks'],
-            owner: new GithubRepositoryOwner(
-                login: $item['owner']['login'],
-                id: $item['owner']['id'],
-                avatarUrl: $item['owner']['avatar_url'],
-            ),
-            ownerIsOrganization: $item['owner']['type'] === 'Organization',
-        );
+        try {
+            return new GithubRepository(
+                id: $item['id'],
+                stars: $item['stargazers_count'],
+                name: $item['name'],
+                fullName: $item['full_name'],
+                description: $item['description'],
+                url: $item['html_url'],
+                createdAt: new DateTime($item['created_at']),
+                updatedAt: new DateTime($item['updated_at']),
+                language: $item['language'],
+                topics: $item['topics'],
+                watchers: $item['watchers'],
+                forks: $item['forks'],
+                owner: new GithubRepositoryOwner(
+                    login: $item['owner']['login'],
+                    id: $item['owner']['id'],
+                    avatarUrl: $item['owner']['avatar_url'],
+                ),
+                ownerIsOrganization: $item['owner']['type'] === 'Organization',
+            );
+        } catch (\Exception $e) {
+            print_r($e);
+            var_dump($item);
+        }
     }
 
     /**
