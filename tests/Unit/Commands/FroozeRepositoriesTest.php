@@ -15,6 +15,12 @@ describe('FroozeRepositories', function () {
                 200,
             ),
         ));
+        Http::fake(array(
+            'https://api.github.com/repos/*' => Http::response(
+                $repos[0],
+                200,
+            ),
+        ));
 
         FrozenRepository::insert(array(
             'created_at' => Carbon::now(),

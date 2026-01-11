@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { GithubSearchResultItem } from "@/types/main"
+import type { GithubRepository } from "@/types/main"
 
 const props = defineProps<{
-    repository: GithubSearchResultItem
+    repository: GithubRepository
 }>()
 </script>

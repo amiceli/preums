@@ -56,7 +56,8 @@
                         <LangCard
                             :lang="item"
                             :key="item.apiId"
-                            @select-lang="updateSelectedLang($event)"
+                            @select-lang="updateSelectedLang($event, false)"
+                            @close="updateSelectedLang($event, true)"
                             :selectedLang="selectedLang"
                         />
                     </template>
@@ -84,12 +85,17 @@ const props = defineProps<{
     groups: YearGroup[]
 }>()
 
-function updateSelectedLang(value: string) {
-    if (searchLang.value.length > 0) {
-        searchLang.value = value
-    }
+function updateSelectedLang(value: string, forClose: boolean) {
+    if (forClose) {
+        selectedLang.value = ""
+    } else {
+        // if (searchLang.value.length > 0) {
+        //     searchLang.value = value
+        // }
 
-    selectedLang.value = value
+        searchLang.value = value
+        selectedLang.value = value
+    }
 }
 
 const showGroups = computed(() => {

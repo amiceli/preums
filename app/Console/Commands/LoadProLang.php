@@ -51,9 +51,9 @@ class LoadProLang extends Command {
                     'name' => $yearGroup['name'],
                 ),
                 array(
-                    'apiId' => $yearGroup['id'],
-                    'position' => $yearGroup['position'],
-                    'name' => $yearGroup['name'],
+                    'apiId' => $yearGroup['id'] ?? null,
+                    'position' => $yearGroup['position'] ?? null,
+                    'name' => $yearGroup['name'] ?? null,
                 ));
 
             $updatedLang = ProLang::updateOrCreate(
@@ -118,12 +118,92 @@ class LoadProLang extends Command {
     }
 
     /**
-     * Execute the console command.
+     * Add some languages like Phel missing in prolang api
      */
+    private function addProLanguage() {
+        $langToAdd = array(
+            // Data : https://phel-lang.org/ and preums itselft
+            array(
+                'authors' => array(),
+                'company' => null,
+                'id' => uniqid().'_Phel',
+                'link' => '',
+                'name' => 'Phel',
+                'predecessors' => array(),
+                'yearGroup' => array(
+                    'name' => '2020s',
+                ),
+                'years' => array(2020),
+            ),
+            // Data : https://janet-lang.org/ and preums itselft
+            array(
+                'authors' => array(),
+                'company' => null,
+                'id' => uniqid().'_Janet',
+                'link' => '',
+                'name' => 'Janet',
+                'predecessors' => array(),
+                'yearGroup' => array(
+                    'name' => '2010s',
+                ),
+                'years' => array(2017),
+            ),
+        );
+
+        foreach ($langToAdd as $item) {
+            $this->saveProLang($item);
+            Log::info('action=add_missing_lang, status=succes, lang='.$item['name']);
+        }
+    }
+
+    /**
+     * Add links between languages
+     *  - Some data are missing from prolang api
+     *  - Ex : Php is Hack's predecessors
+     */
+    private function updateLangFamily() {
+        $langFamilies = array(
+            // Data: https://github.com/janet-lang/janet
+            'Janet' => array('C'),
+            // Data : https://phel-lang.org/
+            'Phel' => array('PHP', 'Clojure', 'Janet', 'Lisp'),
+            // https://en.wikipedia.org/wiki/PHP
+            'PHP' => array('C', 'C++', 'Perl'),
+            // Data : https://en.wikipedia.org/wiki/Hack_(programming_language)
+            'Hack' => array('PHP', 'OCaml', 'Java', 'Scala', 'Haskell', 'C#'),
+            // Data : https://crystal-lang.org/ and https://en.wikipedia.org/wiki/Crystal_(programming_language)
+            'Crystal' => array('Ruby', 'Go'),
+            // Data : https://en.wikipedia.org/wiki/Ruby_(programming_language)
+            'Ruby' => array('Ada', 'Eiffel', 'Lua', 'Dylan'),
+            // Data : https://en.wikipedia.org/wiki/Dylan_(programming_language)
+            'Dylan' => array('ALGOL 60', 'EuLisp'),
+            // Data : https://en.wikipedia.org/wiki/Lasso_(programming_language)
+            'Lasso' => array('Dylan', 'Scala'),
+        );
+
+        foreach ($langFamilies as $name => $value) {
+            $lang = ProLang::where('name', $name)->first();
+            if ($lang) {
+                $parents = ProLang::whereIn(
+                    'name', $value
+                )->pluck('id');
+
+                $lang->parents()->sync($parents);
+                $lang->save();
+
+                Log::info("action=save_lang, status=success, lang=$name");
+            } else {
+                Log::info("action=save_lang, status=failed, reason=lang $name not found");
+            }
+        }
+    }
+
     public function handle() {
         Log::info('action=load_prolang_command, status=started');
 
         $this->getLanguages(1);
+        $this->addProLanguage();
+        $this->updateLangFamily();
 
         Log::info('action=load_prolang_command, status=finished');
     }

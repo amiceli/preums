@@ -1117,6 +1117,12 @@ class ProLangAssets extends Command {
             ),
             'Common Lisp' => array(),
             'Windows PowerShell' => array(),
+            'Phel' => array(
+                'mainRepository' => 'https://github.com/phel-lang/phel-lang',
+            ),
+            'Janet' => array(
+                'mainRepository' => 'https://github.com/janet-lang/janet',
+            ),
         );
 
         DB::transaction(function () use ($langsData) {
@@ -1141,9 +1147,10 @@ class ProLangAssets extends Command {
      */
     public function handle() {
         Log::info('action=prolang_assets_command, status=started');
-        $this->updateAssets();
-        Log::info('action=prolang_assets_command, status=finished');
 
+        $this->updateAssets();
         $this->updateLinks();
+
+        Log::info('action=prolang_assets_command, status=finished');
     }
 }

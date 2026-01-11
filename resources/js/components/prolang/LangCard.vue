@@ -1,7 +1,7 @@
 <template>
     <wa-drawer
         :open="props.selectedLang === props.lang.name"
-        @wa-hide="emits('select-lang', null)"
+        @wa-hide="emits('close', '')"
         :label="props.lang.name"
         style="--size: 50vw"
     >
@@ -89,8 +89,13 @@
         </div>
 
         <!--  -->
-        <wa-button slot="footer" variant="brand" @click="drawerOpen = false"
-            >Close</wa-button
+        <wa-button
+            slot="footer"
+            variant="brand"
+            @click="emits('close')"
+        >
+            Close
+        </wa-button
         >
     </wa-drawer>
     <wa-card class="card-overview">
@@ -145,7 +150,7 @@ import { computed, ref } from "vue"
 import type { ProLangLanguage } from "@/types/main"
 
 const code = ref<string | null>(null)
-const emits = defineEmits(["select-lang"])
+const emits = defineEmits(["select-lang", "close"])
 
 const props = defineProps<{
     lang: ProLangLanguage

@@ -112,7 +112,6 @@ export type ProLangAuthor = {
 }
 
 export type ProLangLanguage = {
-    // TODO: add predecessors in hisotry
     id: number
     apiId: string
     company: string | null
@@ -125,8 +124,9 @@ export type ProLangLanguage = {
     codeTitle: string
     rawCode: string | null
     rawCodeLink: string | null
-    children: ProLangLanguage[]
-    parents: ProLangLanguage[]
+    children: Array<Omit<ProLangLanguage, "childran" | "parent">>
+    parents: Array<Omit<ProLangLanguage, "childran" | "parent">>
+    paths: string[]
 }
 
 export type YearGroup = {
