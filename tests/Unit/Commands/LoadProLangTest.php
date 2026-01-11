@@ -63,7 +63,7 @@ describe('LoadProLang command', function () {
 
         expect(
             ProLang::all()->count()
-        )->toBe(29);
+        )->toBe(30);
         expect(
             ProLang::where('name', 'Icon')->count()
         )->toBe(1);
