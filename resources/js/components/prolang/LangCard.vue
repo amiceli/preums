@@ -1,7 +1,7 @@
 <template>
     <wa-drawer
         :open="props.selectedLang === props.lang.name"
-        @wa-hide="emits('select-lang', null)"
+        @wa-hide="emits('select-lang', '')"
         :label="props.lang.name"
         style="--size: 50vw"
     >
