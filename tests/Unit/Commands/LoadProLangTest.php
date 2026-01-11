@@ -1,23 +1,11 @@
 <?php
 
-use App\Console\Commands\LoadProLang;
 use App\Models\ProLang;
 use App\Models\YearGroup;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 
 describe('LoadProLang command', function () {
-    function mockProlangApi(array $prolang) {
-        Http::fake(array(
-            'https://api.prolanghistory.com/languages*' => Http::response(
-                $prolang,
-                200,
-            ),
-        ));
-
-        (new LoadProLang())->handle();
-    }
-
     it('should call prolang api', function (array $prolang) {
         mockProlangApi($prolang);
 
