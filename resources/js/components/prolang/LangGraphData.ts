@@ -2,7 +2,9 @@ import type { Edges, Layouts, Nodes } from "v-network-graph"
 import type { ProLangLanguage } from "@/types/main"
 
 function langNameMatch(lang: ProLangLanguage, search: string) {
-    return lang.name.toLowerCase().includes(search.toLowerCase())
+    return lang.paths.some((p) => {
+        return p.toLowerCase().includes(search.toLowerCase())
+    })
 }
 
 export function isMemberOf(search: string, lang: ProLangLanguage): boolean {

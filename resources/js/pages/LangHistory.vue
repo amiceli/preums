@@ -89,10 +89,6 @@ function updateSelectedLang(value: string, forClose: boolean) {
     if (forClose) {
         selectedLang.value = ""
     } else {
-        // if (searchLang.value.length > 0) {
-        //     searchLang.value = value
-        // }
-
         searchLang.value = value
         selectedLang.value = value
     }

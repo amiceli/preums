@@ -179,6 +179,10 @@ class LoadProLang extends Command {
             'Dylan' => array('ALGOL 60', 'EuLisp'),
             // Data : https://en.wikipedia.org/wiki/Lasso_(programming_language)
             'Lasso' => array('Dylan', 'Scala'),
+            // Data : https://en.wikipedia.org/wiki/JavaScript
+            'ActionScript' => array('JavaScript'),
+            'CoffeeScript' => array('JavaScript'),
+            'JavaScript' => array('Java', 'Self', 'AWK'),
         );
 
         foreach ($langFamilies as $name => $value) {

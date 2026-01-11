@@ -146,20 +146,17 @@
 
 <script lang="ts" setup>
 import { codeToHtml } from "shiki"
-import { computed, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import type { ProLangLanguage } from "@/types/main"
-
-const code = ref<string | null>(null)
-const emits = defineEmits(["select-lang", "close"])
 
 const props = defineProps<{
     lang: ProLangLanguage
     selectedLang: string | null
 }>()
 
-const hasEnoughData = computed(() => {
-    return props.lang.link || props.lang.mainRepository
-})
+const code = ref<string | null>(null)
+const emits = defineEmits(["select-lang", "close"])
+const hasEnoughData = computed(() => props.lang.link || props.lang.mainRepository)
 const castYears = JSON.parse(props.lang.years).join(", ")
 
 async function setCodeHtml(codeStr: string, lang?: string) {
@@ -173,19 +170,19 @@ async function setCodeHtml(codeStr: string, lang?: string) {
 }
 
 async function showCode() {
-    if (code.value === null) {
-        if (props.lang.rawCode) {
-            await setCodeHtml(props.lang.rawCode)
-        } else if (props.lang.rawCodeLink) {
-            const resp = await fetch(props.lang.rawCodeLink)
-            const text = await resp.text()
-
-            setCodeHtml(text)
-        }
-    }
-
     emits("select-lang", props.lang.name)
 }
+
+onMounted(async () => {
+    if (props.lang.rawCode) {
+        await setCodeHtml(props.lang.rawCode)
+    } else if (props.lang.rawCodeLink) {
+        const resp = await fetch(props.lang.rawCodeLink)
+        const text = await resp.text()
+
+        setCodeHtml(text)
+    }
+})
 </script>
 
 <style lang="scss" scoped>
