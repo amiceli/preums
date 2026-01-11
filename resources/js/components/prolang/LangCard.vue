@@ -89,8 +89,13 @@
         </div>
 
         <!--  -->
-        <wa-button slot="footer" variant="brand" @click="drawerOpen = false"
-            >Close</wa-button
+        <wa-button
+            slot="footer"
+            variant="brand"
+            @click="emits('close')"
+        >
+            Close
+        </wa-button
         >
     </wa-drawer>
     <wa-card class="card-overview">
