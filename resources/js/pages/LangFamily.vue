@@ -54,10 +54,10 @@ const configs = reactive(
             normal: {
                 color: (n) => {
                     if (hasName.value) {
-                        const regex = new RegExp(`${hasName.value}`, 'i')
+                        const regex = new RegExp(`${hasName.value}`, "i")
 
                         if (n.name && regex.test(n.name)) {
-                            return '#a45586'
+                            return "#a45586"
                         }
                     }
                     return n.name === "Human" ? "#100d50" : "#08abff"
