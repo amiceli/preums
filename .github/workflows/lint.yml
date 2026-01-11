@@ -35,3 +35,6 @@ jobs:
 
       - name: Lint Frontend
         run: npx biome check
+
+      - name: Lint TS errors
+        run: npx vue-tsc --noEmit --checkJs --project tsconfig.json
