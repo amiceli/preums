@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import MasonryWall from "@yeger/vue-masonry-wall"
+import {MasonryWall} from "@yeger/vue-masonry-wall"
 import { computed, ref } from "vue"
 import Layout from "@/components/Layout.vue"
 import LangCard from "@/components/prolang/LangCard.vue"
