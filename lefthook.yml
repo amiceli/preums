@@ -1,3 +1,4 @@
+---
 commit-msg:
   commands:
     lint:
@@ -7,10 +8,17 @@ pre-commit:
   commands:
     biome:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: npx biome check --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      run: >-
+        docker compose exec app
+        npx biome check
+        --no-errors-on-unmatched
+        --files-ignore-unknown=true {staged_files}
     pint:
       glob: "*.{php}"
-      run: ./vendor/bin/pint --bail {staged_files}
+      run: just pint_fix {staged_files}
+    yamllint:
+      glob: "*.{yml,yaml}"
+      run: just yamllint
     gitleaks:
       run: gitleaks git .
 

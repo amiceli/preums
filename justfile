@@ -1,33 +1,79 @@
-set dotenv-load
+set dotenv-load := true
 
-# run project
-run:
-    composer run dev
+# Build dev env
+dev_build:
+    docker compose up --build
 
-# install composer and npm deps
-install:
-    npm install
-    composer install
+# Run dev env with docker
+run_dev:
+    docker compose up --build -d
+
+# Stop project
+stop:
+    docker compose down
+
+# Connect to postgres container
+psql:
+    docker compose exec postgres psql -U ${DB_USERNAME} -d ${DB_DATABASE}
+
+# Run artisan command
+artisan *args:
+    docker compose exec app php artisan {{args}}
+
+# Run composer command
+composer *args:
+    docker compose exec app composer {{args}}
+
+# Run npm command
+npm *args:
+    docker compose exec app npm {{args}}
+
+# Run laravel db migrations
+migrate:
+    docker compose exec app php artisan migrate
+
+# Show docker logs
+logs:
+    docker compose logs -f
+
+# Run all commands to sync
+sync:
+    just artisan migrate:fresh
+    just artisan app:frooze-repositories
+    just artisan app:load-pro-lang
+    just artisan app:pro-lang-assets
+
+# Clear and cache config
+clean_smala:
+    just artisan config:clear
+    just artisan config:cache
 
 # check and fix code with biome
-biome:
-    npx biome check --write
+front_lint:
+    docker compose exec app npx biome check --write
+
+# Yamllint
+yamllint:
+    docker run --rm -v "$(pwd):/data" cytopia/yamllint ./*.yml
+
+# Test and fix files with Pint
+pint_fix file="":
+    docker compose exec app ./vendor/bin/pint {{file}}
 
 # Lint everything
 lint:
-    just biome
+    just front_lint
     just pint_fix
-
-# run and detach project with tmux
-up:
-    tmux new-session -d -s "preums"
-    tmux send-keys -t "preums" "just run" ENTER
 
 # open project main page
 open:
     open "http://localhost:8000/"
 
-# test github api endpint
+# Open adminer page
+go_adminer:
+    open "http://localhost:8081/?pgsql=postgres&username=app&db=app&ns=public"
+
+# # test github api endpint
 test_api endpoint="" output="out":
     curl -L \
         -H "Accept: application/vnd.github+json" \
@@ -37,52 +83,8 @@ test_api endpoint="" output="out":
 
 # Test file(s) with Pint
 pint file="":
-    ./vendor/bin/pint {{file}} --test
+    docker compose exec app ./vendor/bin/pint {{file}} --test
 
-# Test and fix files with Pint
-pint_fix file="":
-    ./vendor/bin/pint {{file}}
-
-# Run Pest tests
+# # Run Pest tests
 pest file="":
-    ./vendor/bin/pest {{file}}
-
-# Run postgres with docker
-up_db:
-    docker run -d \
-        --name pg \
-        -e POSTGRES_DB=preums \
-        -e POSTGRES_USER=root \
-        -e POSTGRES_PASSWORD=toor \
-        -p 5432:5432 \
-        -v $PWD/pgdata:/var/lib/postgresql \
-        postgres
-
-# Run adminer
-up_adminer:
-    docker run -d \
-        --name adminer \
-        --link pg:db \
-        -p 8080:8080 \
-        adminer
-
-# Clean database
-clean:
-    php artisan migrate:fresh
-
-# Run all commands to sync
-sync:
-    just clean
-    php artisan app:frooze-repositories
-    php artisan app:load-pro-lang
-    php artisan app:pro-lang-assets
-
-clean_smala:
-    php artisan config:clear
-    php artisan config:cache
-
-start:
-    just up
-    just up_db
-    just up_adminer
-    just open
+    docker compose exec app ./vendor/bin/pest {{file}}
