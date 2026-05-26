@@ -1,13 +1,3 @@
-FROM node:24-bookworm AS frontend
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm i
-
-COPY . .
-RUN npm run build
-
 FROM serversideup/php:8.4-frankenphp-bookworm
 
 USER root
@@ -22,13 +12,22 @@ RUN install-php-extensions \
     gd \
     pcntl
 
+# Node 24
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
+
 WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+COPY package.json package-lock.json ./
+RUN npm i
 
 COPY --chown=www-data:www-data . .
 
-RUN composer install --no-dev --optimize-autoloader
-
-COPY --from=frontend /app/public/build ./public/build
+RUN npm run build
 
 RUN php artisan config:cache \
     && php artisan route:cache \
