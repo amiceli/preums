@@ -7,6 +7,18 @@ export default defineConfig({
     optimizeDeps: {
         exclude: ["v-network-graph"],
     },
+
+    server: {
+        host: "0.0.0.0",
+        port: 5173,
+        hmr: {
+            host: process.env.VITE_HMR_HOST || "localhost",
+        },
+        watch: {
+            usePolling: true,
+        },
+    },
+
     plugins: [
         laravel({
             input: ["resources/js/app.ts"],
