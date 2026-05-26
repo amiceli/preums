@@ -1,4 +1,4 @@
-import type { Edges, Layouts, Nodes } from "v-network-graph"
+import type { Edges, Nodes } from "v-network-graph"
 import type { ProLangLanguage } from "@/types/main"
 
 function langNameMatch(lang: ProLangLanguage, search: string) {

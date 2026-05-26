@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import {MasonryWall} from "@yeger/vue-masonry-wall"
+import { MasonryWall } from "@yeger/vue-masonry-wall"
 import Layout from "@/components/Layout.vue"
 import MainTitle from "@/components/MainTitle.vue"
 import RepositoryCard from "@/components/RepositoryCard.vue"
