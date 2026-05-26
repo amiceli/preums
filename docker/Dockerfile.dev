@@ -1,0 +1,43 @@
+FROM serversideup/php:8.4-frankenphp-bookworm
+
+USER root
+
+# PHP deps
+RUN install-php-extensions \
+    pdo_pgsql \
+    pgsql \
+    mbstring \
+    intl \
+    zip \
+    bcmath \
+    gd \
+    pcntl
+
+# Node 24
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
+    && apt-get install -y nodejs supervisor \
+    && npm install -g npm@latest
+
+# Composer safety
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+WORKDIR /var/www/html
+
+# install deps early (cache)
+COPY composer.json composer.lock ./
+RUN composer install --no-scripts
+
+# node deps
+COPY package.json package-lock.json ./
+RUN npm install
+
+# copy app
+COPY . .
+
+USER www-data
+
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+EXPOSE 8000
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
