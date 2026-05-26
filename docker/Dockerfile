@@ -39,4 +39,4 @@ USER www-data
 
 EXPOSE 8000
 
-CMD ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0", "--port=80"]
+CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000"]
