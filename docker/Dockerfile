@@ -20,7 +20,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
 WORKDIR /var/www/html
 
 ENV APP_ENV=production
-ENV NODE_ENV=production
 
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction
