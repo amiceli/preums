@@ -26,3 +26,6 @@ yarn-error.log
 /.vscode
 out.json
 pgdata/
+supervisord.log
+supervisord.pid
+public/frankenphp-worker.php
